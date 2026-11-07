@@ -4,13 +4,15 @@ nav = [
   { "Enforcement & Deadlines" = "deadlines.md" },
   { "Agency-Provided Offerings" = "agency-provided.md" },
   { "Changelog" = "changelog.md"},
-  { "Implementing the VDR/VER" = [
+  { "Migrating to VDR/VER" = [
     { "Requirements" = "requirements.md"},
     { "Resources & FAQs" = "resources.md" },
-    { "Agency Customers" = "agencies.md" }
+    { "Agency Customers" = "agencies.md" },
+    { "Agency Auth In Process" = "in-process.md" }
   ]},
-  { "Attestation" = [
-    { "Information Collection" = "collection.md" },
+  { "Progress Report" = [
+    { "Emergency Test" = "emergency-test.md"},
+    { "Required Information" = "report.md" },
     { "Schemas & Templates" = "schemas.md" },
     { "Corrective Action Plans" = "cap.md" },
     { "Examples" = "examples.md" },
@@ -19,14 +21,14 @@ nav = [
   { "--> return to FedRAMP.gov" = "/" },
 ]
 
-site_name = "VDR/VER Implementation Collection Requirements"
-site_description = "Explains how FedRAMP will collect VDR/VER implementation information, with guidance for cloud service providers on preparing appropriate materials."
+site_name = "VDR/VER Migration Resources"
+site_description = "Resources to help cloud services navigate the mandatory FedRAMP VDR/VER migration and related enforcement process."
 site_author = "pete@fedramp.gov"
 docs_dir = "content/"
 site_dir = "html/"
-site_url = "https://www.fedramp.gov/vdr-implementation"
-repo_url = "https://github.com/FedRAMP/vdr-implementation"
-repo_name = "FedRAMP/vdr-implementation"
+site_url = "https://www.fedramp.gov/vdr-migration"
+repo_url = "https://github.com/FedRAMP/vdr-migration"
+repo_name = "FedRAMP/vdr-migration"
 copyright = "fedramp.gov"
 extra_css = ["stylesheets/extra.css"]
 
@@ -35,7 +37,7 @@ extra_javascript = [
 ]
 
 [project.extra]
-homepage = "/vdr-implementation"
+homepage = "/vdr-migration"
 
 [project.extra.analytics]
 provider = "google"
