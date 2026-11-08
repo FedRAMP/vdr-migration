@@ -4,7 +4,7 @@
 
 This repository builds the Zensical VDR/VER Migration Resources site. It helps FedRAMP Certified cloud services understand migration expectations and prepare their response to NTC-0017, “VDR/VER Migration Progress Reporting via Upcoming Quarterly Security Inbox Test.” The site also addresses agency customers, services seeking a new Rev5 Certification, and agency-provided offerings where their circumstances differ.
 
-The migration progress report has three components: a JSON or CSV Mini-Security Decision Record (Mini-SDR), a machine-readable activity-report sample, and a human-readable Monthly Activity Report sample. The Mini-SDR records per-rule implementation status and corrective actions. Its schemas, templates, examples, and validator do not cover the two activity-report samples. See [required report information](content/report.md) and [Emergency Test instructions](content/emergency-test.md) for collection details.
+The migration progress report has three components: a JSON or CSV Mini-Security Decision Record (Mini-SDR), a machine-readable activity-report sample, and a human-readable Monthly Activity Report sample. The Mini-SDR records per-rule implementation status and corrective actions. Its schemas, templates, examples, and validator do not cover the two activity-report samples. See [required report information](content/report.md) and [NTC-0017](https://fedramp.gov/notices/0017) for collection details.
 
 ## Sources and authority
 

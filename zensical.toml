@@ -2,13 +2,10 @@
 nav = [
   { "Overview" = "index.md"},
   { "Migrating to VDR/VER" = [
-    { "Enforcement & Deadlines" = "deadlines.md" },
-    { "Requirements" = "requirements.md"},
-    { "Customer Experience" = "cx.md" },
+    #{ "Customer Experience" = "cx.md" },
     { "FAQs" = "faq.md" },
   ]},
-  { "Progress Report" = [
-    { "Collection via Emergency Test" = "emergency-test.md"},
+  { "Progress Reports" = [
     { "Required Information" = "report.md" },
     { "Schemas & Templates" = "schemas.md" },
     { "Corrective Action Plans" = "cap.md" },
@@ -19,6 +16,8 @@ nav = [
       { "Harbor Agency Workspace" = "examples/harbor.md" },
       { "Smallbrook Public Information Workspace" = "examples/smallbrook.md" },
     ]},
+    { "Submitting Updates" = "submitting-updates.md"},
+
   ]},
   { "Monitoring this Site" = [
     { "Changelog" = "changelog.md"},
@@ -134,7 +133,7 @@ tables = {}
 
 [project.markdown_extensions.toc]
 permalink = true
-
+[project.markdown_extensions.pymdownx.blocks.caption]
 [project.markdown_extensions.pymdownx.mark]
 [project.markdown_extensions.pymdownx.details]
 [project.markdown_extensions.pymdownx.superfences]
@@ -161,7 +160,13 @@ logo = "overrides/assets/fr-only-logo-black.png"
 
 [project.plugins.rss]
 enabled = true
-feed_title = "Site Project Changelog"
+feed_title = "VDR/VER Migration Resources Changelog"
 match_path = "^changelog\\.md$"
 length = 1
 abstract_chars_count = 4096
+
+[project.plugins.rss.date_from_meta]
+as_creation = "created"
+as_update = "updated"
+datetime_format = "%Y-%m-%dT%H:%M:%S%z"
+default_timezone = "America/New_York"

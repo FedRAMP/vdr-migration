@@ -1,6 +1,6 @@
 # VDR/VER Migration Progress Report
 
-Prepare the following for the [Security Inbox Emergency Test](emergency-test.md):
+Prepare the following for [NTC-0017](https://fedramp.gov/notices/0017):
 
 1. A JSON or CSV Mini-Security Decision Record (Mini-SDR) describing implementation status for each applicable VDR/VER rule, with a brief explanation and a rule-specific corrective action plan and timeline where required.
 2. A sample or example machine-readable activity report required by [VER-RPT-PER (Persistent Reporting)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#persistent-reporting), with at least five vulnerabilities of each type.
@@ -42,13 +42,13 @@ When a required rule is not fully implemented, include its [corrective action pl
 
 The Mini-SDR is maintained until the provider migrates to the full Security Decision Record rules. It does not replace the activity reports required by VER. See [Schemas & Templates](schemas.md) for the developing report format.
 
-## Provider rule responses
+## Reference List of Applicable Rules
 
 Include a response for every provider rule below in your Mini-SDR. Use the force for your offering's framework and class; explain when a rule does not apply. Put any required Corrective Action Plan in that rule's response.
 
 These tables use rules version `2026.11.02.01` and cover the report's Rev5 Class B/C/D and 20x Class B/C profiles. Class-specific rules remain included even when their force is the same across these classes. Consult the linked rules for their full statements and applicability.
 
-### VDR rules
+### VDR Rules
 
 | ID | Name | FORCE | What to provide |
 | --- | --- | --- | --- |
@@ -71,7 +71,7 @@ These tables use rules version `2026.11.02.01` and cover the report's Rev5 Class
 | [VDR-TFR-MVX](https://www.fedramp.gov/2026/reference/vulnerability-detection-and-response/) | Persistent Machine Verification and Validation for 20x (20x only) | MUST | Describe implementation; supply a Corrective Action Plan if not fully implemented. |
 | [VDR-TFR-MVF](https://www.fedramp.gov/2026/reference/vulnerability-detection-and-response/) | Persistent Machine Verification and Validation for Rev5 (Rev5 only) | Rev5 Class B: SHOULD<br>Rev5 Class C/D: MUST | Class B: Describe implementation; supply an explanation, resulting risk, and risk compensation options if not fully implemented.<br><br>Class C/D: Describe implementation; supply a Corrective Action Plan if not fully implemented. |
 
-### VER rules
+### VER Rules
 
 | ID | Name | FORCE | What to provide |
 | --- | --- | --- | --- |
@@ -94,9 +94,3 @@ These tables use rules version `2026.11.02.01` and cover the report's Rev5 Class
 | [VER-TFR-EVU](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/) | Evaluate Vulnerabilities Quickly | SHOULD | Describe implementation; supply an explanation, resulting risk, and risk compensation options if not fully implemented. |
 | [VER-TFR-IRI](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/) | Internet-Reachable Incidents | Class B: MAY<br>Class C/D: SHOULD | Class B: Describe implementation if applicable.<br><br>Class C/D: Describe implementation; supply an explanation, resulting risk, and risk compensation options if not fully implemented. |
 | [VER-TFR-NRI](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/) | Non-Internet-Reachable Incidents | Class B/C: MAY<br>Class D: SHOULD | Class B/C: Describe implementation if applicable.<br><br>Class D: Describe implementation; supply an explanation, resulting risk, and risk compensation options if not fully implemented. |
-
-## Submission and agency access
-
-Follow the Emergency Test notification for the final form and submission requirements. Upload the requested attachments directly; links to hosted files do not replace them.
-
-Make the report information available to agency customers where you currently share your certification package, such as USDA Connect, a trust center, or the High Package Repository for historical Rev5 packages. Agency access is separate from submission to FedRAMP.
