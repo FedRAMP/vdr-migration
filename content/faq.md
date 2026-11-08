@@ -1,0 +1,685 @@
+# FedRAMP VDR and VER: frequently asked questions
+
+!!! note "Source snapshot and current migration instructions"
+
+    This FAQ was prepared in another project from sources through November 6, 2026. Its source-review notes describe that project's work; the linked discussions and recordings have not been independently re-reviewed for this import. For this site's later notice-based instructions, see [Enforcement & Deadlines](deadlines.md), [the Emergency Test](emergency-test.md), and [required progress report information](report.md). Questions 55–57 describe earlier announced plans and should be read as historical context.
+
+Questions raised July 1 through November 6, 2026 · Prepared November 7, 2026
+
+This FAQ focuses on Vulnerability Detection and Response (VDR), Vulnerability Evaluation and Reporting (VER), BOD 26-04, and the vulnerability-management questions that connect them to assessments, change notifications, incident reporting, and agency coordination. General certification, Marketplace, and unrelated rules questions are excluded.
+
+The answers summarize FedRAMP team responses from discussion forums, community updates, and assessor sessions. They reflect the local project's source snapshot through November 6, checked against rules release **2026.11.02.01**. Each answer links to the relevant posts or video passages. Rule references use the published identifier and name and link directly to the ruleset reference.
+
+Current rules take precedence over explanatory comments. Material changes are noted, and announced plans are labeled. In particular, the November 4 presentation described a more detailed enforcement process than earlier answers; its promised written notice was not present in the reviewed snapshot. The final section contains questions that were not fully answered.
+
+The transcript review included **“vader”**, the spoken form of VDR, as well as VDR, VER, BOD 26-04, vulnerability, PAIN, and POA&M variants. The July 8 discussion found this way adds detail about reporting thresholds, incident handling, and how FedRAMP and CISA timelines relate.
+
+## Index
+
+
+- [VDR, VER, and BOD 26-04](#topic-01)
+  - [1. What is the difference between VDR and VER?](#q001)
+  - [2. Why is the VDR/VER deadline tied to BOD 26-04?](#q002)
+  - [3. Why can a FedRAMP response deadline differ from a CISA KEV deadline?](#q003)
+  - [4. Can we keep the old High, Moderate, and Low severity deadlines?](#q004)
+- [Finding vulnerabilities and choosing detection methods](#topic-02)
+  - [5. Are vulnerabilities limited to CVEs and scanner findings?](#q005)
+  - [6. Does the new approach require a particular penetration test or scanner?](#q006)
+  - [7. How often must we check non-machine information resources?](#q007)
+  - [8. How should manual control findings or failed KSIs be tracked?](#q008)
+  - [9. What if our vulnerability-detection or response process itself fails?](#q009)
+  - [10. Can we scan representative samples instead of every identical instance?](#q010)
+  - [11. How often should representative samples be checked?](#q011)
+  - [12. Should we weaken a security control just to make scanning or sampling easier?](#q012)
+  - [13. Does detection after changes replace the normal detection schedule?](#q013)
+  - [14. Does infrastructure as code prove that a resource cannot drift?](#q014)
+  - [15. Can immutable images use manifests and change detection instead of repeatedly scanning running instances?](#q015)
+  - [16. Can we group a vulnerable image and its deployed instances?](#q016)
+- [Evaluating impact, exploitability, and reachability](#topic-03)
+  - [17. Is Potential Agency Impact just another name for CVSS severity?](#q017)
+  - [18. Should a vulnerability inherit the maximum impact of the component where it appears?](#q018)
+  - [19. Should we consider impact across several agencies or only one tenant?](#q019)
+  - [20. How do we estimate agency impact before we have agency customers?](#q020)
+  - [21. Can compensating controls affect exploitability, reachability, and impact?](#q021)
+  - [22. Does a CVSS “user interaction required” flag prove that exploitation cannot be automated?](#q022)
+  - [23. Can we start with a conservative impact rating and refine it later?](#q023)
+  - [24. Can we show that exploitation is not automatable even if an external source says it is?](#q024)
+  - [25. Must we know every agency's internal mission to estimate PAIN?](#q025)
+- [Response clocks, mitigation, and remediation](#topic-04)
+  - [26. When does the detection clock start: when a scanner finds an issue or when we import it?](#q026)
+  - [27. Can mitigation change the response deadline?](#q027)
+  - [28. Do N0 and N1 vulnerabilities have the same fixed deadlines as the other response categories?](#q028)
+  - [29. Is a mitigated vulnerability the same as a remediated vulnerability?](#q029)
+  - [30. Can a fully mitigated known exploited vulnerability wait indefinitely for remediation?](#q030)
+  - [31. Is “the vendor has not released a usable fix” enough reason to accept a vulnerability?](#q031)
+- [Reporting, accepted vulnerabilities, and old POA&Ms](#topic-05)
+  - [32. Do we report only high-impact vulnerabilities?](#q032)
+  - [33. Does persistent reporting mean every finding must be pushed in real time?](#q033)
+  - [34. If a vulnerability field is optional in JSON, is the information optional under the rules?](#q034)
+  - [35. Should we report every code-scanning result separately?](#q035)
+  - [36. Do all vulnerability records have to live in one central tool?](#q036)
+  - [37. Can an accepted vulnerability move back into active remediation?](#q037)
+  - [38. How should false positives appear in the report?](#q038)
+  - [39. Do old open POA&M items need to move into the new vulnerability process?](#q039)
+  - [40. Must we keep producing the old FedRAMP POA&M after adopting the new reports?](#q040)
+  - [41. Can we keep uploading reports through USDA Connect during the transition?](#q041)
+  - [42. What should the report's package-overview link show before the overview is implemented?](#q042)
+  - [43. Do quarterly review meetings replace monthly vulnerability reporting?](#q043)
+- [When vulnerability handling also requires incident handling](#topic-06)
+  - [44. Can a vulnerability require incident reporting before confirmed exploitation?](#q044)
+  - [45. Can we use a vulnerability's PAIN rating unchanged for the incident it causes?](#q045)
+  - [46. How should we report a vulnerability under a coordinated-disclosure embargo?](#q046)
+  - [47. Does the FedRAMP incident process require the provider to make the agency's CISA report?](#q047)
+- [Implementation, evidence, and the December transition](#topic-07)
+  - [48. What are the published vulnerability-management transition dates?](#q048)
+  - [49. Does FedRAMP's grace period extend an agency's BOD 26-04 obligations?](#q049)
+  - [50. Can we phase in VDR/VER, or must we switch everything in one month?](#q050)
+  - [51. Do we need an independent assessment before adopting VDR/VER?](#q051)
+  - [52. What evidence shows that VDR/VER is operating before the Security Decision Record is due?](#q052)
+  - [53. Must we finish the whole new Security Decision Record by the VDR/VER deadline?](#q053)
+  - [54. What does “fully implemented” mean when some rules say SHOULD?](#q054)
+  - [55. What information did FedRAMP say it would collect in December?](#q055)
+  - [56. What enforcement steps were announced for providers that are behind?](#q056)
+  - [57. Does the November update mean every late provider will automatically lose certification on March 7?](#q057)
+  - [58. Can an applicant use the emergency-test process instead of implementing the requirements?](#q058)
+  - [59. Can we postpone implementation because our scanning vendor does not support the new reports?](#q059)
+  - [60. If our hosting provider enters remediation, do we automatically inherit that status?](#q060)
+- [Change notifications and agency coordination](#topic-08)
+  - [61. Does moving to VDR/VER count as a significant change?](#q061)
+  - [62. Do we need one sponsoring agency to approve the vulnerability-management transition for everyone?](#q062)
+  - [63. What if an agency cannot yet consume the new machine-readable reports?](#q063)
+  - [64. Must we track every agency's adoption or keep parallel legacy reports indefinitely?](#q064)
+- [Questions not fully answered in the reviewed sources](#topic-09)
+  - [65. How does representative sampling work when members of the group can drift independently?](#q065)
+  - [66. Exactly how should an automatability determination change the response deadline?](#q066)
+  - [67. Can EPSS determine the “likely” score or PAIN rating?](#q067)
+
+- [Source scope and terminology](#source-notes)
+
+<a id="topic-01"></a>
+
+## VDR, VER, and BOD 26-04
+
+<a id="q001"></a>
+
+### 1. What is the difference between VDR and VER?
+
+VDR covers finding vulnerabilities and responding to them. VER covers evaluating the findings and sharing useful information about the activity and risk. In July, FedRAMP explained that it split the material into two rulesets because the original VDR had become large. Read the [Vulnerability Detection and Response ruleset](https://www.fedramp.gov/2026/reference/vulnerability-detection-and-response/) and the [Vulnerability Evaluation and Reporting ruleset](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/) together.
+
+Sources: [20x community update, Jul 8, 2026, 49:07](https://www.youtube.com/watch?v=kAo5OnjRvFA&t=2947s).
+
+<a id="q002"></a>
+
+### 2. Why is the VDR/VER deadline tied to BOD 26-04?
+
+FedRAMP explained that CISA's directive requires agencies to adopt risk-based vulnerability prioritization and response. It aligned the VDR/VER implementation date with that agency transition. Providers therefore need an operating vulnerability-management process, not just a plan to rewrite documents at their next annual assessment. This summarizes FedRAMP's explanation of the directive; the applicable certification requirements are in the published rulesets.
+
+Sources: [Question, Sep 11, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18404768) · [Pete, FedRAMP, Sep 11, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18405212) · [Question, Oct 22, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19125333) · [Pete, FedRAMP, Oct 22, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19131028).
+
+<a id="q003"></a>
+
+### 3. Why can a FedRAMP response deadline differ from a CISA KEV deadline?
+
+FedRAMP evaluates likely exploitation in the offering's actual circumstances, while a CISA Known Exploited Vulnerability designation reflects known exploitation. A vulnerability can need prompt action before it reaches that catalog. Once it is listed, [VDR-TFR-KEV (Remediate KEVs)](https://www.fedramp.gov/2026/reference/vulnerability-detection-and-response/#remediate-kevs) separately calls for remediation by the catalog's due date. The July discussion explained that either framework can produce the tighter deadline in a particular case; do not assume one clock always replaces the other.
+
+Sources: [20x community update, Jul 8, 2026, 51:19](https://www.youtube.com/watch?v=kAo5OnjRvFA&t=3079s) · [Question, Oct 19, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19048589) · [Pete, FedRAMP, Oct 20, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19073144).
+
+<a id="q004"></a>
+
+### 4. Can we keep the old High, Moderate, and Low severity deadlines?
+
+Those labels do not replace the new evaluation and response requirements. Determine exploitability, internet reachability, and Potential Agency Impact, then apply [VDR-TFR-PVR (Mitigation and Remediation Expectations)](https://www.fedramp.gov/2026/reference/vulnerability-detection-and-response/#mitigation-and-remediation-expectations). In the July forum answer, FedRAMP confirmed the move to the new ratings and rules. A scanner's severity score can remain useful input, but it is not the complete decision.
+
+Sources: [Question, Jul 28, 2026](https://github.com/FedRAMP/2026/discussions/103#discussioncomment-17816729) · [Pete, FedRAMP, Jul 28, 2026](https://github.com/FedRAMP/2026/discussions/103#discussioncomment-17817425).
+
+<a id="topic-02"></a>
+
+## Finding vulnerabilities and choosing detection methods
+
+<a id="q005"></a>
+
+### 5. Are vulnerabilities limited to CVEs and scanner findings?
+
+No. Failures in practices, policies, personnel processes, or other non-machine resources can also be vulnerabilities. [VDR-CSO-DET (Vulnerability Detection)](https://www.fedramp.gov/2026/reference/vulnerability-detection-and-response/#vulnerability-detection) includes ongoing verification and validation in vulnerability detection, and [VDR-TFR-NMV (Non-Machine Verification and Validation)](https://www.fedramp.gov/2026/reference/vulnerability-detection-and-response/#non-machine-verification-and-validation) covers verification and validation of non-machine resources. Build detection around the ways the service can become insecure, including failures that no conventional scanner would find.
+
+Sources: [Question, Aug 5, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-17908116) · [Pete, FedRAMP, Sep 13, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18425215).
+
+<a id="q006"></a>
+
+### 6. Does the new approach require a particular penetration test or scanner?
+
+FedRAMP did not create a universal product or test prescription in the answer reviewed. The provider must choose methods that meet the applicable detection and assurance requirements and explain their effectiveness. For Rev5, address the relevant controls and any alternative implementation rather than assuming that a change in terminology removes the underlying security objective.
+
+Sources: [Question, Sep 11, 2026](https://github.com/FedRAMP/2026/discussions/119#discussioncomment-18403844) · [Pete, FedRAMP, Sep 11, 2026](https://github.com/FedRAMP/2026/discussions/119#discussioncomment-18403986).
+
+<a id="q007"></a>
+
+### 7. How often must we check non-machine information resources?
+
+[VDR-TFR-NMV (Non-Machine Verification and Validation)](https://www.fedramp.gov/2026/reference/vulnerability-detection-and-response/#non-machine-verification-and-validation) requires verification and validation at least once every three months where the rule applies. In September, FedRAMP emphasized that non-machine resources cannot be ignored just because scanners cannot inspect them. Check whether the relevant people, processes, and other resources remain what the provider says they are and operate as intended. Choose evidence appropriate to the resource.
+
+Sources: [Rev5 community update, Sep 2, 2026, 35:14](https://www.youtube.com/watch?v=G26REw9mSwg&t=2114s) · [Question, Aug 5, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-17908116) · [Pete, FedRAMP, Sep 13, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18425215).
+
+<a id="q008"></a>
+
+### 8. How should manual control findings or failed KSIs be tracked?
+
+Treat the resulting security weaknesses as vulnerabilities and manage them through the response process. The July answer allowed a tracking method suited to the business. In November, FedRAMP explained that an assessor need not create a duplicate vulnerability if the provider already detected and is addressing the same failure. Preserve the finding and response status; an accurate automated alert does not itself fix the failed practice.
+
+Sources: [Rev5 community update, Jul 1, 2026, 45:31](https://www.youtube.com/watch?v=xpQ422H4Po4&t=2731s) · [Question, Nov 3, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19375546) · [Pete, FedRAMP, Nov 5, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19421460).
+
+<a id="q009"></a>
+
+### 9. What if our vulnerability-detection or response process itself fails?
+
+Presentation-derived question. [VDR-CSO-FAV (Failures Are Vulnerabilities)](https://www.fedramp.gov/2026/reference/vulnerability-detection-and-response/#failures-are-vulnerabilities) requires those process failures to be treated as vulnerabilities too. Track and address a broken detection mechanism, missed response process, or other relevant failure rather than limiting the register to the technical issues the process was meant to find. This fits FedRAMP's broader explanation that vulnerability management includes weaknesses in processes and procedures.
+
+Sources: [Rev5 community update, Sep 2, 2026, 28:59](https://www.youtube.com/watch?v=G26REw9mSwg&t=1739s) · [Question, Aug 5, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-17908116) · [Pete, FedRAMP, Sep 13, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18425215).
+
+<a id="q010"></a>
+
+### 10. Can we scan representative samples instead of every identical instance?
+
+[VDR-CSO-SIR (Sampling)](https://www.fedramp.gov/2026/reference/vulnerability-detection-and-response/#sampling) permits representative sampling when the provider can justify that the sample accurately represents the group. Evidence that instances are genuinely equivalent matters. Testing a convenient staging environment does not automatically establish the security of production resources with different configurations or behavior.
+
+Sources: [Question, Jul 28, 2026](https://github.com/FedRAMP/2026/discussions/103#discussioncomment-17816729) · [Pete, FedRAMP, Jul 28, 2026](https://github.com/FedRAMP/2026/discussions/103#discussioncomment-17817425).
+
+<a id="q011"></a>
+
+### 11. How often should representative samples be checked?
+
+[VDR-TFR-PSD (Persistent Sample Detection)](https://www.fedramp.gov/2026/reference/vulnerability-detection-and-response/#persistent-sample-detection) sets class-specific SHOULD intervals: every 14 days for Class A, seven days for B, three days for C, and daily for D. Those are recommendations in the rule, not universal MUST intervals. They also do not replace other applicable requirements for complete detection, drift detection, or detection after changes.
+
+Sources: [Question, Aug 14, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18020184) · [Dan, FedRAMP, Aug 14, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18021674) · [Rev5 community update, Nov 4, 2026, 45:04](https://www.youtube.com/watch?v=kMSsOaazkQg&t=2704s).
+
+<a id="q012"></a>
+
+### 12. Should we weaken a security control just to make scanning or sampling easier?
+
+[VDR-CSO-MSP (Maintain Security)](https://www.fedramp.gov/2026/reference/vulnerability-detection-and-response/#maintain-security) says providers SHOULD NOT weaken security to facilitate scanning, detection, or assessment. FedRAMP's July answer said an optional sampling approach should not override that expectation. If a proposed sampling method would weaken the environment, choose a safer method and explain the decision.
+
+Sources: [Question, Jul 9, 2026](https://github.com/FedRAMP/2026/discussions/73#discussioncomment-17581036) · [Emu, FedRAMP, Jul 9, 2026](https://github.com/FedRAMP/2026/discussions/73#discussioncomment-17585835).
+
+<a id="q013"></a>
+
+### 13. Does detection after changes replace the normal detection schedule?
+
+No. [VDR-CSO-DAC (Detect After Changes)](https://www.fedramp.gov/2026/reference/vulnerability-detection-and-response/#detect-after-changes) addresses new or significantly changed resources and recommends automatic detection on representative samples. FedRAMP explained that this is an additional trigger, not a limit on when detection can occur. After replacing an image to fix a flaw, for example, check that the change fixed the problem without introducing another one.
+
+Sources: [Question, Jul 28, 2026](https://github.com/FedRAMP/2026/discussions/103#discussioncomment-17816729) · [Pete, FedRAMP, Jul 28, 2026](https://github.com/FedRAMP/2026/discussions/103#discussioncomment-17817425).
+
+<a id="q014"></a>
+
+### 14. Does infrastructure as code prove that a resource cannot drift?
+
+No. FedRAMP said the engineering team must assess the real deployment and maintenance process. Infrastructure as code can support a conclusion that drift is unlikely, but manual changes or other uncontrolled paths can undermine it. Document the controls and evidence supporting the classification rather than relying on the architecture label.
+
+Sources: [Question, Oct 19, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19048589) · [Pete, FedRAMP, Oct 20, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19073144).
+
+<a id="q015"></a>
+
+### 15. Can immutable images use manifests and change detection instead of repeatedly scanning running instances?
+
+Potentially. In the November example, FedRAMP said a genuinely immutable image could support continuous comparison of known software and configuration manifests against new vulnerability information. The provider must be able to prove the immutability and detect deviations. The answer was explicitly architecture-dependent; it did not exempt all image-based deployments from scanning or detection.
+
+Sources: [Question, Nov 4, 2026](https://github.com/FedRAMP/community/discussions/189) · [Pete, FedRAMP, Nov 6, 2026](https://github.com/FedRAMP/community/discussions/189#discussioncomment-19444953).
+
+<a id="q016"></a>
+
+### 16. Can we group a vulnerable image and its deployed instances?
+
+Yes, when the grouping remains meaningful and preserves important differences in risk and response. [VER-EVA-GRV (Group Vulnerabilities)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#group-vulnerabilities) supports managing such groups, including reducing the affected count as instances are replaced. FedRAMP said an image that can still deploy vulnerable instances is not remediated merely because current instances were patched. Disabling the old image so it cannot be deployed changes that situation.
+
+Sources: [Question, Nov 4, 2026](https://github.com/FedRAMP/community/discussions/189) · [Pete, FedRAMP, Nov 6, 2026](https://github.com/FedRAMP/community/discussions/189#discussioncomment-19444953).
+
+<a id="topic-03"></a>
+
+## Evaluating impact, exploitability, and reachability
+
+<a id="q017"></a>
+
+### 17. Is Potential Agency Impact just another name for CVSS severity?
+
+No. Potential Agency Impact, or PAIN, estimates the consequences for agencies in the actual service context. A generic severity score can inform the analysis but does not determine that impact. [VER-EVA-EPA (Estimate Potential Agency Impact)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#estimate-potential-agency-impact) calls for the provider's contextual estimate rather than a mechanical translation from a scanner's severity label.
+
+Sources: [Question, Jul 9, 2026](https://github.com/FedRAMP/2026/discussions/92#discussioncomment-17587810) · [Emu, FedRAMP, Jul 10, 2026](https://github.com/FedRAMP/2026/discussions/92#discussioncomment-17596567).
+
+<a id="q018"></a>
+
+### 18. Should a vulnerability inherit the maximum impact of the component where it appears?
+
+Not automatically. Evaluate what that vulnerability could actually cause. FedRAMP distinguished the consequences of the specific issue from the general importance of the component. Also keep exploitability and internet reachability as separate evaluation outcomes; a low likelihood of exploitation is not, by itself, a reason to relabel the consequences as low impact.
+
+Sources: [Question, Sep 28, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18644557) · [Pete, FedRAMP, Sep 28, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18644936).
+
+<a id="q019"></a>
+
+### 19. Should we consider impact across several agencies or only one tenant?
+
+Consider the realistic scope of compromise. FedRAMP said cumulative consequences matter when one vulnerability can affect several agencies. Tenant isolation may limit a particular exploit, while a compromised common image or deployment mechanism may reach many tenants. Explain which scenario the estimate represents rather than choosing whichever produces the lowest rating.
+
+Sources: [Question, Sep 10, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18391218) · [Pete, FedRAMP, Sep 10, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18391276) · [Question, Nov 4, 2026](https://github.com/FedRAMP/community/discussions/189) · [Pete, FedRAMP, Nov 6, 2026](https://github.com/FedRAMP/community/discussions/189#discussioncomment-19444953).
+
+<a id="q020"></a>
+
+### 20. How do we estimate agency impact before we have agency customers?
+
+FedRAMP distinguished current direct agency impact from the information needed to show how the process will work for future customers. In the scenario without agency users, there was no current direct agency impact; the team discussed using simulated activity to demonstrate the reporting process. Do not treat a pre-customer rating as the permanent rating once the service is in government use.
+
+Sources: [Question, Sep 10, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18391218) · [Pete, FedRAMP, Sep 11, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18402431).
+
+<a id="q021"></a>
+
+### 21. Can compensating controls affect exploitability, reachability, and impact?
+
+Yes, when they actually change the relevant condition. [VER-EVA-EFA (Evaluation Factors)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#evaluation-factors) supplies factors for the evaluation as a whole. Explain which factor changes which outcome and why. A control that reduces exposure does not necessarily reduce the consequences if exploitation succeeds, and the evaluation should preserve that difference.
+
+Sources: [Question, Sep 28, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18644557) · [Pete, FedRAMP, Oct 28, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19249797).
+
+<a id="q022"></a>
+
+### 22. Does a CVSS “user interaction required” flag prove that exploitation cannot be automated?
+
+No. [VER-EVA-AIA (Assume It's Automatable)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#assume-its-automatable) starts with the assumption that exploitation is automatable unless the provider can support a different conclusion. FedRAMP said a user-interaction flag alone does not settle that question. Evaluate the actual exploitation steps and evidence.
+
+Sources: [Question, Oct 15, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18957081) · [Pete, FedRAMP, Oct 15, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18957963).
+
+<a id="q023"></a>
+
+### 23. Can we start with a conservative impact rating and refine it later?
+
+Yes. In the August question about multi-tenant SaaS, FedRAMP allowed a provider to begin with a higher impact estimate and then investigate more closely. That permits a conservative initial decision; it does not create a rule that every multi-tenant finding must receive the same rating. Update the evaluation when better evidence becomes available.
+
+Sources: [Rev5 community update, Aug 5, 2026, 46:58](https://www.youtube.com/watch?v=5eWOLixw0aE&t=2818s).
+
+<a id="q024"></a>
+
+### 24. Can we show that exploitation is not automatable even if an external source says it is?
+
+Under [VER-EVA-AIA (Assume It's Automatable)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#assume-its-automatable), the starting assumption is that exploitation is automatable. The July answer allowed a different conclusion when the provider can substantiate it in its own environment. This is an evidence-based evaluation, not permission to relabel a finding for convenience. FedRAMP also noted that investigating the exception can take more effort than fixing the vulnerability.
+
+Sources: [Rev5 community update, Jul 1, 2026, 23:56](https://www.youtube.com/watch?v=xpQ422H4Po4&t=1436s).
+
+<a id="q025"></a>
+
+### 25. Must we know every agency's internal mission to estimate PAIN?
+
+FedRAMP's October answers directed providers to the current definitions of customer effect and [VER-EVA-EPA (Estimate Potential Agency Impact)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#estimate-potential-agency-impact). Evaluate what the vulnerability can do to use of the service and federal customer data. Do not substitute an old proposal's wording or assume that a service described as “non-mission-critical” automatically has low impact. The actual breadth and consequences of the effect still matter.
+
+Sources: [Question, Oct 27, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19225732) · [Nicole, FedRAMP, Oct 27, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19225845) · [Pete, FedRAMP, Oct 27, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19226966).
+
+<a id="topic-04"></a>
+
+## Response clocks, mitigation, and remediation
+
+<a id="q026"></a>
+
+### 26. When does the detection clock start: when a scanner finds an issue or when we import it?
+
+Use the actual detection time. FedRAMP rejected using a later transfer into an evaluation pipeline as the detection timestamp. [VER-TFR-EVU (Evaluate Vulnerabilities Quickly)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#evaluate-vulnerabilities-quickly) addresses prompt evaluation, while the response timelines in [VDR-TFR-PVR (Mitigation and Remediation Expectations)](https://www.fedramp.gov/2026/reference/vulnerability-detection-and-response/#mitigation-and-remediation-expectations) run from evaluation. Delays between detection and evaluation should remain visible rather than being erased by a new import date.
+
+Sources: [Question, Oct 19, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19048589) · [Pete, FedRAMP, Oct 20, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19073144).
+
+<a id="q027"></a>
+
+### 27. Can mitigation change the response deadline?
+
+A meaningful change in the vulnerability's conditions can justify reevaluation, and the new evaluation can change the applicable response timeline. FedRAMP's answer concerned an actual mitigation that changed the risk. Merely rerunning the same assessment or changing a timestamp is not a substitute for that change. Keep the evaluation and mitigation history understandable.
+
+Sources: [Question, Sep 8, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18356714) · [Pete, FedRAMP, Sep 8, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18356896).
+
+<a id="q028"></a>
+
+### 28. Do N0 and N1 vulnerabilities have the same fixed deadlines as the other response categories?
+
+FedRAMP said those categories can be handled through routine security maintenance rather than inventing a deadline absent from the response table. Apply [VDR-TFR-PVR (Mitigation and Remediation Expectations)](https://www.fedramp.gov/2026/reference/vulnerability-detection-and-response/#mitigation-and-remediation-expectations) and the other applicable requirements. A low category does not make a vulnerability disappear or override a separate requirement, such as the handling of known exploited vulnerabilities.
+
+Sources: [Question, Oct 20, 2026](https://github.com/FedRAMP/2026/discussions/154#discussioncomment-19082077) · [Pete, FedRAMP, Oct 20, 2026](https://github.com/FedRAMP/2026/discussions/154#discussioncomment-19082366) · [Rev5 community update, Oct 7, 2026, 17:58](https://www.youtube.com/watch?v=tYRaswzIBjo&t=1078s).
+
+<a id="q029"></a>
+
+### 29. Is a mitigated vulnerability the same as a remediated vulnerability?
+
+No. Mitigation changes exposure or consequences while the underlying weakness can remain. Keep the vulnerability's state and relevant response information clear until it is remediated or otherwise handled under the applicable reporting rules. A lower rating after mitigation does not justify reporting that the underlying defect has been fixed.
+
+Sources: [Question, Oct 12, 2026](https://github.com/FedRAMP/community/discussions/147#discussioncomment-18882329) · [Pete, FedRAMP, Oct 13, 2026](https://github.com/FedRAMP/community/discussions/147#discussioncomment-18903585) · [Question, Oct 19, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19048589) · [Pete, FedRAMP, Oct 20, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19073144).
+
+<a id="q030"></a>
+
+### 30. Can a fully mitigated known exploited vulnerability wait indefinitely for remediation?
+
+No. [VDR-TFR-KEV (Remediate KEVs)](https://www.fedramp.gov/2026/reference/vulnerability-detection-and-response/#remediate-kevs) separately addresses remediation of known exploited vulnerabilities. Use its current wording and the applicable CISA catalog due date, rather than assuming every case has a universal 14-day period. FedRAMP emphasized that mitigation does not erase the remediation expectation; any departure from a SHOULD still needs a defensible explanation.
+
+Sources: [20x community update, Jul 8, 2026, 51:19](https://www.youtube.com/watch?v=kAo5OnjRvFA&t=3079s) · [Question, Oct 19, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19048589) · [Pete, FedRAMP, Oct 20, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19073144) · [Pete, FedRAMP, Oct 22, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19131580).
+
+<a id="q031"></a>
+
+### 31. Is “the vendor has not released a usable fix” enough reason to accept a vulnerability?
+
+No. Consider ways to mitigate the exposure while a permanent fix is unavailable or disruptive. FedRAMP challenged treating vendor dependency or upgrade effort as a blanket excuse for leaving likely exploitable vulnerabilities exposed. If the provider accepts residual risk, explain the customer impact and the response plan clearly.
+
+Sources: [Question, Oct 19, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19048589) · [Pete, FedRAMP, Oct 20, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19073144).
+
+<a id="topic-05"></a>
+
+## Reporting, accepted vulnerabilities, and old POA&Ms
+
+<a id="q032"></a>
+
+### 32. Do we report only high-impact vulnerabilities?
+
+No. [VER-RPT-PER (Persistent Reporting)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#persistent-reporting) requires summaries of all detection and response activity since the previous report. [VER-RPT-VDT (Vulnerability Details)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#vulnerability-details) calls for applicable details on detected vulnerabilities, with accepted vulnerabilities handled through [VER-RPT-AVI (Accepted Vulnerability Info)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#accepted-vulnerability-info). FedRAMP's July answer directed providers to these separate reporting requirements and the relevant class and evaluation. A low rating does not, by itself, remove a finding from reporting.
+
+Sources: [20x community update, Jul 8, 2026, 49:07](https://www.youtube.com/watch?v=kAo5OnjRvFA&t=2947s).
+
+<a id="q033"></a>
+
+### 33. Does persistent reporting mean every finding must be pushed in real time?
+
+FedRAMP's September answer distinguished an ongoing reporting process from a mandate to use a real-time feed. [VER-RPT-PER (Persistent Reporting)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#persistent-reporting) and [VER-TFR-MHR (Monthly Activity Report)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#monthly-activity-report) are complementary: a provider can publish more frequently, but still needs the monthly activity report. In that discussion, a monthly cadence could serve as the persistent reporting cycle. Separate incident and other time-sensitive obligations still apply.
+
+Sources: [Rev5 community update, Sep 2, 2026, 44:17](https://www.youtube.com/watch?v=G26REw9mSwg&t=2657s).
+
+<a id="q034"></a>
+
+### 34. If a vulnerability field is optional in JSON, is the information optional under the rules?
+
+No. FedRAMP said schemas establish minimum structure; they do not determine every reporting obligation. [VER-RPT-VDT (Vulnerability Details)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#vulnerability-details) specifies the information needed when applicable. Some fields can legitimately be absent, such as a PAIN rating for a false positive, but schema validity alone does not establish that a substantive report is complete.
+
+Sources: [Question, Oct 1, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18702236) · [Pete, FedRAMP, Oct 2, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18716792).
+
+<a id="q035"></a>
+
+### 35. Should we report every code-scanning result separately?
+
+FedRAMP left the technical approach to the provider and recommended logical grouping at scale to reduce noise. Use [VER-EVA-GRV (Group Vulnerabilities)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#group-vulnerabilities) when appropriate, while preserving information agencies need to understand their risk and the response. The purpose is useful assurance and timely warnings, not an undifferentiated export of every raw tool result.
+
+Sources: [Question, Oct 7, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18800086) · [Pete, FedRAMP, Oct 8, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18817958).
+
+<a id="q036"></a>
+
+### 36. Do all vulnerability records have to live in one central tool?
+
+No particular central product was prescribed in the November answer. Providers can use several systems if they can produce the required, coherent vulnerability information and reports. Organize the process so that findings, evaluations, response status, and reporting do not disappear between tools.
+
+Sources: [Rev5 community update, Nov 4, 2026, 47:21](https://www.youtube.com/watch?v=kMSsOaazkQg&t=2841s).
+
+<a id="q037"></a>
+
+### 37. Can an accepted vulnerability move back into active remediation?
+
+Yes. FedRAMP described returning it to the detailed vulnerability information when active response resumes, then updating any remaining accepted portion as appropriate. [VER-RPT-VDT (Vulnerability Details)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#vulnerability-details) and [VER-RPT-AVI (Accepted Vulnerability Info)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#accepted-vulnerability-info) serve different reporting needs; acceptance is not an irreversible state that prevents later action.
+
+Sources: [Question, Jul 7, 2026](https://github.com/FedRAMP/2026/discussions/92#discussioncomment-17565260) · [Emu, FedRAMP, Jul 9, 2026](https://github.com/FedRAMP/2026/discussions/92#discussioncomment-17586096).
+
+<a id="q038"></a>
+
+### 38. How should false positives appear in the report?
+
+Preserve enough information to explain the determination without pretending there is a confirmed vulnerability. FedRAMP discussed using the schema's false-positive indication, grouping where useful, and leaving inapplicable ratings unset where the schema permits. Follow [VER-EVA-EFP (Evaluate False Positives)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#evaluate-false-positives) and the current schema rather than inventing a real impact rating just to fill a field.
+
+Sources: [Question, Oct 2, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18714520) · [Pete, FedRAMP, Oct 2, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18714893) · [Question, Oct 26, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19203755) · [Pete, FedRAMP, Oct 26, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19203980).
+
+<a id="q039"></a>
+
+### 39. Do old open POA&M items need to move into the new vulnerability process?
+
+Yes. Evaluate the open issues under the new approach and carry forward the information needed to manage and report them. FedRAMP said providers do not need to reconstruct the entire closed historical backlog merely to change formats. Preserve relevant history for open issues rather than treating migration as a new discovery date.
+
+Sources: [Rev5 community update, Nov 4, 2026, 52:56](https://www.youtube.com/watch?v=kMSsOaazkQg&t=3176s) · [Question, Oct 13, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18908618) · [Pete, FedRAMP, Oct 13, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18909538) · [Pete, FedRAMP, Oct 14, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18923577).
+
+<a id="q040"></a>
+
+### 40. Must we keep producing the old FedRAMP POA&M after adopting the new reports?
+
+FedRAMP said its new vulnerability reporting replaces the old FedRAMP format when the new approach is adopted. An agency contract can still require additional information or a particular deliverable. Separate that customer obligation from a claim that FedRAMP itself requires both formats indefinitely.
+
+Sources: [Question, Aug 21, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18108885) · [Paul, FedRAMP, Aug 24, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18139695) · [Question, Sep 11, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18401102) · [Pete, FedRAMP, Sep 11, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18402346) · [Pete, FedRAMP, Sep 11, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18403756).
+
+<a id="q041"></a>
+
+### 41. Can we keep uploading reports through USDA Connect during the transition?
+
+FedRAMP said the existing sharing route could be used during the transition, including the existing folders, while the separately scheduled data-sharing requirements are adopted. The provider still needs to meet the vulnerability reporting requirements and explain any justified departure from a recommended interface or cadence. Temporary use of the old transport does not postpone the new report content.
+
+Sources: [Pete, FedRAMP, Oct 22, 2026](https://github.com/FedRAMP/2026/discussions/156#discussioncomment-19132691) · [Pete, FedRAMP, Oct 22, 2026](https://github.com/FedRAMP/2026/discussions/156#discussioncomment-19133827) · [Question, Oct 2, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18709184) · [Paul, FedRAMP, Oct 2, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18719569).
+
+<a id="q042"></a>
+
+### 42. What should the report's package-overview link show before the overview is implemented?
+
+In the September question about reports due before the new overview, FedRAMP allowed a link to a page showing implementation status and progress. That gives readers useful context during the transition. It is not a permanent substitute for the overview once the applicable requirement takes effect.
+
+Sources: [Question / follow-up, Sep 16, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18471104) · [Pete, FedRAMP, Sep 16, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18471236).
+
+<a id="q043"></a>
+
+### 43. Do quarterly review meetings replace monthly vulnerability reporting?
+
+No. The quarterly collaboration and monthly vulnerability activity report have different purposes and schedules. [CCM-QTR-MTG (Quarterly Review Meeting)](https://www.fedramp.gov/2026/reference/collaborative-continuous-monitoring/#quarterly-review-meeting) supports discussion with customers; [VER-TFR-MHR (Monthly Activity Report)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#monthly-activity-report) supplies the recurring vulnerability activity information. Scheduling one does not remove the other.
+
+Sources: [20x community update, Aug 12, 2026, 44:20](https://www.youtube.com/watch?v=9WBfn-UHtpY&t=2660s) · [20x community update, Aug 12, 2026, 52:24](https://www.youtube.com/watch?v=9WBfn-UHtpY&t=3144s).
+
+<a id="topic-06"></a>
+
+## When vulnerability handling also requires incident handling
+
+<a id="q044"></a>
+
+### 44. Can a vulnerability require incident reporting before confirmed exploitation?
+
+Yes. The July update warned that vulnerability reporting and incident reporting can both apply. [VER-TFR-IRI (Internet-Reachable Incidents)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#internet-reachable-incidents) addresses internet-reachable, likely exploitable vulnerabilities above N3; [VER-TFR-NRI (Non-Internet-Reachable Incidents)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#non-internet-reachable-incidents) addresses non-internet-reachable, likely exploitable vulnerabilities at N5. Their force varies by class, so read the relevant variant. Confirmed exploitation is not the only condition to examine, and the monthly vulnerability report does not replace required incident notification.
+
+Sources: [20x community update, Jul 8, 2026, 50:29](https://www.youtube.com/watch?v=kAo5OnjRvFA&t=3029s).
+
+<a id="q045"></a>
+
+### 45. Can we use a vulnerability's PAIN rating unchanged for the incident it causes?
+
+Do not assume the ratings are interchangeable. A vulnerability estimates potential consequences; an incident needs an evaluation of the incident itself. [IEC-CSO-DPR (Default PAIN Rating)](https://www.fedramp.gov/2026/reference/incident-evaluation-and-communication/#default-pain-rating) supplies a default PAIN rating of 5 when the applicable incident estimate is not made. FedRAMP's answers emphasized that incident evaluation has its own requirements.
+
+Sources: [Question, Oct 20, 2026](https://github.com/FedRAMP/2026/discussions/153#discussioncomment-19077022) · [Pete, FedRAMP, Oct 20, 2026](https://github.com/FedRAMP/2026/discussions/153#discussioncomment-19079330) · [Question, Nov 2, 2026](https://github.com/FedRAMP/2026/discussions/165) · [Pete, FedRAMP, Nov 2, 2026](https://github.com/FedRAMP/2026/discussions/165#discussioncomment-19354665).
+
+<a id="q046"></a>
+
+### 46. How should we report a vulnerability under a coordinated-disclosure embargo?
+
+[VER-RPT-NID (Responsible Disclosure)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#responsible-disclosure) allows responsible disclosure. FedRAMP said providers may need to withhold sensitive exploit details, share only useful customer actions, or in unusual cases defer disclosure while documenting the decision internally. The answer was contextual, not a blanket embargo exemption. Agency contracts can impose separate notification obligations, and the information should be supplied when it can responsibly be shared.
+
+Sources: [Question, Nov 3, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19364812) · [Pete, FedRAMP, Nov 3, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19372816).
+
+<a id="q047"></a>
+
+### 47. Does the FedRAMP incident process require the provider to make the agency's CISA report?
+
+In the November discussion, FedRAMP distinguished the provider's notification to the agency from the agency's own reporting to CISA. That explanation concerned the FedRAMP process. It does not settle separate reporting duties arising from a provider's contract or another applicable obligation.
+
+Sources: [Rev5 community update, Nov 4, 2026, 51:49](https://www.youtube.com/watch?v=kMSsOaazkQg&t=3109s).
+
+<a id="topic-07"></a>
+
+## Implementation, evidence, and the December transition
+
+<a id="q048"></a>
+
+### 48. What are the published vulnerability-management transition dates?
+
+For existing Rev5 certifications, the [Vulnerability Detection and Response](https://www.fedramp.gov/2026/reference/vulnerability-detection-and-response/) and [Vulnerability Evaluation and Reporting](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/) rulesets have a December 7, 2026 maintenance date and a March 7, 2027 grace-period end. The November 4 presentation described a more detailed enforcement approach, covered in the following questions. Those announced procedures should be read alongside the published dates, not as a replacement ruleset.
+
+Sources: [Question, Oct 22, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19125333) · [Pete, FedRAMP, Oct 26, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19200121) · [Rev5 community update, Nov 4, 2026, 16:39](https://www.youtube.com/watch?v=kMSsOaazkQg&t=999s).
+
+<a id="q049"></a>
+
+### 49. Does FedRAMP's grace period extend an agency's BOD 26-04 obligations?
+
+No. In October, FedRAMP emphasized that its grace period concerns certification status. It does not promise that an agency can defer its own obligations or continue using a service that fails its requirements. Plan around the December implementation date; treat the grace period as part of FedRAMP's enforcement process, not an agency-wide extension.
+
+Sources: [Question, Oct 22, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19125333) · [Pete, FedRAMP, Oct 22, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19131028).
+
+<a id="q050"></a>
+
+### 50. Can we phase in VDR/VER, or must we switch everything in one month?
+
+The July answer allowed either a phased transition or a single cutover, whichever works for the provider and its customers. The chosen approach still needs to reach the required implementation state by the deadline. Make the transition and reporting changes clear to customers so neither old nor new findings are lost between processes.
+
+Sources: [Rev5 community update, Jul 1, 2026, 38:51](https://www.youtube.com/watch?v=xpQ422H4Po4&t=2331s).
+
+<a id="q051"></a>
+
+### 51. Do we need an independent assessment before adopting VDR/VER?
+
+FedRAMP said the Rev5 transition does not automatically require an initial third-party assessment. Implement and operate the requirements, with independent review through the applicable assessment cycle unless a particular change requires earlier work. The November update likewise rejected a blanket requirement for an assessor to review every transition detail.
+
+Sources: [Question, Jul 23, 2026](https://github.com/FedRAMP/community/discussions/147#discussioncomment-17754990) · [Paul, FedRAMP, Jul 23, 2026](https://github.com/FedRAMP/community/discussions/147#discussioncomment-17755820) · [Question, Oct 4, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18739655) · [Pete, FedRAMP, Oct 5, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18758517) · [Rev5 community update, Nov 4, 2026, 23:17](https://www.youtube.com/watch?v=kMSsOaazkQg&t=1397s).
+
+<a id="q052"></a>
+
+### 52. What evidence shows that VDR/VER is operating before the Security Decision Record is due?
+
+In October, FedRAMP said the required VER reports were sufficient evidence until the Security Decision Record was updated. It encouraged providers to update relevant legacy narratives too, because customers should be able to understand the current process. The November presentation subsequently announced a targeted December collection of implementation descriptions and sample reports; that planned collection is covered below.
+
+Sources: [Question, Oct 4, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18739655) · [Pete, FedRAMP, Oct 5, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18758517) · [Rev5 community update, Nov 4, 2026, 27:15](https://www.youtube.com/watch?v=kMSsOaazkQg&t=1635s).
+
+<a id="q053"></a>
+
+### 53. Must we finish the whole new Security Decision Record by the VDR/VER deadline?
+
+No. FedRAMP separated implementing the vulnerability-management requirements from the later documentation transition. In the September assessment question, it allowed supplemental material alongside the legacy package. That flexibility does not postpone VDR/VER: the processes, reports, and applicable evidence still need to be available on their own schedule.
+
+Sources: [Question, Sep 22, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18558250) · [Pete, FedRAMP, Sep 22, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18558926) · [Question, Oct 4, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18739655) · [Pete, FedRAMP, Oct 5, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18758517).
+
+<a id="q054"></a>
+
+### 54. What does “fully implemented” mean when some rules say SHOULD?
+
+FedRAMP said a provider can address a SHOULD by following it or by documenting a justified alternative and the relevant risk. “Fully implemented” does not necessarily mean following every recommendation literally. This flexibility does not turn MUST requirements into optional choices or excuse leaving a recommendation unexamined.
+
+Sources: [Question, Oct 4, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18739655) · [Pete, FedRAMP, Oct 5, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18758517) · [Question, Oct 22, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19125333) · [Pete, FedRAMP, Oct 26, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19200121).
+
+<a id="q055"></a>
+
+### 55. What information did FedRAMP say it would collect in December?
+
+Presentation-derived question; announced plan. On November 4, FedRAMP said it intended to send an emergency test message between December 1 and 10, with a response expected by December 17. The collection would include implementation status, a short explanation for each vulnerability-management rule, sample reports, and corrective-action information where needed. A written notice, templates, and schemas were promised for the following week and were not in the November 6 snapshot.
+
+Sources: [Rev5 community update, Nov 4, 2026, 12:23](https://www.youtube.com/watch?v=kMSsOaazkQg&t=743s) · [Rev5 community update, Nov 4, 2026, 27:15](https://www.youtube.com/watch?v=kMSsOaazkQg&t=1635s) · [Rev5 community update, Nov 4, 2026, 29:37](https://www.youtube.com/watch?v=kMSsOaazkQg&t=1777s).
+
+<a id="q056"></a>
+
+### 56. What enforcement steps were announced for providers that are behind?
+
+Presentation-derived question; announced plan. FedRAMP said incomplete providers would be listed in remediation on December 17 if they supplied no corrective-action plan or targeted completion after February 3, 2027. After February 3, plans would need formal approval. Continuing beyond March 7 would require an approved plan, agreement to a red-team assessment, and continuing progress; the offering would be listed in remediation. The presentation also described revocation for specified failures, including proceeding without an approved plan. These details awaited the promised written notice.
+
+Sources: [Rev5 community update, Nov 4, 2026, 16:39](https://www.youtube.com/watch?v=kMSsOaazkQg&t=999s) · [Rev5 community update, Nov 4, 2026, 18:11](https://www.youtube.com/watch?v=kMSsOaazkQg&t=1091s) · [Rev5 community update, Nov 4, 2026, 19:41](https://www.youtube.com/watch?v=kMSsOaazkQg&t=1181s).
+
+<a id="q057"></a>
+
+### 57. Does the November update mean every late provider will automatically lose certification on March 7?
+
+No. The November 4 presentation explicitly described continued operation under an approved corrective-action plan, with red-team assessment consent and progress requirements. That qualifies earlier, broader descriptions of revocation after the grace period. It is also not an unconditional extension: the presentation retained remediation status and described circumstances leading to revocation. Check the eventual written notice before relying on the announced procedure.
+
+Sources: [Rev5 community update, Nov 4, 2026, 18:45](https://www.youtube.com/watch?v=kMSsOaazkQg&t=1125s) · [Rev5 community update, Nov 4, 2026, 19:41](https://www.youtube.com/watch?v=kMSsOaazkQg&t=1181s) · [Rev5 community update, Nov 4, 2026, 21:13](https://www.youtube.com/watch?v=kMSsOaazkQg&t=1273s).
+
+<a id="q058"></a>
+
+### 58. Can an applicant use the emergency-test process instead of implementing the requirements?
+
+No. In the November 6 answer, FedRAMP said emergency tests go to certified offerings. Applicants must have the required vulnerability-management material ready when they apply and cannot receive certification after December 7 unless those requirements are fully implemented. The emergency-message process is not an alternate route for an incomplete application.
+
+Sources: [Question, Nov 6, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19444538) · [Pete, FedRAMP, Nov 6, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19445043).
+
+<a id="q059"></a>
+
+### 59. Can we postpone implementation because our scanning vendor does not support the new reports?
+
+No. FedRAMP said vendor dependency does not excuse leaving the requirements unimplemented. The provider can build the missing capability or use a service that supplies it. Vulnerability management includes the provider's own evaluation, response, and reporting processes; buying a scanner alone does not implement them.
+
+Sources: [Rev5 community update, Nov 4, 2026, 25:52](https://www.youtube.com/watch?v=kMSsOaazkQg&t=1552s).
+
+<a id="q060"></a>
+
+### 60. If our hosting provider enters remediation, do we automatically inherit that status?
+
+No. In the November answer, FedRAMP said a customer's offering would not automatically inherit its platform provider's remediation status. The underlying issue can still affect agency risk decisions, and the customer should understand the platform provider's progress. Revocation would be a more serious situation requiring FedRAMP to discuss the consequences with dependent offerings; the answer did not promise automatic continuity in that case.
+
+Sources: [Rev5 community update, Nov 4, 2026, 39:02](https://www.youtube.com/watch?v=kMSsOaazkQg&t=2342s).
+
+<a id="topic-08"></a>
+
+## Change notifications and agency coordination
+
+<a id="q061"></a>
+
+### 61. Does moving to VDR/VER count as a significant change?
+
+Often, because it changes how the provider detects, handles, and reports vulnerabilities. FedRAMP said to use the applicable change process and tell customers what is changing. It expected many transitions to be adaptive, but the classification depends on the actual implementation. The transition does not automatically require a detailed independent assessment of every change.
+
+Sources: [Question, Aug 25, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18152659) · [Paul, FedRAMP, Aug 26, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18162066) · [Question, Oct 4, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18739655) · [Nicole, FedRAMP, Oct 5, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18759086) · [Rev5 community update, Nov 4, 2026, 23:17](https://www.youtube.com/watch?v=kMSsOaazkQg&t=1397s).
+
+<a id="q062"></a>
+
+### 62. Do we need one sponsoring agency to approve the vulnerability-management transition for everyone?
+
+The November answer said ongoing monitoring involves all agency customers, rather than one sponsor acting for them all. Communicate the transition through the applicable process and meet any customer-specific commitments. FedRAMP also said a significant-change notification does not require an acknowledgement before proceeding; that is separate from any requirement that expressly calls for approval.
+
+Sources: [Rev5 community update, Nov 4, 2026, 23:17](https://www.youtube.com/watch?v=kMSsOaazkQg&t=1397s) · [Rev5 community update, Oct 7, 2026, 50:16](https://www.youtube.com/watch?v=tYRaswzIBjo&t=3016s).
+
+<a id="q063"></a>
+
+### 63. What if an agency cannot yet consume the new machine-readable reports?
+
+FedRAMP said agencies can still use human-readable summaries and spreadsheets while their tooling develops. Provide the required information in a usable form and help customers understand the new reports. An agency's lack of automation does not postpone the provider's VDR/VER implementation.
+
+Sources: [Question, Oct 22, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19125333) · [Pete, FedRAMP, Oct 22, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19131028).
+
+<a id="q064"></a>
+
+### 64. Must we track every agency's adoption or keep parallel legacy reports indefinitely?
+
+FedRAMP did not require providers to track each customer's adoption. In November, it described temporary parallel reporting and customer education as useful support choices, while stressing that existing contract commitments still matter. Meet the new requirements, explain the transition, and distinguish an actual customer obligation from an assumed FedRAMP requirement to maintain two formats forever.
+
+Sources: [Question, Nov 4, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19405881) · [Pete, FedRAMP, Nov 5, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19422059).
+
+<a id="topic-09"></a>
+
+## Questions not fully answered in the reviewed sources
+
+<a id="q065"></a>
+
+### 65. How does representative sampling work when members of the group can drift independently?
+
+Unresolved follow-up. Existing guidance allows justified representative sampling, but the November 4 question asked how that applies to independently drifting instances and the related detection intervals. No direct team reply to that follow-up was present at the cutoff. The general sampling answer does not settle every architecture-specific implementation.
+
+Sources: [Question, Aug 14, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18020184) · [Question / follow-up, Nov 4, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19404264).
+
+<a id="q066"></a>
+
+### 66. Exactly how should an automatability determination change the response deadline?
+
+Unresolved follow-up. [VER-EVA-AIA (Assume It's Automatable)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#assume-its-automatable) establishes the default assumption and the need for evidence to depart from it. A November 4 follow-up asked how to carry a different automatability determination through to the timing decision. The reviewed snapshot contained no direct team answer to that follow-up; do not invent a separate deadline adjustment.
+
+Sources: [Question, Oct 15, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-18957081) · [Question / follow-up, Nov 4, 2026](https://github.com/FedRAMP/community/discussions/146#discussioncomment-19386452).
+
+<a id="q067"></a>
+
+### 67. Can EPSS determine the “likely” score or PAIN rating?
+
+Not answered directly in the reviewed exchange. The October audience question asked whether the score could be based on EPSS. The response pointed back to the VDR and VER rules without approving an EPSS threshold or mapping. Do not treat that exchange as endorsement of a particular formula. [VER-EVA-ELX (Evaluate Exploitability)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#evaluate-exploitability) and [VER-EVA-EPA (Estimate Potential Agency Impact)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#estimate-potential-agency-impact) address different evaluation questions and remain the relevant requirements.
+
+Sources: [Rev5 community update, Oct 7, 2026, 16:54](https://www.youtube.com/watch?v=tYRaswzIBjo&t=1014s).
+
+<a id="source-notes"></a>
+
+## Source scope and terminology
+
+The July filter applies to the question or presentation topic, not the opening date of a long-running thread. Older rules can support the current answer. A question is not included merely because an old discussion received a later reply. Related topics are included only where they explain vulnerability-management obligations or the transition.
+
+This pass searched the local active forum and video corpus again, rather than only removing sections from the general FAQ. The search returned 164 July-or-later forum messages and 122 transcript segments across 11 recordings. Those are candidate counts, not counts of distinct questions or confirmed answers. Relevant replies and surrounding transcript passages were reviewed; unrelated matches and guest-speaker opinions were excluded. The archived ADI launch sessions were not used as current guidance.
+
+Post links identify the question, follow-up, or FedRAMP reply. Video timestamps point near the supporting passage and may be approximate because of caption timing. Meeting dates use event descriptions where they differ from upload dates. Generated Q&A summaries were used only to locate passages; they were checked against transcript evidence. The EPSS exchange, for example, was retained as unanswered rather than turned into an approval that the speaker did not give.
+
+Rule names, class variants, dates, and links were checked against the local structured rules and corresponding reference pages at commit `64fa769510416fa75fd00a4689466094265b8083`. Unavailable recordings and comments after the snapshot cannot supply evidence here. These are concise summaries of FedRAMP's guidance, not official replacement text.
+
+Abbreviations: **BOD**, Binding Operational Directive; **CSP**, cloud service provider; **CR26**, Consolidated Rules for 2026; **CVE**, Common Vulnerabilities and Exposures identifier; **CVSS**, Common Vulnerability Scoring System; **EPSS**, Exploit Prediction Scoring System; **KEV**, Known Exploited Vulnerability; **KSI**, Key Security Indicator; **PAIN**, Potential Agency Impact N-rating; **POA&M**, Plan of Action and Milestones; **SDR**, Security Decision Record.
+
+Primary references: [Vulnerability Detection and Response](https://www.fedramp.gov/2026/reference/vulnerability-detection-and-response/) · [Vulnerability Evaluation and Reporting](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/) · [Using the Consolidated Rules](https://www.fedramp.gov/2026/rules/) · [Rev5 transition dates](https://www.fedramp.gov/2026/providers/updating/deadlines/rev5/) · [Community discussions](https://github.com/FedRAMP/community/discussions).

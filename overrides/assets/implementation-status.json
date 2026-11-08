@@ -1,0 +1,495 @@
+{
+  "metadata": {
+    "schemaVersion": "0.2.0",
+    "rulesVersion": "2026.11.02.01",
+    "providerName": "",
+    "offeringName": "",
+    "framework": "",
+    "class": "",
+    "asOfDate": "",
+    "fedrampId": ""
+  },
+  "responses": {
+    "VDR-CSO-DET": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VDR-CSO-RES": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VDR-CSO-FAV": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VDR-CSO-DFR": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VDR-CSO-ADT": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VDR-CSO-DAC": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VDR-CSO-MSP": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VDR-CSO-AKE": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VDR-CSO-SIR": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VDR-TFR-NMV": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VDR-TFR-PDD": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VDR-TFR-PCD": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VDR-TFR-PVR": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VDR-TFR-RMN": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VDR-TFR-KEV": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VDR-TFR-PSD": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VDR-TFR-MVX": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VDR-TFR-MVF": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VER-EVA-ELX": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VER-EVA-EIR": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VER-EVA-EPA": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VER-EVA-AIA": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VER-EVA-GRV": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VER-EVA-EFP": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VER-EVA-EFA": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VER-RPT-PER": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VER-RPT-VDT": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VER-RPT-AVI": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VER-RPT-NID": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VER-RPT-HLO": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VER-RPT-RPD": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VER-TFR-MHR": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VER-TFR-MAV": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VER-TFR-MRH": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VER-TFR-EVU": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VER-TFR-IRI": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    },
+    "VER-TFR-NRI": {
+      "status": "",
+      "explanation": "",
+      "customerRisk": "",
+      "providerCompensation": "",
+      "agencyCompensation": "",
+      "additionalAssurance": "",
+      "feedback": "",
+      "correctiveActionPlan": {
+        "capStatus": "",
+        "capStatusExplanation": ""
+      }
+    }
+  }
+}

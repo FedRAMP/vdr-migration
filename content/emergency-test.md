@@ -1,52 +1,22 @@
-# FY27 Q1 Security Inbox Emergency Test Notice
+# FY27 Q1 Security Inbox Emergency Test
 
-contains a copy of the notice info with more details
+FedRAMP will use this quarterly Emergency Test to collect VDR/VER Migration Progress Reports from applicable FedRAMP Certified cloud services.
 
+| Event | Expected timing |
+| --- | --- |
+| Emergency Test notification | December 1 through December 10, 2026 |
+| Response deadline | December 17, 2026, at 2pm Eastern Time |
 
+These dates are provisional. Follow the notification sent to your FedRAMP Security Inbox for the final deadline and form URL. FedRAMP is still testing the form approach.
 
+[Prepare the required report information](report.md) in advance. The progress report includes a JSON or CSV Mini-SDR with per-rule corrective actions where needed, a machine-readable activity-report sample, and a human-readable Monthly Activity Report sample. Upload the requested attachments directly; links to hosted files do not replace them.
 
-The likely timeframe for FedRAMP to send this Emergency Test message is between December 1, 2026, and December 10, 2026.
+FedRAMP may add or modify requested information until the Emergency Test notification is sent, but expects to do so only if necessary. This site will be updated when additional requirements are known.
 
-The likely deadline for providers to respond to this Emergency Test will be at 2pm Eastern Time on December 17, 2026.
+## Failure to respond
 
+Failure to respond will place the offering in “FedRAMP Certified (In Remediation)” status for at least 30 days. Its Marketplace page will note the failure, and agency customers and CISA will be notified.
 
-The likely expected actions for this Emergency Test will be to fill out a web form supplying the following information:
+A follow-up Security Inbox notification will request all required information within 30 days and a Corrective Action Plan for meeting FedRAMP communication requirements. Completing those corrective actions and passing a follow-up Security Inbox test allows restoration to FedRAMP Certified status, subject to the minimum remediation period. Providers that do not respond within the 30-day deadline will have their certification revoked.
 
-Your email.
-
-Your FedRAMP ID (will be provided in direct notification, one per cloud service offering in the Marketplace)
-
-Your unique code (will be provided in direct notification, one per cloud service offering in the Marketplace).
-
-Attachment: All information requested in the VDR/VER Implementation Collection Requirements described below, provided in a valid JSON or CSV file as specified in those requirements.
-
-Attachment: Corrective Action Plan to address all partially implemented, planned, or not implemented rules that are applicable in the VDR/VER by March 7, 2027 (required if VDR/VER are not fully implemented)
-
-Date of CAP target if applicable
-
-Confirmation that this information is also put in your trust center for agencies to access
-
-Name and position of senior official attesting to the accuracy of this information
-
-Sample Monthly Activity Report with at least 2 examples of each of the following vulnerability types:
-
-  Accepted
-
-  Internet-Reachable
-
-  Non-Internet-Reachable
-
-  Likely Exploitable
-
-  Non-Likely Exploitable
-
-  Known Exploited
-
-  Partially Mitigated
-
-  Fully Mitigated
-
-  Remediated
-
-[any additional information required by CISA, if applicable]
-
+This communications corrective-action process is separate from the per-rule migration plans in the Mini-SDR. See [migration deadlines](deadlines.md) for consequences of incomplete migration.

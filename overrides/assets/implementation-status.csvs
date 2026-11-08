@@ -1,23 +1,28 @@
 version 1.1
-@totalColumns 18
+@totalColumns 22
 // UTF-8 CSV with a header row; column order is fixed.
-// Companion validator also checks exact headers, all rule IDs, metadata consistency,
-// optional whitespace, and calendar dates. This is a collection schema, not a general CSV engine.
-schemaVersion: is("0.1.0")
-rulesVersion: is("2026.10.13.01")
-providerName: regex("(?s).*\S.*")
-offeringName: regex("(?s).*\S.*")
-framework: is("Rev5") or is("20x")
-class: if($framework/is("20x"), (is("B") or is("C")), (is("B") or is("C") or is("D")))
-asOfDate: xDate and regex("[0-9]{4}-[0-9]{2}-[0-9]{2}")
-fedrampId:
-ruleId: (is("VDR-CSO-DET") or is("VDR-CSO-RES") or is("VDR-CSO-FAV") or is("VDR-CSO-DFR") or is("VDR-CSO-ADT") or is("VDR-CSO-DAC") or is("VDR-CSO-MSP") or is("VDR-CSO-AKE") or is("VDR-CSO-SIR") or is("VDR-TFR-NMV") or is("VDR-TFR-PDD") or is("VDR-TFR-PCD") or is("VDR-TFR-PVR") or is("VDR-TFR-RMN") or is("VDR-TFR-KEV") or is("VDR-TFR-PSD") or is("VDR-TFR-MVX") or is("VDR-TFR-MVF") or is("VER-EVA-ELX") or is("VER-EVA-EIR") or is("VER-EVA-EPA") or is("VER-EVA-AIA") or is("VER-EVA-GRV") or is("VER-EVA-EFP") or is("VER-EVA-EFA") or is("VER-RPT-PER") or is("VER-RPT-VDT") or is("VER-RPT-AVI") or is("VER-RPT-NID") or is("VER-RPT-HLO") or is("VER-RPT-RPD") or is("VER-TFR-MHR") or is("VER-TFR-MAV") or is("VER-TFR-MRH") or is("VER-TFR-EVU") or is("VER-TFR-IRI") or is("VER-TFR-NRI")) and unique
-status: (is("Fully Implemented") or is("Partially Implemented") or is("Not Implemented") or is("Not Applicable")) and if((($ruleId/is("VDR-TFR-MVF") and $framework/is("20x")) or ($ruleId/is("VDR-TFR-MVX") and $framework/is("Rev5"))), is("Not Applicable"))
+// CAP columns map to correctiveActionPlan properties in JSON.
+// A companion check must confirm all 37 rule IDs are present.
+// This schema checks field structure, not implementation quality or CAP approval.
+schemaVersion: is("0.2.0")
+rulesVersion: is("2026.11.02.01")
+providerName: regex("(?s).*\S.*") identical
+offeringName: regex("(?s).*\S.*") identical
+framework: (is("Rev5") or is("20x")) identical
+class: if($framework/is("20x"), (is("B") or is("C")), (is("B") or is("C") or is("D"))) identical
+asOfDate: (xDate and regex("[0-9]{4}-[0-9]{2}-[0-9]{2}")) identical
+fedrampId: regex("(?s).*\S.*") identical
+ruleId: (is("VDR-CSO-DET") or is("VDR-CSO-RES") or is("VDR-CSO-FAV") or is("VDR-CSO-DFR") or is("VDR-CSO-ADT") or is("VDR-CSO-DAC") or is("VDR-CSO-MSP") or is("VDR-CSO-AKE") or is("VDR-CSO-SIR") or is("VDR-TFR-NMV") or is("VDR-TFR-PDD") or is("VDR-TFR-PCD") or is("VDR-TFR-PVR") or is("VDR-TFR-RMN") or is("VDR-TFR-KEV") or is("VDR-TFR-PSD") or is("VDR-TFR-MVX") or is("VDR-TFR-MVF") or is("VER-EVA-ELX") or is("VER-EVA-EIR") or is("VER-EVA-EPA") or is("VER-EVA-AIA") or is("VER-EVA-GRV") or is("VER-EVA-EFP") or is("VER-EVA-EFA") or is("VER-RPT-PER") or is("VER-RPT-VDT") or is("VER-RPT-AVI") or is("VER-RPT-NID") or is("VER-RPT-HLO") or is("VER-RPT-RPD") or is("VER-TFR-MHR") or is("VER-TFR-MAV") or is("VER-TFR-MRH") or is("VER-TFR-EVU") or is("VER-TFR-IRI") or is("VER-TFR-NRI")) unique
+status: (is("Fully Implemented") or is("Partially Implemented") or is("Not Implemented") or is("Not Applicable")) if((($ruleId/is("VDR-TFR-MVF") and $framework/is("20x")) or ($ruleId/is("VDR-TFR-MVX") and $framework/is("Rev5"))), is("Not Applicable")) if(($ruleId/is("VDR-CSO-DET") or $ruleId/is("VDR-CSO-RES") or $ruleId/is("VDR-CSO-FAV") or $ruleId/is("VDR-TFR-NMV") or $ruleId/is("VER-EVA-ELX") or $ruleId/is("VER-EVA-EIR") or $ruleId/is("VER-EVA-EPA") or $ruleId/is("VER-EVA-AIA") or $ruleId/is("VER-RPT-PER") or $ruleId/is("VER-RPT-VDT") or $ruleId/is("VER-RPT-AVI") or $ruleId/is("VER-RPT-NID") or $ruleId/is("VER-TFR-MHR") or $ruleId/is("VER-TFR-MAV") or ($ruleId/is("VDR-TFR-MVX") and $framework/is("20x")) or ($ruleId/is("VDR-TFR-MVF") and $framework/is("Rev5") and ($class/is("C") or $class/is("D")))), (is("Fully Implemented") or is("Partially Implemented") or is("Not Implemented")))
 explanation: regex("(?s).*\S.*")
-completionTarget: if(($status/is("Partially Implemented") or $status/is("Not Implemented")), ((xDate and regex("[0-9]{4}-[0-9]{2}-[0-9]{2}")) or is("Unknown") or is("Not Planned")), is(""))
-completionTargetExplanation: if(($completionTarget/is("Unknown") or $completionTarget/is("Not Planned")), regex("(?s).*\S.*"))
-customerRisk: if(($status/is("Partially Implemented") or $status/is("Not Implemented")), regex("(?s).*\S.*"))
-providerCompensation: if(($status/is("Partially Implemented") or $status/is("Not Implemented")), regex("(?s).*\S.*"))
-agencyCompensation: if(($status/is("Partially Implemented") or $status/is("Not Implemented")), regex("(?s).*\S.*"))
-additionalAssurance:
-feedback:
+capStatus: if($status/is("Fully Implemented"), (is("") or is("Completed")), (is("Planned") or is("In Progress") or is("Pending Plan") or is("Completed") or is("Not Applicable"))) if($status/is("Not Applicable"), is("Not Applicable")) if((($status/is("Partially Implemented") or $status/is("Not Implemented")) and ($ruleId/is("VDR-CSO-DET") or $ruleId/is("VDR-CSO-RES") or $ruleId/is("VDR-CSO-FAV") or $ruleId/is("VDR-TFR-NMV") or $ruleId/is("VER-EVA-ELX") or $ruleId/is("VER-EVA-EIR") or $ruleId/is("VER-EVA-EPA") or $ruleId/is("VER-EVA-AIA") or $ruleId/is("VER-RPT-PER") or $ruleId/is("VER-RPT-VDT") or $ruleId/is("VER-RPT-AVI") or $ruleId/is("VER-RPT-NID") or $ruleId/is("VER-TFR-MHR") or $ruleId/is("VER-TFR-MAV") or ($ruleId/is("VDR-TFR-MVX") and $framework/is("20x")) or ($ruleId/is("VDR-TFR-MVF") and $framework/is("Rev5") and ($class/is("C") or $class/is("D"))))), (is("Planned") or is("In Progress") or is("Pending Plan") or is("Completed")))
+capStatusExplanation: if($capStatus/is(""), is(""), regex("(?s).*\S.*"))
+capTargetDate: if(($capStatus/is("Planned") or $capStatus/is("In Progress")), (xDate and regex("[0-9]{4}-[0-9]{2}-[0-9]{2}")), is(""))
+capExplanation: if((($capStatus/is("Planned") or $capStatus/is("In Progress")) or $capStatus/is("Completed")), regex("(?s).*\S.*"), is(""))
+capConfidence: if(($capStatus/is("Planned") or $capStatus/is("In Progress")), range(0, 100), is(""))
+capCompletedDate: if($capStatus/is("Completed"), (xDate and regex("[0-9]{4}-[0-9]{2}-[0-9]{2}")), is(""))
+customerRisk: if(($status/is("Partially Implemented") or $status/is("Not Implemented")), regex("(?s).*\S.*"), (is("") or regex("(?s).*\S.*")))
+providerCompensation: if(($status/is("Partially Implemented") or $status/is("Not Implemented")), regex("(?s).*\S.*"), (is("") or regex("(?s).*\S.*")))
+agencyCompensation: if(($status/is("Partially Implemented") or $status/is("Not Implemented")), regex("(?s).*\S.*"), (is("") or regex("(?s).*\S.*")))
+additionalAssurance: (is("") or regex("(?s).*\S.*"))
+feedback: (is("") or regex("(?s).*\S.*"))

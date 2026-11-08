@@ -37,3 +37,8 @@
 .sample-nav :focus-visible, .sample-rule a:focus-visible { outline: 3px solid #b05c00; outline-offset: 3px; }
 @media (max-width: 600px) { .md-typeset .sample-counts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media print { .sample-rule { break-inside: avoid; } .sample-nav { display: none; } }
+/* Validator results must remain readable in both site palettes. */
+.validator #validation-summary:focus { outline: 3px solid #b05c00; outline-offset: .2rem; }
+[data-md-color-scheme="slate"] #validation-summary[data-valid="true"] { color: #80cbc4; }
+[data-md-color-scheme="slate"] #validation-summary[data-valid="false"] { color: #ffb4ab; }
+.validator .validator-row { align-items: center; }
