@@ -9,6 +9,8 @@ The VDR/VER migration deadline is **December 7, 2026.** There is an automatic gr
     - All MUST/MUST NOT rules are fully implemented.
     - All SHOULD/SHOULD NOT rules are fully implemented OR otherwise addressed.
 
+## Important Deadlines
+
 | Date | What it means |
 | --- | --- |
 | December 7, 2026 | Services that have not fully migrated must provide per-rule corrective actions and target timelines. |
