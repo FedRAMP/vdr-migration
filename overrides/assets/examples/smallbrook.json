@@ -1,0 +1,453 @@
+{
+  "metadata": {
+    "schemaVersion": "0.2.0",
+    "rulesVersion": "2026.11.02.01",
+    "providerName": "Smallbrook Services (fictional)",
+    "offeringName": "Smallbrook Public Information Workspace",
+    "framework": "Rev5",
+    "class": "B",
+    "asOfDate": "2026-12-16",
+    "fedrampId": "EXAMPLE-SMALLBROOK-REV5-B"
+  },
+  "responses": {
+    "VDR-CSO-DET": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "In Progress",
+        "capTargetDate": "2027-03-31",
+        "capConfidence": 70,
+        "capStatusExplanation": "The operations team is building a resource-and-source register and has started checking missing procedure reviews. Complete coverage depends on the March evaluation and non-machine review work.",
+        "capExplanation": "The security coordinator will assign detection methods and owners to machine, process, document, and supplier-related resources. Completion requires a reconciled coverage cycle, intake for non-scanner findings, and an explicit exception record when evidence is missing."
+      },
+      "explanation": "We manually run detection across the machine inventory each week and review service alarms, supplier notices, and reports sent to our support address. Reviews of publishing procedures, access decisions, and security documentation are irregular, and some resources have no recent evidence of complete detection. The operations log therefore captures technical findings more reliably than weaknesses in the processes used to run the service.",
+      "customerRisk": "An incorrect procedure or unreviewed permission change may remain unnoticed even when weekly machine scans succeed. Agencies could rely on a protection that is documented but no longer operating as intended.",
+      "providerCompensation": "The engineering lead reviews changes associated with active findings and asks the adviser to check high-consequence uncertainties. The team retains the coverage gaps in its report instead of treating the weekly scan as complete assurance.",
+      "agencyCompensation": "Agencies can limit the service to its documented public-information use and report behavior that differs from the service description. They can keep sensitive submissions and critical operational workflows outside the offering while detection coverage remains incomplete."
+    },
+    "VDR-CSO-RES": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "In Progress",
+        "capTargetDate": "2027-03-31",
+        "capConfidence": 70,
+        "capStatusExplanation": "The team has begun assigning owners and separating repair notes from verified outcomes. Older findings still lack complete evaluations and treatment history.",
+        "capExplanation": "The engineering lead will require each finding to retain its detection, evaluation, exploitation review, treatment, and reporting history. A review of the open backlog and recent closures will confirm ownership, evidence of actual reductions, and a traceable final disposition."
+      },
+      "explanation": "The operations log records findings, assigned engineers, and repair notes, but evaluation and exploitation-review evidence are inconsistent. A weekly meeting prioritizes the backlog, with urgent service issues handled by the on-call engineer between meetings. Older entries sometimes show that a change was deployed without establishing its effect on exposure or whether the vulnerable condition was removed.",
+      "customerRisk": "A repair note without evaluation or verification can leave agency exposure unresolved while the backlog appears to shrink. Missing ownership can also delay treatment when the primary operator is unavailable.",
+      "providerCompensation": "The weekly meeting now names an engineer for each active item and checks recent repair notes for missing evidence. Urgent indications of compromise go to the on-call engineer without waiting for that meeting.",
+      "agencyCompensation": "Agencies can request the evidence supporting closure of a finding relevant to their site. They can maintain alternate publishing arrangements while the remaining exposure and treatment status are uncertain."
+    },
+    "VDR-CSO-FAV": {
+      "status": "Not Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "In Progress",
+        "capTargetDate": "2027-01-31",
+        "capConfidence": 90,
+        "capStatusExplanation": "The new failure-intake procedure is being drafted from recent maintenance tickets. It has not yet been exercised or adopted by both operations generalists.",
+        "capExplanation": "The security coordinator will turn failed detection and reporting activity into owned vulnerability records linked to the operational ticket. A missed-job exercise will verify coverage-gap investigation, repeat detection where needed, and inclusion of the failure and repair in the next report."
+      },
+      "explanation": "Failed detection jobs and report corrections have been handled as maintenance tickets without creating corresponding vulnerability records. The team normally restores the job but does not consistently investigate what was missed during the failure. We have begun designing the new intake process, but it is not yet operating as a routine control.",
+      "customerRisk": "A restored job can conceal a period in which findings or report changes were missed. Agencies may be unaware that the information they received covers only part of the reporting interval.",
+      "providerCompensation": "Operators retain failed-job logs and repeat missed machine detection within the weekly interval. The engineering lead is reviewing recent maintenance tickets for possible security coverage gaps, although a routine vulnerability intake process is still absent.",
+      "agencyCompensation": "Agencies can ask whether a reported outage or delayed report affected detection coverage. They can request the corrected reporting interval before relying on the report for a risk review."
+    },
+    "VDR-CSO-DFR": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "Planned",
+        "capTargetDate": "2027-06-30",
+        "capConfidence": 60,
+        "capStatusExplanation": "Permission reduction and tenant-boundary work is scheduled after the initial evaluation and reporting repairs. The engineering lead has reserved capacity, but dependent application changes have not started.",
+        "capExplanation": "Engineers will separate publishing, draft access, and administrative permissions and test cross-tenant denial at the application and storage boundaries. Acceptance requires recorded authorization tests, retained response evidence, and a recovery exercise showing that the narrower permissions still support restoration."
+      },
+      "explanation": "The publishing worker, editor application, and public delivery path have separate roles, and recovery copies are held outside the primary environment. Several service identities still have broader storage permissions than their functions need, and shared application components can affect multiple agency sites. Restoration is tested, but the design does not yet make tenant isolation and response evidence as dependable as the backup process.",
+      "customerRisk": "Broad service permissions could allow compromise of one processing component to affect drafts or publications for several agencies. Successful restoration would not reverse information already disclosed.",
+      "providerCompensation": "The team restricts interactive administration and separates recovery-copy access from normal runtime accounts. Engineers can suspend a publishing worker while examining suspicious activity, accepting a publication delay to limit further access.",
+      "agencyCompensation": "Agencies can keep sensitive drafts in an independently controlled system until publication is necessary. They can retain authoritative copies and verify unexpected publication changes through an alternate channel."
+    },
+    "VDR-CSO-ADT": {
+      "status": "Not Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "Pending Plan",
+        "capStatusExplanation": "The team has not selected or funded an approach for automated vulnerability intake and response tracking. The engineering lead will compare coverage and operating cost by January 31 before making a completion commitment."
+      },
+      "explanation": "Operators start scans, collect results, and update the operations log by hand. Service alarms are automated, but there is no automated vulnerability intake, evaluation queue, response tracking, or reporting reconciliation. The team has not selected an affordable approach that it can operate without adding unowned integrations.",
+      "customerRisk": "Manual copying can lose a finding or delay an update when the small team is handling an outage. The absence of an automatic queue also makes unresolved evaluation work harder to see.",
+      "providerCompensation": "Both operations generalists attend the weekly backlog review and compare scan output with the shared log. The engineering lead checks urgent items during on-call handover so they do not depend on one person's notes.",
+      "agencyCompensation": "Agencies can request a dated status update for findings that affect their publishing work. They can escalate a missing or contradictory update through the named engineering contact."
+    },
+    "VDR-CSO-DAC": {
+      "status": "Not Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "Planned",
+        "capTargetDate": "2027-05-31",
+        "capConfidence": 70,
+        "capStatusExplanation": "Automatic change-triggered detection is scheduled after the machine-validation work. The release checklist remains manual while the team identifies representative tests for each deployment type.",
+        "capExplanation": "The release owner will trigger detection from approved change records and retain the result against the deployed configuration. Completion requires tests for a new machine, a changed publishing permission, and a failed check that creates a tracked finding before unrestricted use."
+      },
+      "explanation": "Engineers use a release checklist, but new and materially changed resources do not automatically initiate vulnerability detection. A changed publishing permission or dependency may therefore wait for the next manually initiated weekly run. The checklist includes a manual review, although evidence of those checks is not consistently retained.",
+      "customerRisk": "A new dependency or permission change may expose draft or published content before the next weekly detection run. Missing release evidence makes it difficult to determine what was checked at activation.",
+      "providerCompensation": "The release engineer asks a second engineer to review material changes before deployment. A suspected release-related weakness can be contained by reverting the change or disabling the affected publishing function while it is evaluated.",
+      "agencyCompensation": "Agencies can delay using a materially changed feature until its detection results are available. They can compare published content with retained copies after a release that affects their publishing path."
+    },
+    "VDR-CSO-MSP": {
+      "status": "Fully Implemented",
+      "explanation": "Our assessment account uses the existing restricted management path and does not require public administrative access. Operators keep authentication, access restrictions, and logging enabled while running detection. If a check needs unsafe permissions or would disrupt publishing, the team uses an isolated copy and records the production coverage limitation for follow-up."
+    },
+    "VDR-CSO-AKE": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "In Progress",
+        "capTargetDate": "2027-02-28",
+        "capConfidence": 85,
+        "capStatusExplanation": "The release checklist is being updated to cover emergency rebuilds and utility machines. Exact component inventories are still being added to the release records.",
+        "capExplanation": "The engineering lead will require a current known-exploited catalog check against the exact component inventory before every new machine is activated. Acceptance requires a recorded second-person check and a demonstrated block on an affected release until the component is removed or replaced."
+      },
+      "explanation": "Engineers check the known-exploited catalog when preparing major releases, but emergency rebuilds and added utility machines do not consistently have a recorded pre-activation check. The current checklist does not tie the decision to an exact component inventory. We therefore cannot show that every newly activated machine was free of known-exploited vulnerabilities at activation.",
+      "customerRisk": "A utility machine or emergency rebuild could activate with a known-exploited component. That exposure may persist until the weekly review identifies the inventory match.",
+      "providerCompensation": "The engineering lead manually checks catalog entries implicated by supplier notices before approving urgent rebuilds. Uncertain components can be kept inactive while the installed version is confirmed.",
+      "agencyCompensation": "Agencies can request confirmation of exposure when a known-exploited advisory affects the service's reported functions. They can suspend optional uploads or publishing activity while the provider determines whether the deployed component is affected."
+    },
+    "VDR-CSO-SIR": {
+      "status": "Not Applicable",
+      "correctiveActionPlan": {
+        "capStatus": "Not Applicable",
+        "capStatusExplanation": "The team has chosen full-population machine detection and does not use sampling. No sampling corrective action is needed because each machine receives its own assessment."
+      },
+      "explanation": "We run machine detection against the full small inventory and do not use representative sampling. The editor, database, and publishing functions differ enough that maintaining sample equivalence would add work without reducing effort materially. Each machine retains its own result in the operations folder."
+    },
+    "VDR-TFR-NMV": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "In Progress",
+        "capTargetDate": "2027-03-31",
+        "capConfidence": 80,
+        "capStatusExplanation": "The document inventory is being reconciled with current operations and assigned to owners. Several resources still need a first complete verification and validation review.",
+        "capExplanation": "Owners will compare each non-machine resource with observed operation and retain the evidence and resulting findings. The coordinator will establish a recurring schedule within three months and check that missed reviews are escalated rather than silently rolled forward."
+      },
+      "explanation": "Some publishing and recovery procedures have been exercised recently, but supplier handoffs, access-review instructions, and security descriptions lack complete verification and validation within three months. The current document list does not reliably identify an owner or next review date for every resource. A successful restore exercise therefore supports only that procedure and cannot establish coverage of the remaining non-machine resources.",
+      "customerRisk": "Outdated access or supplier instructions can lead staff to follow a procedure that no longer provides the intended protection. Agencies may receive assurances based on documents that have not been compared with current operation.",
+      "providerCompensation": "The adviser prioritizes procedures implicated by active findings and upcoming operational changes. Recent walkthrough records are retained so those reviewed procedures have a traceable basis even while overall coverage remains incomplete.",
+      "agencyCompensation": "Agencies can confirm current responsibilities and escalation contacts before relying on a documented handoff. They can raise inconsistencies between published instructions and actual support responses for investigation."
+    },
+    "VDR-TFR-PDD": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "Planned",
+        "capTargetDate": "2027-04-30",
+        "capConfidence": 75,
+        "capStatusExplanation": "The team plans to classify drift-prone resources after completing the initial inventory review. Monthly procedure detection has not yet been scheduled across that inventory.",
+        "capExplanation": "The coordinator will classify resources by change behavior and assign detection at least monthly for those likely to drift. Completion requires a full recorded cycle, reconciliation with material changes, and a route for newly introduced resources to enter the schedule."
+      },
+      "explanation": "Weekly machine checks provide recurring visibility into the deployed hosts, but frequently edited permissions procedures and publishing instructions are reviewed less than monthly. The team has not classified every information resource by its likelihood of drifting. This leaves gaps against the Class B monthly detection recommendation outside the machine scan coverage.",
+      "customerRisk": "Changes to publishing or access instructions can introduce weaknesses that remain unnoticed beyond the monthly interval. Machine scan results do not show whether staff are following those instructions correctly.",
+      "providerCompensation": "The engineering lead reviews procedure changes associated with releases and incidents. The operations team keeps a list of known review gaps for discussion with the adviser.",
+      "agencyCompensation": "Agencies can validate their own editor permissions and publication approvals after a process change. They can report unexpected access or publishing behavior instead of relying solely on the next provider review."
+    },
+    "VDR-TFR-PCD": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "In Progress",
+        "capTargetDate": "2027-03-31",
+        "capConfidence": 80,
+        "capStatusExplanation": "Owners are checking the stable-resource list while recovering overdue document reviews. The first complete pass has not yet covered every supplier and security resource.",
+        "capExplanation": "The team will assess all remaining stable resources and record the evidence supporting their classification. A recurring schedule will keep detection within six months, while non-machine verification and validation continues on its separate three-month schedule."
+      },
+      "explanation": "Stable machines are included in the weekly detection run, while some infrequently changed supplier and security documents have gone more than six months without a complete review. We have treated those documents as unchanged without checking whether the service still operates as they describe. Their detection coverage therefore remains incomplete even though machine results are current.",
+      "customerRisk": "An old supplier responsibility or security description can be wrong for months without a detection review. Agencies may misunderstand which protections the offering actually provides.",
+      "providerCompensation": "The team checks documents used in current investigations and marks unverified descriptions for review. Owners have begun reconciling the document list with the services and suppliers still in use.",
+      "agencyCompensation": "Agencies can request the last reviewed date of a description relevant to their use. They can avoid treating an unverified description as sufficient evidence for a consequential risk decision."
+    },
+    "VDR-TFR-PVR": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "Pending Plan",
+        "capStatusExplanation": "Incomplete evaluations and uncertain supplier options prevent a defensible completion target for the reduction process. The engineering lead and adviser will review alternate treatment options and planning dependencies on January 31."
+      },
+      "explanation": "The team records urgent repair dates but has not consistently translated evaluated impact, reachability, and exploitability into the Class B reduction matrix. Supplier-dependent publishing components also lack dependable intermediate reduction plans. Some evaluation evidence is still incomplete, so we cannot demonstrate that reductions are achieved within the applicable intervals or support a credible date for complete implementation.",
+      "customerRisk": "Weaknesses may retain their agency impact longer than the Class B reduction expectations. Incomplete evaluations can also lead the team to prioritize the wrong reduction first.",
+      "providerCompensation": "The engineering lead reviews urgent known exposure with the adviser and considers disabling the affected feature when repair is uncertain. Interim actions remain described as provisional until their effect has been evaluated.",
+      "agencyCompensation": "Agencies can reduce use of an affected upload or publishing path while reduction evidence is incomplete. They can consider the remaining uncertainty in their own risk decisions rather than relying on a proposed repair date."
+    },
+    "VDR-TFR-RMN": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "Planned",
+        "capTargetDate": "2027-05-31",
+        "capConfidence": 75,
+        "capStatusExplanation": "A recurring residual-finding review is scheduled after the initial evaluation backlog is repaired. The engineering lead has not yet assigned maintenance capacity to all remaining items.",
+        "capExplanation": "The maintenance owner will review residual findings regularly, assign treatment or a documented deferral, and reconsider them when threats or service use change. Completion requires a reconciled backlog showing an accountable owner and a supported disposition for each remaining weakness."
+      },
+      "explanation": "Engineers repair residual weaknesses when they overlap planned maintenance, but the backlog has no dependable review for items outside that work. Older low-priority entries can remain unchanged through several release cycles. The team has not consistently recorded whether those findings were deliberately deferred, accepted, or simply overlooked.",
+      "customerRisk": "Deferred weaknesses can accumulate until a later change makes one exploitable or more damaging. An agency may see the same open issue without a clear reason for continued delay.",
+      "providerCompensation": "The weekly meeting checks older findings associated with upcoming releases and records a named owner. Newly relevant threat information can move an item into urgent work even if its earlier priority was low.",
+      "agencyCompensation": "Agencies can ask for a current rationale when a reported finding remains unchanged across several reports. They can limit use of the affected function if the residual exposure is no longer acceptable for their situation."
+    },
+    "VDR-TFR-KEV": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "In Progress",
+        "capTargetDate": "2027-02-28",
+        "capConfidence": 85,
+        "capStatusExplanation": "The team is matching deployed components to catalog entries and recovering missing due dates. A reliable verification step for removal of the affected condition is still being introduced.",
+        "capExplanation": "The security coordinator will maintain current catalog matches and remediation dates for deployed components, with escalation before a deadline is missed. Engineers will verify removal or replacement of the vulnerable condition and keep interim mitigation separate from remediation completion."
+      },
+      "explanation": "We check supplier notices and the known-exploited catalog during the weekly review, but catalog due dates are not consistently recorded against deployed components. A temporary restriction has sometimes been treated as sufficient progress while the underlying component remained affected. We need a reliable inventory match and remediation deadline process that stays open until removal of the vulnerable condition is verified.",
+      "customerRisk": "A known-exploited component may remain installed past its catalog remediation date. Filtering or restricted use can leave a viable exploitation path that the team has not established or removed.",
+      "providerCompensation": "Engineers give known-exploited matches priority in the weekly review and investigate urgent supplier notices on receipt. The team can withdraw an affected optional function while it determines how to replace or remove the component.",
+      "agencyCompensation": "Agencies can request the applicable catalog deadline and the current remediation evidence for a relevant finding. They can avoid the affected function while the provider cannot demonstrate removal of the vulnerable condition."
+    },
+    "VDR-TFR-PSD": {
+      "status": "Fully Implemented",
+      "explanation": "Operators perform detection on every machine at least once every seven days and retain the results against the current inventory. A failed run is repeated within the seven-day interval, and the other operations generalist covers absence of the primary operator. This meets the Class B machine-detection cadence, while broader process coverage and full configuration validation remain separate gaps."
+    },
+    "VDR-TFR-MVX": {
+      "status": "Not Applicable",
+      "correctiveActionPlan": {
+        "capStatus": "Not Applicable",
+        "capStatusExplanation": "The 20x machine-verification rule is outside the Rev5 profile of this offering. The applicable monthly recommendation and its corrective work are recorded under VDR-TFR-MVF."
+      },
+      "explanation": "Smallbrook Public Information Workspace follows the Rev5 Class B profile. The 20x-specific machine-verification rule is not applicable, and our gaps against the corresponding Rev5 recommendation are reported under VDR-TFR-MVF."
+    },
+    "VDR-TFR-MVF": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "Planned",
+        "capTargetDate": "2027-04-30",
+        "capConfidence": 75,
+        "capStatusExplanation": "Monthly configuration verification and behavior tests are planned after the inventory and evaluation repairs. The adviser is helping define checks that the small team can repeat and retain.",
+        "capExplanation": "Operations will compare each machine with its approved configuration and validate tenant access, protective settings, and logging behavior. A complete monthly cycle must account for every machine and create findings for failed or unperformed checks."
+      },
+      "explanation": "Weekly scans identify machine weaknesses, but they do not fully verify approved configuration or validate that every protective function operates as intended. Storage permissions, logging failure behavior, and tenant-boundary checks lack a complete monthly evidence set. The current coverage is therefore short of the Rev5 Class B monthly verification and validation recommendation.",
+      "customerRisk": "A machine can pass a vulnerability scan while its permissions or logging behave differently from the approved design. Agencies may therefore have less isolation or investigation evidence than the service description suggests.",
+      "providerCompensation": "Engineers manually check sensitive storage permissions after material changes and retain available audit records. The adviser prioritizes tenant-boundary and logging checks when reviewing the current backlog.",
+      "agencyCompensation": "Agencies can review their editor accounts and keep independent records of important publication changes. They can request specific configuration-validation evidence when the protection is material to their use."
+    },
+    "VER-EVA-ELX": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "In Progress",
+        "capTargetDate": "2027-03-31",
+        "capConfidence": 75,
+        "capStatusExplanation": "Engineers have started adding deployed-function and permission evidence to new evaluations. Older findings still need review, and adviser capacity limits progress on complex cases.",
+        "capExplanation": "The evaluation owner will document required conditions, reachable functionality, and current protections for each detected weakness. Completion requires review of the open backlog and a repeatable intake process that records a supported likely-exploitability determination."
+      },
+      "explanation": "Initial reviews consider the affected package and supplier severity, but often lack evidence about enabled code paths, required privileges, and actual protections. The publishing worker's processing of uploaded material has not been consistently evaluated in that context. A weekly review entry therefore does not always establish a supported likely-exploitability decision.",
+      "customerRisk": "A finding may be dismissed or assigned low urgency before the deployed exploitation conditions are understood. That can delay protection of drafts or publication integrity.",
+      "providerCompensation": "Engineers retain uncertain findings as open and request adviser input for privileged or shared components. Affected optional functionality can be restricted while the missing evidence is investigated.",
+      "agencyCompensation": "Agencies can describe how they use the affected function and identify any sensitive workflow dependencies. They can pause that use when the provider cannot yet support its exploitability assessment."
+    },
+    "VER-EVA-EIR": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "In Progress",
+        "capTargetDate": "2027-03-31",
+        "capConfidence": 70,
+        "capStatusExplanation": "The upload-to-publication data flow is being mapped and used in current investigations. Integration and administrative input paths still need consistent coverage.",
+        "capExplanation": "Engineers will trace direct and indirect internet-originated input to each affected function and retain the relevant permissions and routing evidence. Reviewers will revisit open findings previously classified from network location alone and confirm that changed paths trigger reassessment."
+      },
+      "explanation": "The team can identify public endpoints but has sometimes treated private hosts as unreachable without tracing the content they process. Uploaded publications and queued publishing jobs can carry internet-originated input into the private worker. Those indirect paths and the relevant permissions are not yet documented consistently enough to support every reachability decision.",
+      "customerRisk": "A private publishing worker may process attacker-controlled content despite having no public administrative endpoint. An incorrect unreachable classification could delay treatment or understate agency exposure.",
+      "providerCompensation": "The team checks the upload and publication path for findings already under investigation. Unresolved indirect paths remain an explicit uncertainty instead of being treated as proof of isolation.",
+      "agencyCompensation": "Agencies can limit uploaded material to approved sources while an affected processing path is evaluated. They can use an alternate publication method if the remaining reachability uncertainty is material."
+    },
+    "VER-EVA-EPA": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "In Progress",
+        "capTargetDate": "2027-02-28",
+        "capConfidence": 85,
+        "capStatusExplanation": "The adviser is reviewing shared-service and publication-integrity cases with the engineering lead. Existing ratings still include unsupported availability-only judgments.",
+        "capExplanation": "The team will evaluate likely confidentiality, integrity, and availability effects on agency use and assign the corresponding N-rating with a recorded rationale. Acceptance requires review of open findings for multi-agency consequences and incorporation of relevant customer context."
+      },
+      "explanation": "Early evaluations emphasize restoration time and public-site availability, with less attention to draft disclosure, unauthorized publication, and shared-service effects across agencies. Some N-ratings were assigned from generic severity without a clear explanation of the likely customer effect. The adviser is helping the team revisit those ratings using the actual publishing workflow and data boundaries.",
+      "customerRisk": "An availability-focused rating can understate draft disclosure, unauthorized content changes, or effects across multiple agency sites. Agencies may then receive an urgency estimate that does not reflect their actual use.",
+      "providerCompensation": "The adviser reviews findings involving shared storage, administrative permissions, or publication authority. Engineers seek agency context before lowering an impact rating whose consequences remain uncertain.",
+      "agencyCompensation": "Agencies can explain the consequences of incorrect publication or draft disclosure for their site. They can request reevaluation when the provider's stated assumptions omit those consequences."
+    },
+    "VER-EVA-AIA": {
+      "status": "Fully Implemented",
+      "explanation": "Our evaluation instructions require reviewers to assume exploitation can be automated. The team does not claim exceptions based on a lack of observed attacks or the apparent complexity of an exploit. Any future exception would need specific technical evidence and adviser review before the assumption could change."
+    },
+    "VER-EVA-GRV": {
+      "status": "Not Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "Not Applicable",
+        "capStatusExplanation": "The engineering lead has documented a justified departure from consolidated response groups for the small, varied inventory. Individual tracking remains the chosen approach, with cross-references used to manage related work."
+      },
+      "explanation": "We keep individual finding records because the small inventory contains different functions and repair paths. The engineering lead has documented the decision not to consolidate response activity into groups at this stage. Related entries can be cross-referenced during the weekly meeting, while each affected resource retains its own evidence and status.",
+      "customerRisk": "Individual records can cause duplicate work and inconsistent repair decisions for related resources. The small team may overlook that one deployment change could address several entries.",
+      "providerCompensation": "The weekly review cross-references findings that involve the same component or release. Each affected machine still needs its own verification before the corresponding entry is closed.",
+      "agencyCompensation": "Agencies can ask whether repeated findings share a cause or planned repair. They can check that a claimed common repair actually includes the function used by their site."
+    },
+    "VER-EVA-EFP": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "Planned",
+        "capTargetDate": "2027-09-15",
+        "capConfidence": 60,
+        "capStatusExplanation": "A consistent false-positive review process is scheduled for September after mandatory evaluation repairs. Until then, unsupported dismissals remain subject to open review and are not treated as verified absence of a weakness.",
+        "capExplanation": "The evaluation owner will require evidence distinguishing an absent vulnerability from constrained exploitation and record the configuration to which a conclusion applies. Completion requires review of existing dismissals and tests showing that changed components or exposure invalidate stale suppressions."
+      },
+      "explanation": "Engineers investigate suspected false positives when a finding blocks a release, but routine findings do not receive the same consistent evidence review. Some notes state that a warning was dismissed without explaining the deployed condition or the basis for that conclusion. We have stopped treating those old dismissals as established facts while the evaluation backlog is repaired.",
+      "customerRisk": "An unsupported dismissal can hide a real weakness, while unresolved noise can consume the team's limited review time. Both can delay attention to findings that affect agency publishing.",
+      "providerCompensation": "Older unsupported dismissals are returned to open review when encountered, and release-blocking disputes receive engineering evidence checks. The team does not apply a blanket suppression across versions or configurations.",
+      "agencyCompensation": "Agencies can request the basis for a dismissal that affects their reported exposure. They can treat an unresolved conclusion as uncertainty in their own risk review rather than assuming the weakness is absent."
+    },
+    "VER-EVA-EFA": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "Planned",
+        "capTargetDate": "2027-06-30",
+        "capConfidence": 65,
+        "capStatusExplanation": "The broader factor worksheet is planned after the mandatory contextual determinations are established. The adviser has not yet reviewed its use across the open backlog.",
+        "capExplanation": "The security coordinator will add every recommended evaluation factor, including interactions with nearby weaknesses and known threats. Reviewers will revisit open findings and record whether the added context changes impact, priority, or treatment."
+      },
+      "explanation": "The working checklist covers component severity and service availability, with uneven attention to privileges and input paths. It does not consistently examine detectability, prevalence, nearby vulnerabilities, or known threats in the offering's context. The mandatory evaluation repairs are being addressed first, followed by a fuller worksheet for these recommended factors.",
+      "customerRisk": "A narrow worksheet can miss how a weakness combines with broad permissions or another unresolved finding. The resulting treatment priority may not reflect the likely customer consequence.",
+      "providerCompensation": "The adviser reviews shared and privileged components first and discusses related open findings with the engineers. Those targeted reviews reduce some uncertainty while full factor coverage remains incomplete.",
+      "agencyCompensation": "Agencies can identify unusual dependencies or consequences that a routine publishing use case would not reveal. They can request an updated assessment when that information changes the context."
+    },
+    "VER-RPT-PER": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "In Progress",
+        "capTargetDate": "2027-02-28",
+        "capConfidence": 85,
+        "capStatusExplanation": "The operations generalist has started reconciling engineering notes and scan results with the reporting log. Complete source accounting and correction handling are not yet routine.",
+        "capExplanation": "The reporting owner will account for all detection and response activity since the prior report, including verification results and process failures. Completion requires a reconciled reporting interval, delivery to all necessary parties, and a tested correction process that preserves the interval and revision history."
+      },
+      "explanation": "Monthly reports summarize selected findings and repairs, but they do not account for all detection and response activity since the preceding report. Successful checks, failed jobs, and changes recorded only in engineering notes can be omitted. The operations generalist has started reconciling the log and those notes, but complete activity reporting is not yet established.",
+      "customerRisk": "An omitted check or response event can make the report appear more complete or current than the underlying work supports. Agencies may miss a coverage failure or an important change in exposure.",
+      "providerCompensation": "The operations generalist compares recent engineering notes with the log before publication and flags known omissions. Corrected reports are dated so recipients can identify which reporting interval was repaired.",
+      "agencyCompensation": "Agencies can ask whether the report has been reconciled with all activity sources. They can retain revisions and request clarification when a finding disappears without an explained disposition."
+    },
+    "VER-RPT-VDT": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "In Progress",
+        "capTargetDate": "2027-03-31",
+        "capConfidence": 75,
+        "capStatusExplanation": "The report layout is being expanded while engineers recover supporting history and complete missing evaluations. Some required values cannot be populated responsibly until that work finishes.",
+        "capExplanation": "The reporting owner will map every applicable detail field to the operations record and retain evidence for dates and impact reductions. Acceptance requires a complete export reconciled with the source records, explicit handling of overdue findings, and no invented historical values."
+      },
+      "explanation": "Our report contains finding identifiers, short descriptions, and intended repair dates, but several required details are missing or inconsistent. Detection sources, completed evaluation times, evaluated impact reductions, and overdue explanations are particularly weak in older entries. Some necessary context does not yet exist because the underlying evaluation is unfinished, so export changes alone will not resolve the gap.",
+      "customerRisk": "Missing evaluation times and reduction history make it difficult to judge exposure duration and treatment progress. An unsupported target can look more certain than the available evidence warrants.",
+      "providerCompensation": "The team labels unknown values and requests source evidence from the responsible engineer. It avoids inventing historical dates when the retained records cannot support them.",
+      "agencyCompensation": "Agencies can request the missing detail for findings relevant to their use and distinguish estimates from verified reductions. They can retain uncertainty in their risk assessment until the underlying evaluation is complete."
+    },
+    "VER-RPT-AVI": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "Planned",
+        "capTargetDate": "2027-03-31",
+        "capConfidence": 80,
+        "capStatusExplanation": "The accepted-finding review is planned alongside the report-field repair. The team first needs reliable evaluation times and acceptance categorization for those records.",
+        "capExplanation": "The engineering lead will complete the current context of each accepted record, required dates, acceptance explanation, and useful agency actions. The reporting owner will check that changes to accepted findings remain visible and that acceptance is not presented as an agency decision."
+      },
+      "explanation": "Long-running findings are listed as accepted in some reports without a complete acceptance explanation or current contextual evaluation. Original detection and evaluation times are not consistently carried into that view. Agencies therefore do not always receive the information needed to understand the continuing exposure and decide how to use the publishing service.",
+      "customerRisk": "An incomplete accepted-finding record can hide why exposure persists and what protective action remains possible. Agencies may mistake the provider's acceptance for a conclusion that no further decision is needed.",
+      "providerCompensation": "The engineering lead reviews accepted entries during the weekly meeting and identifies missing rationale. The adviser prioritizes records involving shared components or publication authority for contextual review.",
+      "agencyCompensation": "Agencies can request an explicit acceptance explanation and current exposure assessment. They can make their own decision about continued use and apply practical restrictions where the record supports them."
+    },
+    "VER-RPT-NID": {
+      "status": "Fully Implemented",
+      "explanation": "Vulnerability details are shared through a restricted customer area with named agency contacts and other necessary parties. The engineering lead reviews messages for information that could facilitate exploitation and provides available customer-impact context and practical actions without publishing exploit instructions. The report-field and evaluation gaps remain disclosed separately, rather than concealing uncertainty or treating restricted access as proof of complete reporting."
+    },
+    "VER-RPT-HLO": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "Planned",
+        "capTargetDate": "2027-09-01",
+        "capConfidence": 70,
+        "capStatusExplanation": "The overview rewrite is scheduled after mandatory reporting content is repaired. The team has reserved a September review but has not yet designed a complete source-category summary.",
+        "capExplanation": "The reporting owner will summarize every activity source and explain material changes, coverage gaps, and unresolved work for the period. Acceptance requires reconciliation with the detailed activity so uptime and repair counts cannot obscure missing evaluation or process work."
+      },
+      "explanation": "The opening report summary concentrates on uptime, backups, and the number of repaired machine findings. It does not consistently describe procedure reviews, supplier notices, or the investigations that remain incomplete. Readers cannot obtain a balanced overview of all detection and response activity from that summary today.",
+      "customerRisk": "An uptime-centered summary can obscure unresolved security work affecting integrity or confidentiality. Agency reviewers may overlook a reporting or evaluation gap if they read only that summary.",
+      "providerCompensation": "The report includes a visible list of known migration gaps and links to available finding detail. The engineering contact answers questions about omitted activity categories using the underlying records.",
+      "agencyCompensation": "Agencies can read the stated gaps alongside the availability summary. They can request a period-specific account of detection and response work before drawing conclusions from repair counts."
+    },
+    "VER-RPT-RPD": {
+      "status": "Not Applicable",
+      "correctiveActionPlan": {
+        "capStatus": "Not Applicable",
+        "capStatusExplanation": "Smallbrook does not exercise optional public vulnerability disclosure. Necessary-party reporting and any independently required communications remain in scope through their existing channels."
+      },
+      "explanation": "We do not currently exercise the option to publish vulnerability details publicly. Necessary-party communications use the restricted reporting channel, with additional coordination when a supplier or agency needs technical information. Any future public disclosure would require a separate review of whether the proposed information is likely to enable exploitation."
+    },
+    "VER-TFR-MHR": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "In Progress",
+        "capTargetDate": "2027-03-31",
+        "capConfidence": 75,
+        "capStatusExplanation": "Monthly delivery is operating, and the reporting owner is repairing its incomplete content with the other reporting work. Full implementation depends on completing source reconciliation and the missing evaluations and detail fields.",
+        "capExplanation": "The reporting owner will assemble the reconciled activity into the existing human-readable layout and verify access for all necessary parties. Completion requires a full monthly report whose coverage matches the underlying records and whose corrections remain traceable to the original reporting period."
+      },
+      "explanation": "We deliver a human-readable report each month using the same headings and customer distribution list. Its activity content is incomplete because source reconciliation and several required detail fields remain unfinished. The monthly delivery schedule is operating, but we are marking the rule partially implemented until the report reliably represents the activity it is intended to communicate.",
+      "customerRisk": "Regular delivery can create an impression of complete reporting even when activity is missing. An agency may not know which parts of the month's work remain unreconciled.",
+      "providerCompensation": "The report identifies known omissions and unfinished evaluations in its opening notes. The team retains prior versions and distributes corrected reports when additional activity is recovered.",
+      "agencyCompensation": "Agencies can verify the reporting interval and disclosed omissions before relying on the report. They can request an updated version when missing activity affects a pending risk decision."
+    },
+    "VER-TFR-MAV": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "In Progress",
+        "capTargetDate": "2027-01-31",
+        "capConfidence": 90,
+        "capStatusExplanation": "The weekly review is beginning to capture forecast-based acceptance decisions. Historical evaluation dates and long-running plans still need reconciliation.",
+        "capExplanation": "The engineering lead will categorize findings as accepted when full mitigation or remediation is not expected within 192 days of evaluation and also check elapsed time. Acceptance testing will cover a newly forecast delay, a slipped plan, and a record whose evaluation date needs evidence recovery."
+      },
+      "explanation": "The weekly review identifies old findings, but it does not consistently mark a vulnerability accepted when the forecast first exceeds 192 days from evaluation. Some records remain labeled as planned repairs even after that outcome is apparent. Missing or ambiguous evaluation dates also make the elapsed-time check unreliable.",
+      "customerRisk": "A long-term repair can remain outside the accepted category even when completion within 192 days is already unrealistic. Agencies may not receive the explanation and continuing-exposure information associated with acceptance.",
+      "providerCompensation": "The weekly meeting reviews old and supplier-dependent items and asks the engineering lead for a current forecast. Records with uncertain evaluation dates remain flagged for evidence recovery rather than receiving invented dates.",
+      "agencyCompensation": "Agencies can ask whether the current forecast exceeds 192 days from evaluation. They can request the acceptance rationale when the provider expects the exposure to remain beyond that threshold."
+    },
+    "VER-TFR-MRH": {
+      "status": "Not Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "Planned",
+        "capTargetDate": "2027-09-30",
+        "capConfidence": 50,
+        "capStatusExplanation": "A modest allocation is reserved for historical retrieval after the report records are repaired. The access design and delivery capacity remain uncertain, which limits confidence in the September target.",
+        "capExplanation": "Engineers will provide authenticated JSON retrieval of recent history with stable identifiers and explicit revisions, refreshed at least monthly. The reporting owner will verify necessary-party access and reconcile retrieved activity against the corrected source records before relying on the interface."
+      },
+      "explanation": "Customers receive report files through the restricted area, with no automated JSON retrieval of recent detection and response history. The underlying log also lacks a dependable revision history for several older findings. A history interface is planned after the mandatory reporting repairs so it can expose reconciled records instead of reproducing their omissions.",
+      "customerRisk": "Agencies cannot automatically retrieve a coherent recent history and may miss a changed or corrected record. Trend analysis based on individually retained files can be incomplete.",
+      "providerCompensation": "The operations generalist maintains a dated report list and provides available revisions on request. Known history gaps are disclosed instead of being silently filled from memory.",
+      "agencyCompensation": "Agencies can retain every report revision and compare it with the provider's list. They can request a reconciled interval before using the files for historical analysis."
+    },
+    "VER-TFR-EVU": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "In Progress",
+        "capTargetDate": "2027-03-31",
+        "capConfidence": 70,
+        "capStatusExplanation": "The operations log is being changed to distinguish first review from completed contextual evaluation. The team has not yet demonstrated that all required determinations finish within seven days.",
+        "capExplanation": "The engineering lead will assign missing evidence work at intake and escalate incomplete evaluations before the seven-day limit. A complete review cycle must show that completion dates follow supported exploitability, reachability, and impact decisions across every detection source."
+      },
+      "explanation": "Every detected finding receives an initial review within seven days, but completing the contextual evaluation often takes longer while engineers or the adviser establish the missing evidence. The log has not consistently distinguished that first review from completion of exploitability, reachability, and impact determinations. We therefore do not meet the Class B seven-day evaluation recommendation despite the weekly meeting.",
+      "customerRisk": "A first review can be mistaken for a completed evaluation while exposure and impact remain uncertain. This delays both informed agency decisions and selection of an appropriate response.",
+      "providerCompensation": "The weekly meeting now lists missing evidence separately and escalates potentially serious findings to the engineering lead. Urgent protective actions can begin while the full evaluation is still being completed.",
+      "agencyCompensation": "Agencies can request the evaluation completion date and outstanding evidence for a relevant finding. They can restrict affected use while significant contextual uncertainty remains."
+    },
+    "VER-TFR-IRI": {
+      "status": "Not Applicable",
+      "correctiveActionPlan": {
+        "capStatus": "Not Applicable",
+        "capStatusExplanation": "The offering does not currently exercise this optional Class B vulnerability-based incident treatment. This choice leaves other incident obligations and the separately reported evaluation repairs unchanged."
+      },
+      "explanation": "We are not exercising the optional Class B treatment of internet-reachable, likely exploitable vulnerabilities above N3 as reportable incidents solely on that basis. Suspected or confirmed security incidents still go through our incident process and any independently applicable reporting duties. Our incomplete evaluation coverage is disclosed in the evaluation responses and is not treated as evidence that qualifying vulnerabilities cannot exist."
+    },
+    "VER-TFR-NRI": {
+      "status": "Not Applicable",
+      "correctiveActionPlan": {
+        "capStatus": "Not Applicable",
+        "capStatusExplanation": "The offering does not currently exercise the optional N5 non-internet-reachable vulnerability incident treatment. Other incident duties continue to apply independently, and the evaluation gaps remain subject to their own corrective work."
+      },
+      "explanation": "We are not exercising the optional Class B vulnerability-based incident treatment for non-internet-reachable, likely exploitable vulnerabilities at N5. The engineering lead still considers shared-service effects when responding to suspected incidents, subject to other applicable incident obligations. This choice does not remove the need to complete impact and reachability evaluations for the affected resources."
+    }
+  }
+}

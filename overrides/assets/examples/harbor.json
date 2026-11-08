@@ -1,0 +1,291 @@
+{
+  "metadata": {
+    "schemaVersion": "0.2.0",
+    "rulesVersion": "2026.11.02.01",
+    "providerName": "Harbor Systems (fictional)",
+    "offeringName": "Harbor Agency Workspace",
+    "framework": "Rev5",
+    "class": "C",
+    "asOfDate": "2026-12-14",
+    "fedrampId": "EXAMPLE-HARBOR-REV5-C"
+  },
+  "responses": {
+    "VDR-CSO-DET": {
+      "status": "Fully Implemented",
+      "explanation": "Scheduled scanners cover our web and application tiers daily and the isolated conversion and integration machines weekly. The duty analyst also reviews researcher submissions, supplier notices, application tests, operational failures, and the results of control-owner reviews. A daily reconciliation accounts for each source against the inventory and opens an investigation when expected evidence is missing.",
+      "additionalAssurance": "A different analyst checks the daily source reconciliation before the duty handover closes. The retained checklist identifies missing evidence by source and agency environment, allowing the next shift to follow up without repeating intake."
+    },
+    "VDR-CSO-RES": {
+      "status": "Fully Implemented",
+      "explanation": "The security team maintains a version-controlled register linking every finding to its agency environment, responsible engineer, evaluation, and supporting evidence. Analysts review exploitation indicators and treatment progress each day, while engineering records mitigation and remediation separately. The duty lead checks overdue work and reporting changes before handover, including findings that depend on a legacy component supplier."
+    },
+    "VDR-CSO-FAV": {
+      "status": "Fully Implemented",
+      "explanation": "A missed scan, incomplete review, or defective report is recorded as a vulnerability with an owner and a defined period of affected coverage. The operations ticket remains linked to that record so restarting a job does not erase the security issue. Analysts examine what may have been missed and report the investigation and repair through the normal activity process."
+    },
+    "VDR-CSO-DFR": {
+      "status": "Fully Implemented",
+      "explanation": "Agency environments have separate application data and restricted network paths, while shared administrative services use narrowly assigned access. Document conversion runs away from the case-management tier, limiting the permissions available to a compromised worker. Tested recovery procedures and recorded maintenance sessions help responders isolate or replace a component without losing the evidence needed to understand the event."
+    },
+    "VDR-CSO-ADT": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "In Progress",
+        "capTargetDate": "2027-06-30",
+        "capConfidence": 70,
+        "capStatusExplanation": "A connector is being piloted against scanner exports from two agency environments. Register updates and evidence linkage still require manual reconciliation.",
+        "capExplanation": "The integration engineer will preserve source identifiers and agency context when importing findings and subsequent status changes. The team will run the connector alongside daily manual reconciliation for a full reporting cycle and resolve mismatches before retiring duplicate entry."
+      },
+      "explanation": "Scanners run on schedules, but analysts manually move results into the response register and link the relevant evidence folders. Different identifiers in the legacy scanners and case environments make automated correlation difficult. Daily reconciliation sustains the mandatory workflow, although duplicate entry and manual status checks consume time that could otherwise be spent on investigation.",
+      "customerRisk": "A copied finding or status change can reach the wrong agency environment or remain stale between handoffs. Agencies could receive delayed treatment updates despite the daily reconciliation.",
+      "providerCompensation": "The duty analyst compares source totals and identifiers with the response register each day. A second analyst checks unmatched items and status changes before the daily report is released.",
+      "agencyCompensation": "Agencies can compare reported identifiers with previous updates and flag unexplained omissions through the reporting contact. They can request the latest treatment status before enabling an integration affected by an open finding."
+    },
+    "VDR-CSO-DAC": {
+      "status": "Not Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "Planned",
+        "capTargetDate": "2027-04-30",
+        "capConfidence": 75,
+        "capStatusExplanation": "The release team has agreed the detection trigger design and reserved work after the scan-scheduling changes. Implementation has not started because the same engineers maintain the legacy deployment tooling.",
+        "capExplanation": "The release engineer will trigger detection for newly created and materially changed resources using the approved deployment manifest. Acceptance requires a failed test to create a finding, prevent unreviewed activation, and retain the test result against the exact released configuration."
+      },
+      "explanation": "Operators initiate detection using the release checklist whenever a machine is added or materially changed. The deployment tooling does not automatically trigger those checks or verify their completion. A second approver checks the recorded results before activation, but the recommended automatic detection remains absent.",
+      "customerRisk": "A release checklist omission could leave a changed permission or adapter configuration insufficiently assessed before customer use. Existing scheduled scans would then become the next opportunity to detect the weakness.",
+      "providerCompensation": "Two staff members review the manual test record before activation. Operators restrict a changed integration until its relevant detection results and configuration checks have been recorded.",
+      "agencyCompensation": "Agencies can request the test and approval summary for a material integration change. They can defer enabling that integration while unresolved findings or missing evidence are discussed with the service owner."
+    },
+    "VDR-CSO-MSP": {
+      "status": "Fully Implemented",
+      "explanation": "Scanners use approved assessment identities within the existing administrative network boundaries. An engineer reviews requests for additional permissions, and we use alternate evidence or a representative test environment when a tool cannot operate safely. Authentication, filtering, and audit collection remain enabled during assessments of the live service."
+    },
+    "VDR-CSO-AKE": {
+      "status": "Fully Implemented",
+      "explanation": "The release operator compares the proposed machine image and installed-component inventory with the current known-exploited catalog before activation. A second approver checks the recorded result against the exact release package. Affected components must be removed or replaced before the release can proceed, including when an optional document-conversion function has to remain unavailable."
+    },
+    "VDR-CSO-SIR": {
+      "status": "Not Applicable",
+      "correctiveActionPlan": {
+        "capStatus": "Not Applicable",
+        "capStatusExplanation": "Harbor does not exercise the optional sampling approach. Whole-inventory assessment remains the selected method because agency-specific configurations are difficult to treat as equivalent."
+      },
+      "explanation": "We assess the whole machine inventory and do not use sampling to reduce coverage. Agency-specific adapters and conversion settings create differences that would make an equivalence claim difficult to maintain. Each environment therefore retains its own detection evidence and outstanding findings."
+    },
+    "VDR-TFR-NMV": {
+      "status": "Fully Implemented",
+      "explanation": "Each non-machine resource has an owner and a quarterly verification and validation date in the control-review register. Reviews cover response procedures, access approvals, supplier handoffs, and security documentation using recent execution records and observed walkthroughs. Missing or inaccurate steps become tracked findings, and the coordinator checks that no resource exceeds three months between completed reviews."
+    },
+    "VDR-TFR-PDD": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "In Progress",
+        "capTargetDate": "2027-05-31",
+        "capConfidence": 80,
+        "capStatusExplanation": "Owners have identified the monthly procedure reviews that exceed fourteen days and started trialing a shorter schedule. The coordinator has not yet demonstrated coverage across every drift-prone resource.",
+        "capExplanation": "The coordinator will assign an owner and a detection interval of no more than fourteen days to each drift-prone resource. Completion requires a full cycle of recorded results, reconciliation against the inventory, and an exception route for any missed review."
+      },
+      "explanation": "Machine drift is checked through scheduled scans and configuration comparisons, but several frequently changing access and integration procedures receive only monthly detection reviews. That schedule exceeds the Class C fourteen-day recommendation for those resources. Daily intake reconciliation identifies missing scheduled evidence without supplying the procedure-level detection that is still needed between reviews.",
+      "customerRisk": "Changes to frequently edited procedures can leave incorrect instructions in use for longer than fourteen days. This can affect access decisions or response handoffs even when machine scans are current.",
+      "providerCompensation": "Procedure owners review material changes when notified and complete the existing monthly review. The coordinator lists overdue or changed procedures during daily exception review so urgent discrepancies can be handled sooner.",
+      "agencyCompensation": "Agencies can confirm the current escalation and access-approval instructions before relying on them during an incident. They can report conflicting instructions to the named service contact for immediate reconciliation."
+    },
+    "VDR-TFR-PCD": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "Planned",
+        "capTargetDate": "2027-05-31",
+        "capConfidence": 80,
+        "capStatusExplanation": "The stable-resource list is complete, but monthly procedure and document reviews have not been scheduled. This work shares owner capacity with the drift-review repair due in May.",
+        "capExplanation": "Owners will move stable non-machine resources from quarterly to monthly detection and retain the basis for their stable classification. The coordinator will verify a complete monthly cycle and ensure that changed resources move to the drift-prone schedule."
+      },
+      "explanation": "Stable machine resources are included in our recurring scans, while stable procedures and supporting documentation are reviewed quarterly. The quarterly review meets the separate non-machine verification requirement but leaves the Class C monthly complete-detection recommendation unmet. Owners and review dates are recorded, so the affected non-machine resources can be identified individually.",
+      "customerRisk": "A weakness in a stable procedure or supporting document can remain undetected until the quarterly review. Agencies may rely on an outdated description of how a protective or reporting process works.",
+      "providerCompensation": "Owners review a stable resource after a known change and preserve the quarterly verification evidence. The security team checks documents referenced by active findings during the investigation rather than waiting for their next scheduled review.",
+      "agencyCompensation": "Agencies can request the latest reviewed version of procedures relevant to their use. A material difference between that version and observed service behavior can be escalated through the reporting contact."
+    },
+    "VDR-TFR-PVR": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "Pending Plan",
+        "capStatusExplanation": "The conversion-component supplier has not provided a credible replacement sequence for the non-KEV weaknesses causing missed reductions. The service owner will review feature withdrawal and alternate processing options on January 15 before committing to a completion date."
+      },
+      "explanation": "The register calculates Class C reduction expectations from each finding's impact, reachability, exploitability, and evaluation time. Several non-KEV weaknesses in legacy conversion components cannot yet be reduced on that schedule because replacement options remain uncertain. Analysts continue evaluating alternate restrictions and reporting missed reductions; supplier delays do not stop the clock or establish that a filter has achieved a lower impact rating.",
+      "customerRisk": "Delayed reduction of legacy conversion weaknesses can leave agency documents exposed to a higher impact for longer than the Class C matrix recommends. Restricted worker access does not prove that uploaded content cannot reach the vulnerable function.",
+      "providerCompensation": "The response lead reviews overdue reductions daily and evaluates disabling affected conversion features or narrowing permitted input formats. Each proposed restriction is tested before any lower impact rating is credited, and remaining exposure stays in the report.",
+      "agencyCompensation": "Agencies can avoid the affected conversion feature and submit supported pre-rendered documents where their workflow permits. They can also review whether the remaining exposure is acceptable for the specific case material they intend to process."
+    },
+    "VDR-TFR-RMN": {
+      "status": "Fully Implemented",
+      "explanation": "Service owners review residual weaknesses during the weekly maintenance meeting and assign repairs to normal release windows. Low residual impact does not remove a finding from the register or eliminate the need to reconsider it when agency use changes. The maintenance decision records the expected benefit, dependency, and reason for any continued deferral."
+    },
+    "VDR-TFR-KEV": {
+      "status": "Fully Implemented",
+      "explanation": "The duty analyst checks the known-exploited catalog against deployed component inventories every day and records the applicable remediation dates. Affected software is replaced or removed by those dates, with verification of the resulting deployed state. Where a legacy conversion component cannot be repaired in time, its function is withdrawn and the vulnerable component removed; temporary filtering alone does not close the task."
+    },
+    "VDR-TFR-PSD": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "In Progress",
+        "capTargetDate": "2027-03-31",
+        "capConfidence": 85,
+        "capStatusExplanation": "Operations is testing shorter scanner windows for the isolated conversion and integration machines. Capacity and job-impact checks remain open before the schedule can cover every machine.",
+        "capExplanation": "Operations will move the weekly machines to full-population detection at least every three days without introducing sampling. Completion requires recorded coverage for the entire inventory, acceptable processing impact, and escalation of a deliberately missed test run."
+      },
+      "explanation": "Web and application machines receive daily detection, but the isolated conversion and integration machines remain on a weekly schedule. We assess all machines individually and do not rely on sampling to cover the weekly group. Those machines therefore miss the Class C three-day recommendation even though their alerts and existing findings are reviewed every day.",
+      "customerRisk": "A new weakness on an isolated conversion or integration machine may wait up to a week for scheduled detection. That interval can delay evaluation even though known findings and machine alerts are reviewed daily.",
+      "providerCompensation": "Operators manually assess affected machines after significant changes and investigate relevant supplier advisories on receipt. The weekly full-inventory scan remains reconciled so a missed run is visible and assigned.",
+      "agencyCompensation": "Agencies can restrict optional document conversion or integration use when a relevant advisory is under investigation. They can request the last completed detection date for the affected service function."
+    },
+    "VDR-TFR-MVX": {
+      "status": "Not Applicable",
+      "correctiveActionPlan": {
+        "capStatus": "Not Applicable",
+        "capStatusExplanation": "The offering uses the Rev5 machine-verification rule rather than the 20x variant. Its monthly evidence is maintained under VDR-TFR-MVF, so no corrective action is assigned here."
+      },
+      "explanation": "Harbor Agency Workspace is a Rev5 Class C offering, so the 20x-specific machine-verification rule is not applicable. The monthly verification and validation process for this offering is described under VDR-TFR-MVF."
+    },
+    "VDR-TFR-MVF": {
+      "status": "Fully Implemented",
+      "explanation": "Operations completes a monthly verification and validation cycle across every machine in the offering, including the isolated legacy workers. Engineers compare approved configuration with observed settings and test that access controls, logging, and relevant processing functions behave as documented. The coordinator reconciles completed evidence against the inventory and records failed checks as findings, separate from the more frequent vulnerability scans."
+    },
+    "VER-EVA-ELX": {
+      "status": "Fully Implemented",
+      "explanation": "An analyst evaluates each detected weakness against the actual component version, enabled function, required permissions, and agency-specific adapter configuration. Application specialists help establish whether document content or integration requests can reach the vulnerable behavior. The register records the likely-exploitability decision and supporting evidence, with unresolved work tracked until the evaluation is complete."
+    },
+    "VER-EVA-EIR": {
+      "status": "Fully Implemented",
+      "explanation": "Reachability reviews follow public requests and uploaded documents through the web tier, conversion workers, and imported case data. A private worker may process internet-controlled content even when its management port is inaccessible from the internet. The analyst records those indirect paths and rechecks the conclusion when an adapter, upload format, or routing rule changes."
+    },
+    "VER-EVA-EPA": {
+      "status": "Fully Implemented",
+      "explanation": "Evaluations consider disclosure and alteration of case records as well as interruptions to agency review work. Analysts determine the affected agency environments and examine shared identity, reporting, and administrative dependencies before assigning the N-rating. The record explains the expected customer effect and the evidence supporting any limitation on cross-agency impact."
+    },
+    "VER-EVA-AIA": {
+      "status": "Fully Implemented",
+      "explanation": "Our evaluation worksheet assumes that exploitation can be automated for every finding. Changing that assumption requires documented technical evidence and review by another analyst. A component's age, a complicated user workflow, or an absence of observed attacks is not accepted as evidence that automation is impossible."
+    },
+    "VER-EVA-GRV": {
+      "status": "Not Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "Not Applicable",
+        "capStatusExplanation": "The service owner has accepted the documented departure from consolidated response groups. Individual records remain appropriate for the differing agency configurations, with cross-record review addressing duplicate-work risk."
+      },
+      "explanation": "We retain individual finding records because agency adapters and conversion permissions can make apparently similar weaknesses require different evaluations and repairs. The service owner has documented this departure from consolidated response groups and reviews whether it remains practical each quarter. Analysts cross-reference related records so a common repair can be considered without replacing the separate exposure and completion evidence.",
+      "customerRisk": "Separate records can duplicate work and allow related instances to receive inconsistent treatment priorities. A repair applied to one agency environment may not be noticed by the owner of another affected environment.",
+      "providerCompensation": "Analysts cross-reference common components during the weekly maintenance review. Each environment still requires its own exposure evidence and repair verification before its record can close.",
+      "agencyCompensation": "Agencies can ask whether a finding reported for their environment has related instances elsewhere in the service. They can compare the proposed treatment and explanation with subsequent updates for their own environment."
+    },
+    "VER-EVA-EFP": {
+      "status": "Fully Implemented",
+      "explanation": "Analysts investigate suspected false positives with the application owner and preserve the observed version, configuration, and relevant execution evidence. A finding remains real when the vulnerable condition exists but current permissions or filtering reduce exploitation opportunities. Any suppression is tied to the reviewed environment and is reconsidered when its component or configuration changes."
+    },
+    "VER-EVA-EFA": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "In Progress",
+        "capTargetDate": "2027-02-28",
+        "capConfidence": 90,
+        "capStatusExplanation": "The expanded worksheet is being used for new evaluations while older open findings are reviewed. Application specialists are still checking interactions that were not captured in the earlier worksheet.",
+        "capExplanation": "The security lead will add prompts for every recommended factor and train both primary and backup reviewers. Open findings will be revisited for omitted context, and a second reviewer will confirm that changed conclusions flow into treatment and reporting."
+      },
+      "explanation": "Current evaluations establish the mandatory exploitability, internet-reachability, and potential-agency-impact determinations. The worksheet also covers criticality and privileges, but detectability, prevalence, interactions with nearby weaknesses, and known-threat context are not consistently documented. Application specialists supply that context in difficult cases, leaving uneven coverage across otherwise complete mandatory evaluations.",
+      "customerRisk": "Missing broader context can obscure an exploitation chain or the prevalence of a weakness across several environments. Mandatory ratings may need revision when that additional evidence is assembled.",
+      "providerCompensation": "A second analyst reviews findings involving privileged access or shared services and requests application-specialist input. Related open records are checked before a lower impact rating is accepted.",
+      "agencyCompensation": "Agencies can describe unusual data sensitivity or operational dependencies that the standard service context may miss. They can request reassessment when those facts could change the consequences of exploitation."
+    },
+    "VER-RPT-PER": {
+      "status": "Fully Implemented",
+      "explanation": "Each day, analysts reconcile the response register with scanner results, control reviews, disclosures, testing records, and completed engineering work. The reporting coordinator produces a controlled JSON change report covering all activity since the previous report and makes it available to all necessary parties through authenticated file distribution. Failed delivery or an incomplete reconciliation creates a process finding, with corrected reports retaining their reporting interval and revision history."
+    },
+    "VER-RPT-VDT": {
+      "status": "Fully Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "Completed",
+        "capCompletedDate": "2026-12-10",
+        "capStatusExplanation": "The reporting coordinator completed the field-mapping repair on December 10. A second analyst reconciled the resulting export with the source register before the corrected process entered routine use.",
+        "capExplanation": "The team mapped every applicable detail field and recovered missing historical values from retained source records. Reviewers checked reduction history, overdue explanations, and final dispositions, then verified that a new status change appeared correctly in the next export."
+      },
+      "explanation": "The export includes each non-accepted finding's identifier, detection source and time, completed evaluation time, reachability, exploitability, and historical and current impact. Analysts also supply evaluated reductions, the next target reduction, overdue status and explanation, agency-use context, and final disposition where applicable. A second reviewer checks these fields against the register and evidence folders before approving the export, using the repaired mapping completed on December 10."
+    },
+    "VER-RPT-AVI": {
+      "status": "Fully Implemented",
+      "explanation": "Accepted findings have a separate report view retaining detection and evaluation times, current reachability, likely exploitability, and potential agency impact. The owner records why the finding is accepted and what agencies can do to limit their own exposure while treatment continues. Acceptance remains a provider classification, and subsequent changes stay in the normal activity reports for agency decision-making."
+    },
+    "VER-RPT-NID": {
+      "status": "Fully Implemented",
+      "explanation": "The reporting coordinator releases customer-relevant risk information through authenticated distribution to necessary parties. A security reviewer removes unnecessary exploit instructions and sensitive configuration detail while preserving affected functions, likely effects, and practical agency actions. Additional technical evidence is shared through restricted access when a recipient needs it to investigate or make a risk decision."
+    },
+    "VER-RPT-HLO": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "Planned",
+        "capTargetDate": "2027-02-28",
+        "capConfidence": 90,
+        "capStatusExplanation": "The coordinator has reserved time to redesign the overview after the report-field repair. The source-category reconciliation has not yet been incorporated into monthly preparation.",
+        "capExplanation": "The coordinator will add a period-level summary covering all detection and response sources, including procedures, disclosures, and testing. Acceptance requires its coverage and counts to reconcile with the detailed activity while clearly identifying sources with no activity during the period."
+      },
+      "explanation": "Monthly reports contain the complete detailed activity, but the opening overview mainly summarizes scanner findings and repair counts. Procedure reviews, researcher correspondence, and application testing are present in the supporting records without consistently appearing in that summary. Readers therefore have to inspect the detail to understand the full range of work performed during the period.",
+      "customerRisk": "The overview can make reporting activity appear narrower than the detailed record supports. An agency reader who relies on the opening summary may miss completed testing or unresolved process issues.",
+      "providerCompensation": "The coordinator includes the detailed source records and flags significant findings in the covering note. Questions about a missing activity category are answered from the reconciled register.",
+      "agencyCompensation": "Agencies can review the detailed activity sections when a source is absent from the overview. They can request a period-specific summary of testing, disclosures, or control reviews relevant to their use."
+    },
+    "VER-RPT-RPD": {
+      "status": "Fully Implemented",
+      "explanation": "The security lead can approve public disclosure after reviewing remaining exposure and coordinating with affected parties. The decision considers whether the proposed information could facilitate exploitation of an agency environment that has not yet changed. The approved text and rationale are retained, and controlled reporting to necessary parties proceeds independently of public release."
+    },
+    "VER-TFR-MHR": {
+      "status": "Fully Implemented",
+      "explanation": "The coordinator issues a human-readable report to all necessary parties at least monthly using a stable layout and reporting-period definition. The report includes the detailed activity and accepted-finding information, with source references available through restricted access. Delivery records and recipient-access checks identify missing reports, while the separate overview improvement remains on the migration backlog."
+    },
+    "VER-TFR-MAV": {
+      "status": "Fully Implemented",
+      "explanation": "At evaluation and each weekly treatment review, analysts identify findings that will not be fully mitigated or remediated within 192 days of evaluation. Those findings are categorized as accepted when the forecast becomes known, and the register also checks elapsed time for slipped plans. The owner supplies an acceptance explanation and continues reporting treatment and exposure changes."
+    },
+    "VER-TFR-MRH": {
+      "status": "Not Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "Planned",
+        "capTargetDate": "2027-06-30",
+        "capConfidence": 65,
+        "capStatusExplanation": "The reporting team has selected a read-only history interface, but access integration and engineering capacity remain unresolved. Work is scheduled alongside the June register integration, with confidence reduced for those shared dependencies.",
+        "capExplanation": "Engineers will expose recent activity history as authenticated JSON with stable identifiers and explicit revisions. The reporting owner will test necessary-party access, interrupted retrieval, and complete reconciliation against the register, including refreshes no more than fourteen days apart."
+      },
+      "explanation": "Necessary parties can download the daily JSON change reports, but assembling recent history requires collecting the files and their revisions manually. There is no authenticated interface for automated retrieval of the complete recent activity history. The planned history service must preserve the register's identifiers and reconcile revisions before it can meet the fourteen-day Class C refresh recommendation.",
+      "customerRisk": "Manual collection of report files can leave an agency's local history incomplete or out of date. Revisions may be missed when an automated consumer expects a single current history feed.",
+      "providerCompensation": "The reporting coordinator maintains a dated file index and identifies superseded reports. On request, the coordinator reconciles a recipient's file set against the publication register.",
+      "agencyCompensation": "Agencies can retain report revisions and compare them with the dated index before trend analysis. They can request a reconciled history package when a gap or conflicting revision is found."
+    },
+    "VER-TFR-EVU": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "In Progress",
+        "capTargetDate": "2027-03-31",
+        "capConfidence": 80,
+        "capStatusExplanation": "Queue-age reporting is in use, and a backup application specialist is learning the difficult adapter evaluations. The team has not yet sustained completion of every evaluation within five days.",
+        "capExplanation": "The security lead will assign primary and backup reviewers at intake and escalate missing context before day five. Closure requires a complete review cycle across all detection sources showing that the recorded completion time follows all mandatory contextual determinations."
+      },
+      "explanation": "Every finding receives a daily queue review, but complex adapter and conversion issues sometimes take six to eight days to complete the contextual evaluation. The register preserves both intake and completion times, making the Class C five-day misses visible. Application-specialist availability is the main constraint, and an initial triage entry is not counted as a completed evaluation.",
+      "customerRisk": "A six-to-eight-day evaluation can delay recognition of agency exposure and selection of a proportionate response. A finding first treated as routine may prove more consequential after the adapter context is established.",
+      "providerCompensation": "The duty lead reviews incomplete evaluations daily and prioritizes any sign of privileged or cross-agency impact. Engineers apply justified interim restrictions while the remaining context is investigated.",
+      "agencyCompensation": "Agencies can identify time-sensitive case workflows when requesting an evaluation update. They can temporarily pause an affected optional integration if the incomplete assessment leaves material uncertainty for their use."
+    },
+    "VER-TFR-IRI": {
+      "status": "Partially Implemented",
+      "correctiveActionPlan": {
+        "capStatus": "In Progress",
+        "capTargetDate": "2027-01-31",
+        "capConfidence": 90,
+        "capStatusExplanation": "The threshold-based incident procedure is drafted and the duty team has begun training. A scenario exercise and approval of the associated communication steps remain outstanding.",
+        "capExplanation": "The incident lead will activate reportable-incident handling for internet-reachable, likely exploitable findings above N3 without waiting for observed exploitation. An exercise will verify escalation, necessary-party communication, and continued incident treatment until evidence supports a reduction to N3 or below."
+      },
+      "explanation": "Our existing incident process reliably handles suspected exploitation, but it does not consistently activate solely because a likely exploitable, internet-reachable vulnerability exceeds N3. Analysts currently escalate that combination to the duty lead for a manual decision, which can delay reportable-incident treatment. The revised trigger and the evidence required to reduce the incident rating to N3 or below are being introduced together.",
+      "customerRisk": "Incident coordination can start late when high-impact exposure is known but exploitation has not been observed. Agencies may receive a vulnerability update before the coordinated incident communication that the recommendation calls for.",
+      "providerCompensation": "The duty lead reviews every internet-reachable, likely exploitable finding above N3 the same day. The lead can start the existing incident process manually and records that decision with the evaluation.",
+      "agencyCompensation": "Agencies can request the incident classification and escalation contact when a reported finding meets this threshold. They can invoke their own incident procedures based on the reported exposure without waiting for provider confirmation of exploitation."
+    },
+    "VER-TFR-NRI": {
+      "status": "Fully Implemented",
+      "explanation": "Harbor exercises the optional incident treatment for likely exploitable, non-internet-reachable vulnerabilities rated N5 because shared administrative components can affect several agencies. The duty lead starts the incident process when that combination is established and keeps it active until evaluated mitigation reduces the rating to N4 or below. Remaining repair work continues in the register after the reduction, with the supporting evidence retained."
+    }
+  }
+}

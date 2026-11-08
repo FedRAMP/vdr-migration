@@ -1,9 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://pete-wai.github.io/fr-vdr/downloads/implementation-status.schema.json",
-  "$schemaVersion": "0.1.0",
-  "title": "VDR/VER Implementation Status — example prototype for discussion",
-  "description": "One offering and one response for each provider-directed VDR/VER rule; this collection is not an official FedRAMP reporting schema.",
+  "$id": "https://www.fedramp.gov/vdr-migration/assets/implementation-status.schema.json",
+  "title": "VDR/VER Migration Progress Report Mini-SDR",
+  "description": "One offering and one response for every provider-facing VDR/VER rule, with per-rule corrective action plans. Format version 0.2.0; rules baseline 2026.11.02.01.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -58,373 +57,217 @@
       ],
       "properties": {
         "VDR-CSO-DET": {
-          "$ref": "#/$defs/response",
-          "title": "Vulnerability Detection"
+          "allOf": [
+            {
+              "$ref": "#/$defs/response"
+            },
+            {
+              "$ref": "#/$defs/mandatoryResponse"
+            }
+          ]
         },
         "VDR-CSO-RES": {
-          "$ref": "#/$defs/response",
-          "title": "Vulnerability Response"
+          "allOf": [
+            {
+              "$ref": "#/$defs/response"
+            },
+            {
+              "$ref": "#/$defs/mandatoryResponse"
+            }
+          ]
         },
         "VDR-CSO-FAV": {
-          "$ref": "#/$defs/response",
-          "title": "Failures Are Vulnerabilities"
+          "allOf": [
+            {
+              "$ref": "#/$defs/response"
+            },
+            {
+              "$ref": "#/$defs/mandatoryResponse"
+            }
+          ]
         },
         "VDR-CSO-DFR": {
-          "$ref": "#/$defs/response",
-          "title": "Design For Resilience"
+          "$ref": "#/$defs/response"
         },
         "VDR-CSO-ADT": {
-          "$ref": "#/$defs/response",
-          "title": "Automate Detection"
+          "$ref": "#/$defs/response"
         },
         "VDR-CSO-DAC": {
-          "$ref": "#/$defs/response",
-          "title": "Detect After Changes"
+          "$ref": "#/$defs/response"
         },
         "VDR-CSO-MSP": {
-          "$ref": "#/$defs/response",
-          "title": "Maintain Security"
+          "$ref": "#/$defs/response"
         },
         "VDR-CSO-AKE": {
-          "$ref": "#/$defs/response",
-          "title": "Avoid KEVs"
+          "$ref": "#/$defs/response"
         },
         "VDR-CSO-SIR": {
-          "$ref": "#/$defs/response",
-          "title": "Sampling"
+          "$ref": "#/$defs/response"
         },
         "VDR-TFR-NMV": {
-          "$ref": "#/$defs/response",
-          "title": "Non-Machine Verification and Validation"
+          "allOf": [
+            {
+              "$ref": "#/$defs/response"
+            },
+            {
+              "$ref": "#/$defs/mandatoryResponse"
+            }
+          ]
         },
         "VDR-TFR-PDD": {
-          "$ref": "#/$defs/response",
-          "title": "Persistent Drift Detection"
+          "$ref": "#/$defs/response"
         },
         "VDR-TFR-PCD": {
-          "$ref": "#/$defs/response",
-          "title": "Persistently Complete Detection"
+          "$ref": "#/$defs/response"
         },
         "VDR-TFR-PVR": {
-          "$ref": "#/$defs/response",
-          "title": "Mitigation and Remediation Expectations"
+          "$ref": "#/$defs/response"
         },
         "VDR-TFR-RMN": {
-          "$ref": "#/$defs/response",
-          "title": "Remaining Vulnerabilities"
+          "$ref": "#/$defs/response"
         },
         "VDR-TFR-KEV": {
-          "$ref": "#/$defs/response",
-          "title": "Remediate KEVs"
+          "$ref": "#/$defs/response"
         },
         "VDR-TFR-PSD": {
-          "$ref": "#/$defs/response",
-          "title": "Persistent Sample Detection"
+          "$ref": "#/$defs/response"
         },
         "VDR-TFR-MVX": {
-          "$ref": "#/$defs/response",
-          "title": "Persistent Machine Verification and Validation for 20x"
+          "$ref": "#/$defs/response"
         },
         "VDR-TFR-MVF": {
-          "$ref": "#/$defs/response",
-          "title": "Persistent Machine Verification and Validation for Rev5"
+          "$ref": "#/$defs/response"
         },
         "VER-EVA-ELX": {
-          "$ref": "#/$defs/response",
-          "title": "Evaluate Exploitability"
+          "allOf": [
+            {
+              "$ref": "#/$defs/response"
+            },
+            {
+              "$ref": "#/$defs/mandatoryResponse"
+            }
+          ]
         },
         "VER-EVA-EIR": {
-          "$ref": "#/$defs/response",
-          "title": "Evaluate Internet-Reachability"
+          "allOf": [
+            {
+              "$ref": "#/$defs/response"
+            },
+            {
+              "$ref": "#/$defs/mandatoryResponse"
+            }
+          ]
         },
         "VER-EVA-EPA": {
-          "$ref": "#/$defs/response",
-          "title": "Estimate Potential Agency Impact"
+          "allOf": [
+            {
+              "$ref": "#/$defs/response"
+            },
+            {
+              "$ref": "#/$defs/mandatoryResponse"
+            }
+          ]
         },
         "VER-EVA-AIA": {
-          "$ref": "#/$defs/response",
-          "title": "Assume It's Automatable"
+          "allOf": [
+            {
+              "$ref": "#/$defs/response"
+            },
+            {
+              "$ref": "#/$defs/mandatoryResponse"
+            }
+          ]
         },
         "VER-EVA-GRV": {
-          "$ref": "#/$defs/response",
-          "title": "Group Vulnerabilities"
+          "$ref": "#/$defs/response"
         },
         "VER-EVA-EFP": {
-          "$ref": "#/$defs/response",
-          "title": "Evaluate False Positives"
+          "$ref": "#/$defs/response"
         },
         "VER-EVA-EFA": {
-          "$ref": "#/$defs/response",
-          "title": "Evaluation Factors"
+          "$ref": "#/$defs/response"
         },
         "VER-RPT-PER": {
-          "$ref": "#/$defs/response",
-          "title": "Persistent Reporting"
+          "allOf": [
+            {
+              "$ref": "#/$defs/response"
+            },
+            {
+              "$ref": "#/$defs/mandatoryResponse"
+            }
+          ]
         },
         "VER-RPT-VDT": {
-          "$ref": "#/$defs/response",
-          "title": "Vulnerability Details"
+          "allOf": [
+            {
+              "$ref": "#/$defs/response"
+            },
+            {
+              "$ref": "#/$defs/mandatoryResponse"
+            }
+          ]
         },
         "VER-RPT-AVI": {
-          "$ref": "#/$defs/response",
-          "title": "Accepted Vulnerability Info"
+          "allOf": [
+            {
+              "$ref": "#/$defs/response"
+            },
+            {
+              "$ref": "#/$defs/mandatoryResponse"
+            }
+          ]
         },
         "VER-RPT-NID": {
-          "$ref": "#/$defs/response",
-          "title": "Responsible Disclosure"
+          "allOf": [
+            {
+              "$ref": "#/$defs/response"
+            },
+            {
+              "$ref": "#/$defs/mandatoryResponse"
+            }
+          ]
         },
         "VER-RPT-HLO": {
-          "$ref": "#/$defs/response",
-          "title": "High-Level Overviews"
+          "$ref": "#/$defs/response"
         },
         "VER-RPT-RPD": {
-          "$ref": "#/$defs/response",
-          "title": "Responsible Public Disclosure"
+          "$ref": "#/$defs/response"
         },
         "VER-TFR-MHR": {
-          "$ref": "#/$defs/response",
-          "title": "Monthly Activity Report"
+          "allOf": [
+            {
+              "$ref": "#/$defs/response"
+            },
+            {
+              "$ref": "#/$defs/mandatoryResponse"
+            }
+          ]
         },
         "VER-TFR-MAV": {
-          "$ref": "#/$defs/response",
-          "title": "Mark Accepted Vulnerabilities"
+          "allOf": [
+            {
+              "$ref": "#/$defs/response"
+            },
+            {
+              "$ref": "#/$defs/mandatoryResponse"
+            }
+          ]
         },
         "VER-TFR-MRH": {
-          "$ref": "#/$defs/response",
-          "title": "Historical Activity"
+          "$ref": "#/$defs/response"
         },
         "VER-TFR-EVU": {
-          "$ref": "#/$defs/response",
-          "title": "Evaluate Vulnerabilities Quickly"
+          "$ref": "#/$defs/response"
         },
         "VER-TFR-IRI": {
-          "$ref": "#/$defs/response",
-          "title": "Internet-Reachable Incidents"
+          "$ref": "#/$defs/response"
         },
         "VER-TFR-NRI": {
-          "$ref": "#/$defs/response",
-          "title": "Non-Internet-Reachable Incidents"
+          "$ref": "#/$defs/response"
         }
       }
     }
   },
-  "allOf": [
-    {
-      "if": {
-        "properties": {
-          "metadata": {
-            "properties": {
-              "framework": {
-                "const": "Rev5"
-              },
-              "class": {
-                "const": "B"
-              }
-            },
-            "required": [
-              "framework",
-              "class"
-            ],
-            "type": "object"
-          }
-        },
-        "required": [
-          "metadata"
-        ],
-        "type": "object"
-      },
-      "then": {
-        "properties": {
-          "responses": {
-            "properties": {
-              "VDR-TFR-MVX": {
-                "properties": {
-                  "status": {
-                    "const": "Not Applicable"
-                  }
-                },
-                "type": "object"
-              }
-            },
-            "type": "object"
-          }
-        },
-        "type": "object"
-      }
-    },
-    {
-      "if": {
-        "properties": {
-          "metadata": {
-            "properties": {
-              "framework": {
-                "const": "Rev5"
-              },
-              "class": {
-                "const": "C"
-              }
-            },
-            "required": [
-              "framework",
-              "class"
-            ],
-            "type": "object"
-          }
-        },
-        "required": [
-          "metadata"
-        ],
-        "type": "object"
-      },
-      "then": {
-        "properties": {
-          "responses": {
-            "properties": {
-              "VDR-TFR-MVX": {
-                "properties": {
-                  "status": {
-                    "const": "Not Applicable"
-                  }
-                },
-                "type": "object"
-              }
-            },
-            "type": "object"
-          }
-        },
-        "type": "object"
-      }
-    },
-    {
-      "if": {
-        "properties": {
-          "metadata": {
-            "properties": {
-              "framework": {
-                "const": "Rev5"
-              },
-              "class": {
-                "const": "D"
-              }
-            },
-            "required": [
-              "framework",
-              "class"
-            ],
-            "type": "object"
-          }
-        },
-        "required": [
-          "metadata"
-        ],
-        "type": "object"
-      },
-      "then": {
-        "properties": {
-          "responses": {
-            "properties": {
-              "VDR-TFR-MVX": {
-                "properties": {
-                  "status": {
-                    "const": "Not Applicable"
-                  }
-                },
-                "type": "object"
-              }
-            },
-            "type": "object"
-          }
-        },
-        "type": "object"
-      }
-    },
-    {
-      "if": {
-        "properties": {
-          "metadata": {
-            "properties": {
-              "framework": {
-                "const": "20x"
-              },
-              "class": {
-                "const": "B"
-              }
-            },
-            "required": [
-              "framework",
-              "class"
-            ],
-            "type": "object"
-          }
-        },
-        "required": [
-          "metadata"
-        ],
-        "type": "object"
-      },
-      "then": {
-        "properties": {
-          "responses": {
-            "properties": {
-              "VDR-TFR-MVF": {
-                "properties": {
-                  "status": {
-                    "const": "Not Applicable"
-                  }
-                },
-                "type": "object"
-              }
-            },
-            "type": "object"
-          }
-        },
-        "type": "object"
-      }
-    },
-    {
-      "if": {
-        "properties": {
-          "metadata": {
-            "properties": {
-              "framework": {
-                "const": "20x"
-              },
-              "class": {
-                "const": "C"
-              }
-            },
-            "required": [
-              "framework",
-              "class"
-            ],
-            "type": "object"
-          }
-        },
-        "required": [
-          "metadata"
-        ],
-        "type": "object"
-      },
-      "then": {
-        "properties": {
-          "responses": {
-            "properties": {
-              "VDR-TFR-MVF": {
-                "properties": {
-                  "status": {
-                    "const": "Not Applicable"
-                  }
-                },
-                "type": "object"
-              }
-            },
-            "type": "object"
-          }
-        },
-        "type": "object"
-      }
-    }
-  ],
   "$defs": {
     "metadata": {
       "type": "object",
@@ -436,14 +279,15 @@
         "offeringName",
         "framework",
         "class",
-        "asOfDate"
+        "asOfDate",
+        "fedrampId"
       ],
       "properties": {
         "schemaVersion": {
-          "const": "0.1.0"
+          "const": "0.2.0"
         },
         "rulesVersion": {
-          "const": "2026.10.13.01"
+          "const": "2026.11.02.01"
         },
         "providerName": {
           "type": "string",
@@ -473,15 +317,8 @@
         },
         "fedrampId": {
           "type": "string",
-          "anyOf": [
-            {
-              "const": ""
-            },
-            {
-              "pattern": "\\S"
-            }
-          ],
-          "description": "Official offering identifier, if available; leave blank for fictional examples."
+          "pattern": "\\S",
+          "description": "Required FedRAMP offering identifier."
         }
       },
       "allOf": [
@@ -531,37 +368,10 @@
         },
         "explanation": {
           "type": "string",
-          "pattern": "\\S",
-          "description": "Explain how the rule is followed, or why it is not followed and the resulting customer risk; explain any Not Applicable response."
+          "pattern": "\\S"
         },
-        "completionTarget": {
-          "anyOf": [
-            {
-              "type": "string",
-              "format": "date",
-              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
-            },
-            {
-              "enum": [
-                "",
-                "Unknown",
-                "Not Planned"
-              ]
-            }
-          ],
-          "description": "For incomplete rules, give a date or an explicit exception."
-        },
-        "completionTargetExplanation": {
-          "type": "string",
-          "anyOf": [
-            {
-              "const": ""
-            },
-            {
-              "pattern": "\\S"
-            }
-          ],
-          "description": "Explain Unknown or Not Planned targets."
+        "correctiveActionPlan": {
+          "$ref": "#/$defs/correctiveActionPlan"
         },
         "customerRisk": {
           "type": "string",
@@ -572,8 +382,7 @@
             {
               "pattern": "\\S"
             }
-          ],
-          "description": "Risk this implementation status poses to federal agency customers."
+          ]
         },
         "providerCompensation": {
           "type": "string",
@@ -584,8 +393,7 @@
             {
               "pattern": "\\S"
             }
-          ],
-          "description": "How the provider compensates for the risk; explicitly state if none."
+          ]
         },
         "agencyCompensation": {
           "type": "string",
@@ -596,8 +404,7 @@
             {
               "pattern": "\\S"
             }
-          ],
-          "description": "How agencies can compensate for the risk; explicitly state if none."
+          ]
         },
         "additionalAssurance": {
           "type": "string",
@@ -608,8 +415,7 @@
             {
               "pattern": "\\S"
             }
-          ],
-          "description": "Optional additional assurance about implementation."
+          ]
         },
         "feedback": {
           "type": "string",
@@ -620,11 +426,42 @@
             {
               "pattern": "\\S"
             }
-          ],
-          "description": "Optional feedback about the rule."
+          ]
         }
       },
       "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "Fully Implemented"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "correctiveActionPlan": {
+                "type": "object",
+                "properties": {
+                  "capStatus": {
+                    "const": "Completed"
+                  }
+                }
+              }
+            }
+          },
+          "else": {
+            "required": [
+              "correctiveActionPlan"
+            ],
+            "properties": {
+              "correctiveActionPlan": {}
+            }
+          }
+        },
         {
           "if": {
             "properties": {
@@ -637,21 +474,15 @@
             },
             "required": [
               "status"
-            ],
-            "type": "object"
+            ]
           },
           "then": {
             "required": [
-              "completionTarget",
               "customerRisk",
               "providerCompensation",
               "agencyCompensation"
             ],
             "properties": {
-              "completionTarget": {
-                "type": "string",
-                "pattern": "\\S"
-              },
               "customerRisk": {
                 "type": "string",
                 "pattern": "\\S"
@@ -664,50 +495,448 @@
                 "type": "string",
                 "pattern": "\\S"
               }
-            },
-            "type": "object"
-          },
-          "else": {
-            "properties": {
-              "completionTarget": {
-                "const": ""
-              },
-              "completionTargetExplanation": {
-                "const": ""
-              }
-            },
-            "type": "object"
+            }
           }
         },
         {
           "if": {
             "properties": {
-              "completionTarget": {
-                "enum": [
-                  "Unknown",
-                  "Not Planned"
-                ]
+              "status": {
+                "const": "Not Applicable"
               }
             },
             "required": [
-              "completionTarget"
-            ],
-            "type": "object"
+              "status"
+            ]
           },
           "then": {
-            "required": [
-              "completionTargetExplanation"
-            ],
             "properties": {
-              "completionTargetExplanation": {
-                "type": "string",
-                "pattern": "\\S"
+              "correctiveActionPlan": {
+                "type": "object",
+                "properties": {
+                  "capStatus": {
+                    "const": "Not Applicable"
+                  }
+                }
               }
-            },
-            "type": "object"
+            }
           }
         }
       ]
+    },
+    "correctiveActionPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "capStatus": {
+          "enum": [
+            "Planned",
+            "In Progress",
+            "Pending Plan",
+            "Completed",
+            "Not Applicable"
+          ]
+        },
+        "capStatusExplanation": {
+          "type": "string",
+          "pattern": "\\S"
+        },
+        "capTargetDate": {
+          "type": "string",
+          "format": "date",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "capExplanation": {
+          "type": "string",
+          "pattern": "\\S"
+        },
+        "capConfidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "capCompletedDate": {
+          "type": "string",
+          "format": "date",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        }
+      },
+      "required": [
+        "capStatus",
+        "capStatusExplanation"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "capStatus": {
+                "const": "Planned"
+              }
+            },
+            "required": [
+              "capStatus"
+            ]
+          },
+          "then": {
+            "properties": {
+              "capCompletedDate": false,
+              "capTargetDate": {},
+              "capExplanation": {},
+              "capConfidence": {}
+            },
+            "required": [
+              "capTargetDate",
+              "capExplanation",
+              "capConfidence"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "capStatus": {
+                "const": "In Progress"
+              }
+            },
+            "required": [
+              "capStatus"
+            ]
+          },
+          "then": {
+            "properties": {
+              "capCompletedDate": false,
+              "capTargetDate": {},
+              "capExplanation": {},
+              "capConfidence": {}
+            },
+            "required": [
+              "capTargetDate",
+              "capExplanation",
+              "capConfidence"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "capStatus": {
+                "const": "Pending Plan"
+              }
+            },
+            "required": [
+              "capStatus"
+            ]
+          },
+          "then": {
+            "properties": {
+              "capTargetDate": false,
+              "capExplanation": false,
+              "capConfidence": false,
+              "capCompletedDate": false
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "capStatus": {
+                "const": "Completed"
+              }
+            },
+            "required": [
+              "capStatus"
+            ]
+          },
+          "then": {
+            "properties": {
+              "capTargetDate": false,
+              "capConfidence": false,
+              "capCompletedDate": {},
+              "capExplanation": {}
+            },
+            "required": [
+              "capCompletedDate",
+              "capExplanation"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "capStatus": {
+                "const": "Not Applicable"
+              }
+            },
+            "required": [
+              "capStatus"
+            ]
+          },
+          "then": {
+            "properties": {
+              "capTargetDate": false,
+              "capExplanation": false,
+              "capConfidence": false,
+              "capCompletedDate": false
+            }
+          }
+        }
+      ]
+    },
+    "mandatoryResponse": {
+      "type": "object",
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "Partially Implemented",
+              "Not Implemented"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "correctiveActionPlan": {
+            "type": "object",
+            "properties": {
+              "capStatus": {
+                "not": {
+                  "const": "Not Applicable"
+                }
+              }
+            }
+          }
+        }
+      },
+      "properties": {
+        "status": {
+          "not": {
+            "const": "Not Applicable"
+          }
+        }
+      }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "framework": {
+                "const": "Rev5"
+              },
+              "class": {
+                "const": "B"
+              }
+            },
+            "required": [
+              "framework",
+              "class"
+            ]
+          }
+        },
+        "required": [
+          "metadata"
+        ]
+      },
+      "then": {
+        "properties": {
+          "responses": {
+            "type": "object",
+            "properties": {
+              "VDR-TFR-MVX": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "const": "Not Applicable"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "framework": {
+                "const": "Rev5"
+              },
+              "class": {
+                "const": "C"
+              }
+            },
+            "required": [
+              "framework",
+              "class"
+            ]
+          }
+        },
+        "required": [
+          "metadata"
+        ]
+      },
+      "then": {
+        "properties": {
+          "responses": {
+            "type": "object",
+            "properties": {
+              "VDR-TFR-MVX": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "const": "Not Applicable"
+                  }
+                }
+              },
+              "VDR-TFR-MVF": {
+                "$ref": "#/$defs/mandatoryResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "framework": {
+                "const": "Rev5"
+              },
+              "class": {
+                "const": "D"
+              }
+            },
+            "required": [
+              "framework",
+              "class"
+            ]
+          }
+        },
+        "required": [
+          "metadata"
+        ]
+      },
+      "then": {
+        "properties": {
+          "responses": {
+            "type": "object",
+            "properties": {
+              "VDR-TFR-MVX": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "const": "Not Applicable"
+                  }
+                }
+              },
+              "VDR-TFR-MVF": {
+                "$ref": "#/$defs/mandatoryResponse"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "framework": {
+                "const": "20x"
+              },
+              "class": {
+                "const": "B"
+              }
+            },
+            "required": [
+              "framework",
+              "class"
+            ]
+          }
+        },
+        "required": [
+          "metadata"
+        ]
+      },
+      "then": {
+        "properties": {
+          "responses": {
+            "type": "object",
+            "properties": {
+              "VDR-TFR-MVX": {
+                "$ref": "#/$defs/mandatoryResponse"
+              },
+              "VDR-TFR-MVF": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "const": "Not Applicable"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "framework": {
+                "const": "20x"
+              },
+              "class": {
+                "const": "C"
+              }
+            },
+            "required": [
+              "framework",
+              "class"
+            ]
+          }
+        },
+        "required": [
+          "metadata"
+        ]
+      },
+      "then": {
+        "properties": {
+          "responses": {
+            "type": "object",
+            "properties": {
+              "VDR-TFR-MVX": {
+                "$ref": "#/$defs/mandatoryResponse"
+              },
+              "VDR-TFR-MVF": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "const": "Not Applicable"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
 }

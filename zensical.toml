@@ -1,22 +1,27 @@
 [project]
 nav = [
   { "Overview" = "index.md"},
-  { "Enforcement & Deadlines" = "deadlines.md" },
-  { "Agency-Provided Offerings" = "agency-provided.md" },
-  { "Changelog" = "changelog.md"},
   { "Migrating to VDR/VER" = [
-    { "Requirements" = "requirements.md"},
-    { "Resources & FAQs" = "resources.md" },
-    { "Agency Customers" = "agencies.md" },
-    { "Agency Auth In Process" = "in-process.md" }
+    #{ "Customer Experience" = "cx.md" },
+    { "FAQs" = "faq.md" },
   ]},
-  { "Progress Report" = [
-    { "Emergency Test" = "emergency-test.md"},
+  { "Progress Reports" = [
     { "Required Information" = "report.md" },
     { "Schemas & Templates" = "schemas.md" },
     { "Corrective Action Plans" = "cap.md" },
-    { "Examples" = "examples.md" },
     { "Validators" = "validate.md" },
+      { "Examples" = [
+      "examples/index.md",
+      { "Aster Operations Cloud" = "examples/aster.md" },
+      { "Harbor Agency Workspace" = "examples/harbor.md" },
+      { "Smallbrook Public Information Workspace" = "examples/smallbrook.md" },
+    ]},
+    { "Submitting Updates" = "submitting-updates.md"},
+
+  ]},
+  { "Monitoring this Site" = [
+    { "Changelog" = "changelog.md"},
+    { "Sources and Agent Information" = "sources.md"},
   ]},
   { "--> return to FedRAMP.gov" = "/" },
 ]
@@ -33,6 +38,7 @@ copyright = "fedramp.gov"
 extra_css = ["stylesheets/extra.css"]
 
 extra_javascript = [
+  "javascripts/validate.js",
   "https://www.fedramp.gov/javascripts/dap.js"
 ]
 
@@ -127,7 +133,7 @@ tables = {}
 
 [project.markdown_extensions.toc]
 permalink = true
-
+[project.markdown_extensions.pymdownx.blocks.caption]
 [project.markdown_extensions.pymdownx.mark]
 [project.markdown_extensions.pymdownx.details]
 [project.markdown_extensions.pymdownx.superfences]
@@ -154,7 +160,13 @@ logo = "overrides/assets/fr-only-logo-black.png"
 
 [project.plugins.rss]
 enabled = true
-feed_title = "Site Project Changelog"
+feed_title = "VDR/VER Migration Resources Changelog"
 match_path = "^changelog\\.md$"
 length = 1
 abstract_chars_count = 4096
+
+[project.plugins.rss.date_from_meta]
+as_creation = "created"
+as_update = "updated"
+datetime_format = "%Y-%m-%dT%H:%M:%S%z"
+default_timezone = "America/New_York"

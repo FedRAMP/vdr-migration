@@ -1,0 +1,951 @@
+{
+  "rulesVersion": "2026.11.02.01",
+  "commit": "64fa769510416fa75fd00a4689466094265b8083",
+  "retrievedAt": "2026-11-08",
+  "source": "FedRAMP MCP get_rule; imported snapshot last synchronized 2026-11-06",
+  "profiles": [
+    "Rev5/B",
+    "Rev5/C",
+    "Rev5/D",
+    "20x/B",
+    "20x/C"
+  ],
+  "rules": {
+    "VDR-CSO-DET": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "MUST",
+      "variants": {},
+      "jsonPath": "FRR.VDR.data.all.CSO.VDR-CSO-DET"
+    },
+    "VDR-CSO-RES": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "MUST",
+      "variants": {},
+      "jsonPath": "FRR.VDR.data.all.CSO.VDR-CSO-RES"
+    },
+    "VDR-CSO-FAV": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "MUST",
+      "variants": {},
+      "jsonPath": "FRR.VDR.data.all.CSO.VDR-CSO-FAV"
+    },
+    "VDR-CSO-DFR": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "SHOULD",
+      "variants": {},
+      "jsonPath": "FRR.VDR.data.all.CSO.VDR-CSO-DFR"
+    },
+    "VDR-CSO-ADT": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "SHOULD",
+      "variants": {},
+      "jsonPath": "FRR.VDR.data.all.CSO.VDR-CSO-ADT"
+    },
+    "VDR-CSO-DAC": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "SHOULD",
+      "variants": {},
+      "jsonPath": "FRR.VDR.data.all.CSO.VDR-CSO-DAC"
+    },
+    "VDR-CSO-MSP": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "SHOULD NOT",
+      "variants": {},
+      "jsonPath": "FRR.VDR.data.all.CSO.VDR-CSO-MSP"
+    },
+    "VDR-CSO-AKE": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "SHOULD NOT",
+      "variants": {},
+      "jsonPath": "FRR.VDR.data.all.CSO.VDR-CSO-AKE"
+    },
+    "VDR-CSO-SIR": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "MAY",
+      "variants": {},
+      "jsonPath": "FRR.VDR.data.all.CSO.VDR-CSO-SIR"
+    },
+    "VDR-TFR-NMV": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "MUST",
+      "variants": {},
+      "jsonPath": "FRR.VDR.data.all.TFR.VDR-TFR-NMV"
+    },
+    "VDR-TFR-PDD": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": null,
+      "variants": {
+        "a": "SHOULD",
+        "b": "SHOULD",
+        "c": "SHOULD",
+        "d": "SHOULD"
+      },
+      "jsonPath": "FRR.VDR.data.all.TFR.VDR-TFR-PDD"
+    },
+    "VDR-TFR-PCD": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": null,
+      "variants": {
+        "a": "SHOULD",
+        "b": "SHOULD",
+        "c": "SHOULD",
+        "d": "SHOULD"
+      },
+      "jsonPath": "FRR.VDR.data.all.TFR.VDR-TFR-PCD"
+    },
+    "VDR-TFR-PVR": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": null,
+      "variants": {
+        "a": "SHOULD",
+        "b": "SHOULD",
+        "c": "SHOULD",
+        "d": "SHOULD"
+      },
+      "jsonPath": "FRR.VDR.data.all.TFR.VDR-TFR-PVR"
+    },
+    "VDR-TFR-RMN": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "SHOULD",
+      "variants": {},
+      "jsonPath": "FRR.VDR.data.all.TFR.VDR-TFR-RMN"
+    },
+    "VDR-TFR-KEV": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "SHOULD",
+      "variants": {},
+      "jsonPath": "FRR.VDR.data.all.TFR.VDR-TFR-KEV"
+    },
+    "VDR-TFR-PSD": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": null,
+      "variants": {
+        "a": "SHOULD",
+        "b": "SHOULD",
+        "c": "SHOULD",
+        "d": "SHOULD"
+      },
+      "jsonPath": "FRR.VDR.data.all.TFR.VDR-TFR-PSD"
+    },
+    "VDR-TFR-MVX": {
+      "framework": "20x",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": null,
+      "variants": {
+        "a": "SHOULD",
+        "b": "MUST",
+        "c": "MUST"
+      },
+      "jsonPath": "FRR.VDR.data.20x.TFR.VDR-TFR-MVX"
+    },
+    "VDR-TFR-MVF": {
+      "framework": "rev5",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": null,
+      "variants": {
+        "b": "SHOULD",
+        "c": "MUST",
+        "d": "MUST"
+      },
+      "jsonPath": "FRR.VDR.data.rev5.TFR.VDR-TFR-MVF"
+    },
+    "VER-EVA-ELX": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "MUST",
+      "variants": {},
+      "jsonPath": "FRR.VER.data.all.EVA.VER-EVA-ELX"
+    },
+    "VER-EVA-EIR": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "MUST",
+      "variants": {},
+      "jsonPath": "FRR.VER.data.all.EVA.VER-EVA-EIR"
+    },
+    "VER-EVA-EPA": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "MUST",
+      "variants": {},
+      "jsonPath": "FRR.VER.data.all.EVA.VER-EVA-EPA"
+    },
+    "VER-EVA-AIA": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "MUST",
+      "variants": {},
+      "jsonPath": "FRR.VER.data.all.EVA.VER-EVA-AIA"
+    },
+    "VER-EVA-GRV": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "SHOULD",
+      "variants": {},
+      "jsonPath": "FRR.VER.data.all.EVA.VER-EVA-GRV"
+    },
+    "VER-EVA-EFP": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "SHOULD",
+      "variants": {},
+      "jsonPath": "FRR.VER.data.all.EVA.VER-EVA-EFP"
+    },
+    "VER-EVA-EFA": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "SHOULD",
+      "variants": {},
+      "jsonPath": "FRR.VER.data.all.EVA.VER-EVA-EFA"
+    },
+    "VER-RPT-PER": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "MUST",
+      "variants": {},
+      "jsonPath": "FRR.VER.data.all.RPT.VER-RPT-PER"
+    },
+    "VER-RPT-VDT": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "MUST",
+      "variants": {},
+      "jsonPath": "FRR.VER.data.all.RPT.VER-RPT-VDT"
+    },
+    "VER-RPT-AVI": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "MUST",
+      "variants": {},
+      "jsonPath": "FRR.VER.data.all.RPT.VER-RPT-AVI"
+    },
+    "VER-RPT-NID": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "MUST NOT",
+      "variants": {},
+      "jsonPath": "FRR.VER.data.all.RPT.VER-RPT-NID"
+    },
+    "VER-RPT-HLO": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "SHOULD",
+      "variants": {},
+      "jsonPath": "FRR.VER.data.all.RPT.VER-RPT-HLO"
+    },
+    "VER-RPT-RPD": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "MAY",
+      "variants": {},
+      "jsonPath": "FRR.VER.data.all.RPT.VER-RPT-RPD"
+    },
+    "VER-TFR-MHR": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "MUST",
+      "variants": {},
+      "jsonPath": "FRR.VER.data.all.TFR.VER-TFR-MHR"
+    },
+    "VER-TFR-MAV": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": "MUST",
+      "variants": {},
+      "jsonPath": "FRR.VER.data.all.TFR.VER-TFR-MAV"
+    },
+    "VER-TFR-MRH": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": null,
+      "variants": {
+        "a": "MAY",
+        "b": "SHOULD",
+        "c": "SHOULD",
+        "d": "SHOULD"
+      },
+      "jsonPath": "FRR.VER.data.all.TFR.VER-TFR-MRH"
+    },
+    "VER-TFR-EVU": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": null,
+      "variants": {
+        "a": "SHOULD",
+        "b": "SHOULD",
+        "c": "SHOULD",
+        "d": "SHOULD"
+      },
+      "jsonPath": "FRR.VER.data.all.TFR.VER-TFR-EVU"
+    },
+    "VER-TFR-IRI": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": null,
+      "variants": {
+        "a": "MAY",
+        "b": "MAY",
+        "c": "SHOULD",
+        "d": "SHOULD"
+      },
+      "jsonPath": "FRR.VER.data.all.TFR.VER-TFR-IRI"
+    },
+    "VER-TFR-NRI": {
+      "framework": "all",
+      "applicability": {
+        "affects": [
+          "Providers"
+        ],
+        "classes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "paths": [
+          "Program",
+          "Agency"
+        ],
+        "types": [
+          "20x",
+          "Rev5"
+        ]
+      },
+      "force": null,
+      "variants": {
+        "a": "MAY",
+        "b": "MAY",
+        "c": "MAY",
+        "d": "SHOULD"
+      },
+      "jsonPath": "FRR.VER.data.all.TFR.VER-TFR-NRI"
+    }
+  }
+}
