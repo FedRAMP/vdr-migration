@@ -1,10 +1,10 @@
 [project]
 nav = [
   { "Overview" = "index.md"},
-  { "Migrating to VDR/VER" = [
+  #{ "Migrating to VDR/VER" = [
     #{ "Customer Experience" = "cx.md" },
-    { "FAQs" = "faq.md" },
-  ]},
+  #  { "FAQs" = "faq.md" },
+  #]},
   { "Progress Reports" = [
     { "Required Information" = "report.md" },
     { "Schemas & Templates" = "schemas.md" },

@@ -1,5 +1,9 @@
 # Sources
 
+!!! danger "This page was generated using Super Intelligence."
+
+    It still needs review by a human.
+
 This website provides guidance and tools for the VDR/VER migration and progress reporting. Its pages are written in Markdown and rendered into HTML using Zensical. The underlying VDR/VER rules are maintained separately in [FedRAMP/rules](https://github.com/FedRAMP/rules).
 
 !!! info "For AI agents and automation"
@@ -25,7 +29,7 @@ The [FedRAMP/rules repository](https://github.com/FedRAMP/rules) contains `fedra
 
 The [FedRAMP/2026-markdown repository](https://github.com/FedRAMP/2026-markdown) provides the broader Consolidated Rules website as Markdown. Use it for related rule documentation and explanatory guidance beyond this migration site.
 
-## Instructions for AI agents
+## Instructions for SI agents
 
 1. **Start with the right source.** Use this repository's Markdown for migration and collection guidance, the rules repository for rule requirements, and the downloadable schemas for the supported Mini-SDR format. Follow relative links in Markdown to read the relevant context.
 
