@@ -34,6 +34,6 @@ Please help us efficiently leverage our limited resources by only directly askin
 
 To get help on the VDR/VER Migration, please use this form at [help.fedramp.gov](https://help.fedramp.gov):
 
-- [[CSPs VDR/VER Migration Progress Report Help]](https://help.fedramp.gov/hc/en-us/requests/new?ticket_form_id=58475218319643)
+- [[CSPs] VDR/VER Migration Progress Report Help](https://help.fedramp.gov/hc/en-us/requests/new?ticket_form_id=58475218319643)
 
 
