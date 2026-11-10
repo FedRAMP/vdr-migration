@@ -1,12 +1,11 @@
 # VDR/VER Migration Resources
 
-> 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧
->
-> **Under construction! Work in Progress!!**
->
-> Do not use the information on this site yet!
->
-> 🚧 🚧 🚧 🚧 🚧 🚧 🚧 🚧
+Official Links:
+
+- [VDR/VER Migration Resources](https://www.fedramp.gov/vdr-migration) on fedramp.gov
+- [Public Notice NTC-0017 VDR/VER Migration Progress Reporting and Upcoming FY27 Q1 FedRAMP Security Inbox Test](https://www.fedramp.gov/notices/0017)
+
+---
 
 This Zensical site helps cloud services migrate to FedRAMP's Vulnerability Detection and Response (VDR) and Vulnerability Evaluation and Reporting (VER) rules and prepare migration progress reports. It supports responses to NTC-0017, “VDR/VER Migration Progress Reporting via Upcoming Quarterly Security Inbox Test.”
 

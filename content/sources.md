@@ -2,8 +2,6 @@
 
 !!! danger "This page was generated using Super Intelligence."
 
-    It still needs review by a human.
-
 This website provides guidance and tools for the VDR/VER migration and progress reporting. Its pages are written in Markdown and rendered into HTML using Zensical. The underlying VDR/VER rules are maintained separately in [FedRAMP/rules](https://github.com/FedRAMP/rules).
 
 !!! info "For AI agents and automation"
@@ -12,7 +10,11 @@ This website provides guidance and tools for the VDR/VER migration and progress 
 
 ## Source files
 
-### Migration guidance
+### Public Notice
+
+[Public Notice NTC-0017 VDR/VER Migration Progress Reporting and Upcoming FY27 Q1 FedRAMP Security Inbox Test](https://www.fedramp.gov/notices/0017) explains the background behind this web site.
+
+### Migration Guidance
 
 The [VDR/VER migration repository](https://github.com/FedRAMP/vdr-migration) contains the source pages, report formats, examples, and validator for this site.
 
@@ -23,7 +25,7 @@ The [VDR/VER migration repository](https://github.com/FedRAMP/vdr-migration) con
 
 For plain Markdown without the GitHub interface, use a file's **Raw** view. For example, [read this Sources page as raw Markdown](https://raw.githubusercontent.com/FedRAMP/vdr-migration/main/content/sources.md).
 
-### FedRAMP rules
+### FedRAMP Rules
 
 The [FedRAMP/rules repository](https://github.com/FedRAMP/rules) contains `fedramp-consolidated-rules.json`, the structured source for FedRAMP rules. Read its [agent instructions](https://github.com/FedRAMP/rules/blob/main/AGENTS.md) when working with that data.
 
@@ -41,15 +43,3 @@ The [FedRAMP/2026-markdown repository](https://github.com/FedRAMP/2026-markdown)
 
 5. **Respect the limits of validation.** A passing Mini-SDR validation result establishes format and consistency checks only. It does not assess the quality of an implementation or corrective action plan. The separate activity-report samples are outside the validator's scope.
 
-## Rules and guidance
-
-- [Vulnerability Detection and Response](https://www.fedramp.gov/2026/reference/vulnerability-detection-and-response/)
-- [Vulnerability Evaluation and Reporting](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/)
-- [Using the Consolidated Rules](https://www.fedramp.gov/2026/rules/)
-- [Security Decision Record](https://www.fedramp.gov/2026/reference/security-decision-record/)
-- [Certification Data Sharing](https://www.fedramp.gov/2026/reference/certification-data-sharing/)
-- [Addressing FedRAMP Communication](https://www.fedramp.gov/2026/reference/addressing-fedramp-communication/)
-
-## Migration notice
-
-The site is being prepared against NTC-0017, “VDR/VER Migration Progress Reporting via Upcoming Quarterly Security Inbox Test”. A link to the published notice will be added when its destination is confirmed.

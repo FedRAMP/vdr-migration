@@ -1,6 +1,6 @@
 # VDR/VER Migration Progress Report
 
-Prepare the following for [NTC-0017](https://fedramp.gov/notices/0017):
+Prepare the following in response to [Public Notice NTC-0017](https://fedramp.gov/notices/0017) for the upcoming FY27 Q1 Security Inbox Test:
 
 1. **VDR/VER Migration Progress Report Mini-SDR:** A JSON or CSV Mini-Security Decision Record (Mini-SDR) describing implementation status for each applicable VDR/VER rule, with a brief explanation and a rule-specific corrective action plan and timeline where required.
 2. **Machine-Readable Activity Report:** A sample or example machine-readable activity report required by [VER-RPT-PER (Persistent Reporting)](https://www.fedramp.gov/2026/reference/vulnerability-evaluation-and-reporting/#persistent-reporting), with at least 5 vulnerabilities of each type.

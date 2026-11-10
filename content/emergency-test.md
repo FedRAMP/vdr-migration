@@ -1,6 +1,6 @@
 # Data Collection via Emergency Test
 
-FedRAMP announced that VDR/VER Migration Progress Reports will be collected via the FY27 Q1 Security Inbox Emergency Test in [NTC-0017](https://www.fedramp.gov/notices/0017). This page contains information about what to expect for this Emergency Test.
+FedRAMP announced that VDR/VER Migration Progress Reports will be collected via the FY27 Q1 Security Inbox Emergency Test in [Public Notice NTC-0017](https://www.fedramp.gov/notices/0017). This page contains information about what to expect for this Emergency Test.
 
 !!! info "Last Updated: Tuesday, November 10, 2026 (2026-11-10)"
 
