@@ -45,6 +45,6 @@ Explanation of when each corrective action plan status applies.
 
 ### Preparing Machine-Readable Reports
 
-Use the [schemas and templates](schemas.md#corrective-action-plan-fields) for exact field names and formatting. In JSON, omit unused CAP fields; in CSV, leave their cells blank. A fully implemented rule may omit the CAP or retain a completed one. A rule response marked `Not Applicable` still needs an explained CAP status of `Not Applicable`.
+Use the [schemas and templates](schemas.md#corrective-action-plans) for exact field names and formatting. In JSON, omit unused CAP fields; in CSV, leave their cells blank. A fully implemented rule may omit the CAP or retain a completed one. A rule response marked `Not Applicable` still needs an explained CAP status of `Not Applicable`.
 
 Before submitting, use the [validator](validate.md) to check the file's format and required fields. Review the explanations yourself: a passing result cannot tell you whether the plan adequately addresses the gap or gives your customers enough information.

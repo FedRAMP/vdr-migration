@@ -1,12 +1,14 @@
 [project]
 nav = [
   { "Overview" = "index.md"},
+  { "Data Collection via Emergency Test" = "emergency-test.md"},
   #{ "Migrating to VDR/VER" = [
     #{ "Customer Experience" = "cx.md" },
   #  { "FAQs" = "faq.md" },
   #]},
   { "Progress Reports" = [
     { "Required Information" = "report.md" },
+    { "Reference List of Applicable Rules" = "reference.md"},
     { "Schemas & Templates" = "schemas.md" },
     { "Corrective Action Plans" = "cap.md" },
     { "Validators" = "validate.md" },

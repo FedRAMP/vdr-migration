@@ -20,26 +20,26 @@ The VDR/VER Migration Progress Report must include a simplified Security Decisio
 
 
 
-## Required fields
+## Required Fields and Explanations
 
 JSON has a `metadata` object and a `responses` object keyed by rule ID. CSV repeats metadata in every row and uses a `ruleId` column. Include all 37 provider-facing VDR/VER rules, including those with class-specific requirements; use `Not Applicable` with an explanation where appropriate. See the [provider rule list](report.md#reference-list-of-applicable-rules).
 
-### Offering metadata
+### Offering Metadata
 
 All fields below are required. Repeated CSV metadata must be identical across rows.
 
 | Field | What to enter |
 | --- | --- |
-| `schemaVersion` | `0.2.0`. |
-| `rulesVersion` | `2026.11.02.01`. This format uses this specific rules baseline. |
-| `providerName` | Provider name, matching the Marketplace information. |
-| `offeringName` | Cloud service offering name, matching the Marketplace information. |
-| `framework` | `Rev5` or `20x`. |
-| `class` | `B`, `C`, or `D` for Rev5; `B` or `C` for 20x. |
-| `asOfDate` | Date the answers describe, in `YYYY-MM-DD` format. |
-| `fedrampId` | Required FedRAMP offering identifier. It must be nonblank and identical in every CSV row. |
+| `schemaVersion` | `0.2.0` |
+| `rulesVersion` | `2026.11.02.01`. This format uses this specific rules baseline |
+| `providerName` | Provider name, matching the Marketplace information |
+| `offeringName` | Cloud service offering name, matching the Marketplace information |
+| `framework` | `Rev5` or `20x` |
+| `class` | `B`, `C`, or `D` for Rev5; `B` or `C` for 20x |
+| `asOfDate` | Date the answers describe, in `YYYY-MM-DD` format|
+| `fedrampId` | Required FedRAMP offering identifier. It must be nonblank and identical in every CSV row |
 
-### Rule response
+### Rule Status
 
 `ruleId`
 :   Required in CSV; the corresponding object key in JSON. Use each provider rule ID exactly once.
@@ -70,7 +70,7 @@ All fields below are required. Repeated CSV metadata must be identical across ro
 
 Risk and compensation fields remain outside `correctiveActionPlan`. A CAP status of `Not Applicable` does not remove their requiredness for partially or not implemented rules. Optional text fields may be omitted or blank in JSON; leave unused CSV cells blank. Required text must contain more than whitespace.
 
-## Corrective action plan fields
+## Corrective Action Plans
 
 Each JSON rule response groups these fields inside `correctiveActionPlan`. CSV uses the same names as six adjacent columns, without embedding JSON in a cell.
 
@@ -105,8 +105,25 @@ Omit other CAP fields in JSON and leave their CSV cells blank. If a fully implem
 
 For a rule whose implementation status is `Not Applicable`, use CAP status `Not Applicable` and explain why. A justified SHOULD departure or unused MAY option can also use CAP status `Not Applicable`. It cannot waive an applicable MUST or MUST NOT requirement that is partially or not implemented. An applicable MUST or MUST NOT rule cannot use implementation status `Not Applicable`. The schemas account for class-specific force and require `VDR-TFR-MVX` to be marked not applicable for Rev5 and `VDR-TFR-MVF` for 20x.
 
-## Validation scope
+### Not Applicable Rules
 
-The JSON schema uses JSON Schema Draft 2020-12. Enable date-format checking in your validator. The CSV schema uses [CSV Schema Language 1.1](https://digital-preservation.github.io/csv-schema/csv-schema-1.1.html) and checks column values, conditional CAP fields, unique rule IDs, and repeated required metadata. A companion check must confirm that no provider rule rows are missing.
+The CSV template has all the rules included by default, but there are some rules that only apply to 20x or Rev5. Instead of removing them, they should be marked `Not Applicable`. This is a quirk of providing a CSV template, since we can't supply conditional logic.
 
-The [browser validator](validate.md) checks JSON and CSV using the same field and applicability rules, including complete rule coverage. A valid file does not establish implementation quality, adequate explanations, or FedRAMP approval of a corrective action plan. The 1–3 sentence guidance is not a machine assessment of the explanation's quality.
+For `VDR-TFR-MVX` in a Rev5 CSV report, complete these columns:
+
+| CSV column | Example value |
+| --- | --- |
+| `status` | `Not Applicable` |
+| `explanation` | This rule applies to 20x; this offering follows Rev5. |
+| `capStatus` | `Not Applicable` |
+| `capStatusExplanation` | No corrective action is needed because this rule is outside the offering’s framework. |
+
+Leave `capTargetDate`, `capExplanation`, `capConfidence`, and `capCompletedDate` blank. Keep the row and its repeated metadata in the report.
+
+Setting `status` to `Not Applicable` does not replace the two required CAP entries. If all six CAP cells are blank, the browser validator reports that a `correctiveActionPlan` object is required. In CSV, resolve that error by filling in `capStatus` and `capStatusExplanation` as shown above.
+
+!!! tip "The same pattern applies to `VDR-TFR-MVF` in a 20x report, with explanations reflecting that framework."
+
+## Validation Scope
+
+A valid file does not establish implementation quality, adequate explanations, or FedRAMP approval of a corrective action plan.
