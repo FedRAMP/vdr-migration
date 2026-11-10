@@ -41,8 +41,6 @@ FedRAMP will work with these cloud services to help them complete their migratio
 2. **After March 7, 2027,** FedRAMP will not initiate review of a service that has received an agency ATO unless it has fully migrated to VDR/VER before applying for a new Rev5 Certification.
 
 
-
-
 ## Agency-Provided Offerings
 
 !!! danger "Agency-provided offerings are EXEMPT from the VDR/VER!"

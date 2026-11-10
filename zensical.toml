@@ -2,6 +2,7 @@
 nav = [
   { "Overview" = "index.md"},
   { "Data Collection via Emergency Test" = "emergency-test.md"},
+  { "Discussion and Help" = "help.md"},
   #{ "Migrating to VDR/VER" = [
     #{ "Customer Experience" = "cx.md" },
   #  { "FAQs" = "faq.md" },
