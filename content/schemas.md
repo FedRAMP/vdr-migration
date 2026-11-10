@@ -12,7 +12,7 @@ The VDR/VER Migration Progress Report must include a simplified Security Decisio
 
     [Download CSV template](assets/implementation-status.csv) | [CSV schema](assets/implementation-status.csvs)
 
-    The CSV template has 22 columns. Its blank answers, including `fedrampId`, must be completed before the file can pass validation. Keep the column names and order. If a column is not applicable in certain situations, either leave it blank or mark it `Not Applicable`.
+    The CSV template has 22 columns. Its blank answers, including `fedrampId`, must be completed before the file can pass validation. Keep the column names and order. If a column is not applicable in certain situations, either leave it blank or mark it `Not Applicable` as appropriate (it varies, follow the instructions below).
 
     This template is a little... janky...  because CSV does not handle conditional logic well. This means you have to put a bunch of data into each row that will be the same in the entire file so that we can easily use automation at scale to pull the status of anything supplied in CSV.
 
@@ -22,7 +22,7 @@ The VDR/VER Migration Progress Report must include a simplified Security Decisio
 
 ## Required Fields and Explanations
 
-JSON has a `metadata` object and a `responses` object keyed by rule ID. CSV repeats metadata in every row and uses a `ruleId` column. Include all 37 provider-facing VDR/VER rules, including those with class-specific requirements; use `Not Applicable` with an explanation where appropriate. See the [provider rule list](report.md#reference-list-of-applicable-rules).
+JSON has a `metadata` object and a `responses` object keyed by rule ID. CSV repeats metadata in every row and uses a `ruleId` column. Include all 37 provider-facing VDR/VER rules, including those with class-specific requirements; use `Not Applicable` with an explanation where appropriate. See the [provider rule list](reference.md#reference-list-of-applicable-rules).
 
 ### Offering Metadata
 
@@ -48,7 +48,7 @@ All fields below are required. Repeated CSV metadata must be identical across ro
 :   Required: `Fully Implemented`, `Partially Implemented`, `Not Implemented`, or `Not Applicable`.
 
 `explanation`
-:   Required. Briefly describe implementation, or explain the reason and resulting risk for nonimplementation. Explain any `Not Applicable` response, including a decision not to use a MAY option.
+:   Required. Briefly describe implementation, or explain the reason and resulting risk for not implementing this rule. Explain any `Not Applicable` response, including a decision not to use a MAY option.
 
 `correctiveActionPlan`
 :   Nested JSON object required whenever `status` is not `Fully Implemented`, including `Not Applicable`. In CSV, use the six CAP columns below. A fully implemented rule may omit the object or retain a `Completed` CAP.
@@ -78,19 +78,19 @@ Each JSON rule response groups these fields inside `correctiveActionPlan`. CSV u
 :   Required whenever a CAP is present: `Planned`, `In Progress`, `Pending Plan`, `Completed`, or `Not Applicable`.
 
 `capStatusExplanation`
-:   Always required when a CAP is present. Briefly explain the reason for the current CAP status in 1–3 sentences.
+:   Always required when a CAP is present. Briefly explain the reason for the current CAP status in 1–3 sentences. This field explains why the corrective action plan is in this status, not the overall corrective action plan itself.
 
 `capTargetDate`
-:   Required for `Planned` or `In Progress`: date all actions for this rule are anticipated to be completed, in `YYYY-MM-DD` format.
+:   Required for `Planned` or `In Progress`. The date all actions for this rule are anticipated to be completed, in `YYYY-MM-DD` format.
 
 `capExplanation`
-:   Required for `Planned` or `In Progress`: responsibly explain actions being taken to complete implementation. For `Completed`, responsibly explain actions taken to complete implementation.
+:   Required for `Planned`, `In Progress`, or `Completed`. Responsibly explain actions being taken to complete implementation. For `Completed`, responsibly explain actions taken to complete implementation. Do not use this field to explain why the corrective action is in the current status.
 
 `capConfidence`
-:   Required for `Planned` or `In Progress`: a number from 0 through 100 estimating confidence in completion by `capTargetDate`. Zero is the lowest confidence; 100 is complete confidence. Decimals are allowed.
+:   Required for `Planned` or `In Progress`. A number from 0 through 100 estimating confidence in completion by `capTargetDate`. Zero is the lowest confidence; 100 is complete confidence. Decimals are allowed.
 
 `capCompletedDate`
-:   Required for `Completed`: date all actions were completed, in `YYYY-MM-DD` format.
+:   Required for `Completed`. The date all actions were completed, in `YYYY-MM-DD` format.
 
 Only include the fields for the selected CAP status:
 
@@ -126,4 +126,9 @@ Setting `status` to `Not Applicable` does not replace the two required CAP entri
 
 ## Validation Scope
 
-A valid file does not establish implementation quality, adequate explanations, or FedRAMP approval of a corrective action plan.
+The downloadable schemas check report structure, but passing a standalone schema check is not equivalent to validating the complete Mini-SDR:
+
+- The CSV Schema 1.1 checks allowed rule IDs and rejects duplicates, but cannot ensure that all 37 rule IDs are present. Use a companion completeness check.
+- The JSON Schema requires Draft 2020-12 support and a validator configured to assert `format` for dates. A normal JSON parser may discard duplicate object keys before schema validation, so reject duplicate keys while parsing.
+
+Use the [browser validator](validate.md) or equivalent companion checks to validate the complete report. The browser validator checks all 37 rules in both formats and rejects duplicate JSON keys. Passing validation does not establish implementation quality, adequate explanations, compliance, or FedRAMP approval of a corrective action plan.

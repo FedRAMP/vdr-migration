@@ -8,8 +8,15 @@ const v = require('../overrides/javascripts/validate.js');
 const schema = JSON.parse(fs.readFileSync(path.join(root, 'overrides/assets/implementation-status.schema.json')));
 const source = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures/validator-applicability.json')));
 const read = name => fs.readFileSync(path.join(root, 'overrides/assets/examples', name), 'utf8');
+const csvSchemaText = fs.readFileSync(path.join(root, 'overrides/assets/implementation-status.csvs'), 'utf8');
 const copy = data => JSON.parse(JSON.stringify(data));
 const jsonResult = data => v.validate(JSON.stringify(data), 'json');
+const ECMASCRIPT_WHITESPACE = [
+  0x0009, 0x000a, 0x000b, 0x000c, 0x000d, 0x0020, 0x00a0, 0x1680,
+  ...Array.from({length: 11}, (_, i) => 0x2000 + i),
+  0x2028, 0x2029, 0x202f, 0x205f, 0x3000, 0xfeff
+].map(codePoint => String.fromCodePoint(codePoint));
+const ECMASCRIPT_NON_WHITESPACE = [0x0085, 0x180e, 0x200b].map(codePoint => String.fromCodePoint(codePoint));
 function cap(status) {
   const result = { capStatus: status, capStatusExplanation: 'The owner has documented the current action status.' };
   if (['Planned', 'In Progress'].includes(status)) Object.assign(result, {capTargetDate:'2027-01-31', capExplanation:'Complete the assigned work and verify the result.', capConfidence:85.5});
@@ -119,6 +126,101 @@ test('conditional fields, dates, versions and unknown properties', () => {
   // Dates are format checks, not approval or chronology judgments.
   const past=partial();past.responses[id].correctiveActionPlan.capTargetDate='2025-01-01';check('past target is not a structural failure',past,true);
   const future=baseline();future.responses[id].correctiveActionPlan=cap('Completed');future.responses[id].correctiveActionPlan.capCompletedDate='2030-01-01';check('future completed date is not a structural failure',future,true);
+});
+
+test('required and optional text use ECMAScript whitespace semantics', () => {
+  const expectedWhitespace = Array.from({length: 0x10000}, (_, codePoint) => String.fromCodePoint(codePoint))
+    .filter(character => /\s/u.test(character));
+  assert.deepEqual(ECMASCRIPT_WHITESPACE, expectedWhitespace);
+
+  const csvPattern = String.raw`(?s).*[^\x{9}-\x{D}\x{20}\x{A0}\x{1680}\x{2000}-\x{200A}\x{2028}\x{2029}\x{202F}\x{205F}\x{3000}\x{FEFF}].*`;
+  const csvTextPatterns = [...csvSchemaText.matchAll(/regex\("([^"]+)"\)/g)]
+    .map(([, pattern]) => pattern)
+    .filter(pattern => pattern.includes('\\x{9}'));
+  assert.equal(csvTextPatterns.length, 14);
+  assert.ok(csvTextPatterns.every(pattern => pattern === csvPattern));
+  const jsSchemaPattern = csvPattern
+    .replace(/^\(\?s\)/, '')
+    .replace(/\\x\{([0-9A-Fa-f]+)\}/g, '\\u{$1}');
+  const csvSchemaTextMatcher = new RegExp(jsSchemaPattern, 'su');
+  for (const whitespace of ECMASCRIPT_WHITESPACE) assert.equal(csvSchemaTextMatcher.test(whitespace), false);
+  for (const character of ECMASCRIPT_NON_WHITESPACE) assert.equal(csvSchemaTextMatcher.test(character), true);
+
+  const id = 'VDR-CSO-DET';
+  const requiredFields = [
+    ['providerName', (d, value) => { d.metadata.providerName = value; }],
+    ['offeringName', (d, value) => { d.metadata.offeringName = value; }],
+    ['fedrampId', (d, value) => { d.metadata.fedrampId = value; }],
+    ['explanation', (d, value) => { d.responses[id].explanation = value; }],
+    ['customerRisk', (d, value) => { d.responses[id].customerRisk = value; }],
+    ['providerCompensation', (d, value) => { d.responses[id].providerCompensation = value; }],
+    ['agencyCompensation', (d, value) => { d.responses[id].agencyCompensation = value; }],
+    ['capStatusExplanation', (d, value) => { d.responses[id].correctiveActionPlan.capStatusExplanation = value; }],
+    ['capExplanation', (d, value) => { d.responses[id].correctiveActionPlan.capExplanation = value; }]
+  ];
+  const optionalFields = ['customerRisk', 'providerCompensation', 'agencyCompensation', 'additionalAssurance', 'feedback'];
+  const baseWithRequiredContext = field => {
+    const d = baseline();
+    const response = d.responses[id];
+    if (['customerRisk', 'providerCompensation', 'agencyCompensation', 'capStatusExplanation', 'capExplanation'].includes(field)) {
+      Object.assign(response, {
+        status: 'Partially Implemented',
+        customerRisk: 'Customer exposure remains.',
+        providerCompensation: 'Provider restrictions apply.',
+        agencyCompensation: 'Agency actions are described.',
+        correctiveActionPlan: cap('Planned')
+      });
+    }
+    return d;
+  };
+
+  for (const whitespace of ECMASCRIPT_WHITESPACE) {
+    for (const [field, setValue] of requiredFields) {
+      const d = baseWithRequiredContext(field);
+      setValue(d, whitespace);
+      const oracleCase = field === 'explanation';
+      check(`Text whitespace required ${field} U+${whitespace.codePointAt(0).toString(16).toUpperCase()}`, d, false, oracleCase);
+    }
+    for (const field of optionalFields) {
+      const d = baseline();
+      d.responses[id][field] = whitespace;
+      const oracleCase = field === 'feedback';
+      check(`Text whitespace optional ${field} U+${whitespace.codePointAt(0).toString(16).toUpperCase()}`, d, false, oracleCase);
+    }
+  }
+
+  const allWhitespace = ECMASCRIPT_WHITESPACE.join('');
+  for (const [name, field, oracleCase] of [
+    ['explanation', 'explanation', true],
+    ['CAP status explanation', 'capStatusExplanation', false],
+    ['optional feedback', 'feedback', true]
+  ]) {
+    const d = baseWithRequiredContext(field);
+    if (field === 'feedback') d.responses[id][field] = allWhitespace;
+    else if (field === 'capStatusExplanation') d.responses[id].correctiveActionPlan.capStatusExplanation = allWhitespace;
+    else d.responses[id].explanation = allWhitespace;
+    check(`Text whitespace sequence ${name}`, d, false, oracleCase);
+  }
+
+  for (const [field, setValue] of requiredFields) {
+    const d = baseWithRequiredContext(field);
+    setValue(d, ` \u00a0Meaningful text\u2003 `);
+    check(`Text with surrounding whitespace ${field}`, d, true, field === 'explanation');
+  }
+  for (const field of optionalFields) {
+    const d = baseline();
+    d.responses[id][field] = ` \u00a0Meaningful text\u2003 `;
+    check(`Optional text with surrounding whitespace ${field}`, d, true, field === 'feedback');
+    const blank = baseline();
+    blank.responses[id][field] = '';
+    check(`Empty optional text ${field}`, blank, true, field === 'feedback');
+  }
+
+  for (const character of ECMASCRIPT_NON_WHITESPACE) {
+    const d = baseline();
+    d.responses[id].explanation = character;
+    check(`ECMAScript non-whitespace U+${character.codePointAt(0).toString(16).toUpperCase()}`, d, true, true);
+  }
 });
 
 test('JSON parsing, duplicate properties, hostile keys and nesting', () => {

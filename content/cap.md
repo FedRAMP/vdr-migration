@@ -8,7 +8,7 @@ Please include a Corrective Action Plan (CAP) for each VDR/VER rule that is not 
 
 !!! warning "Failure to supply a corrective action plan will result in administrative action!"
 
-    Do not wait for FedRAMP to request a corrective action plan for required rules that are not fully implemented. If you do not include a corrective action plan for each rule in your Progress Report Mini-SDR then your cloud service offering will be placed into public remediation.
+    Do not wait for FedRAMP to request a corrective action plan for required rules that are not fully implemented. If you do not include a corrective action plan for each required rule that isn't fully implemented in your Progress Report Mini-SDR then your cloud service offering may be placed into public remediation.
 
 ---
 
@@ -20,8 +20,9 @@ Including an explanation of your planned or in progress corrective action will h
 | -- | -- | -- |
 | **Summarize the status.** | `capStatus` | Options for this field are shown in the table below. |
 | **Explain the status.** | `capStatusExplanation` | Briefly explain the reason for the current status. If the corrective action is pending a plan or not applicable, perhaps explain in a bit more detail as appropriate. |
-| **Explain the gap.** | `capExplanation` | Responsibly explain what corrective you have taken, are taking, and that will need to be taken. |
-| **Supply a date and confidence.** | `capTargetDate`, `capConfidence` | Share the current project's overall target completion date for this rule and your current confidence (0-100) in that date. This information is for awareness and will not form the basis of administrative action by FedRAMP. |
+| **Explain the gap.** | `capExplanation` | Responsibly explain what corrective you have taken, are taking, and that will need to be taken. Required for `Planned`, `In Progress`, and `Completed`.|
+| **Supply a date and confidence.** | `capTargetDate`, `capConfidence` | Share the current project's overall target completion date for this rule and your current confidence (0-100) in that date. This information is for awareness and will not form the basis of administrative action by FedRAMP. Required for `Planned` and `In Progress`. |
+| **If completed, say when.** | `capCompletedDate` | This only applies if you previously had a corrective action plan for the rule and completed it, so it will only appear in Progress Report updates. It is required for `Completed` corrective action plans.
 /// table-caption
 Overview of required documentation for per-rule corrective action plans.
 ///
@@ -34,11 +35,11 @@ Overview of required documentation for per-rule corrective action plans.
 
 | Status | Explanation |
 | -- | -- |
-| `Planned` | **Corrective action has not yet begun.**  You should explain why, and when it will begin, along with the other information expected in your `capExplanation`. You must also include `capTargetDate` and `capConfidence`. |
-| `In Progress` | **Corrective action has begun but is not completed.** You should explain how much progress you have made, along with the other information expected in your `capExplanation`. You must also include `capTargetDate` and `capConfidence`.|
-| `Pending Plan` | **You have no plan, or will not make a plan.** You should have a very good explanation in your `capExplanation` and be prepared for administrative action. |
-| `Completed` | **You did it after December 7, 2026! Good job!** This status would typically be used in an update to a previous Progress Report, and should explain what all was completed in the `capExplanation`. You must also include `capCompletedDate`.|
-| `Not Applicable` | **This rule does not apply in your circumstances so a CAP is not necessary.** It may be that the rule applies to Rev5 and you are 20x or vice versa, or the force of the rule may not require completion so even though the rule is not fully implemented there is no need for corrective action. This should be used carefully and is mostly there because of the janky CSV schema situation.|
+| `Planned` | **Corrective action has not yet begun.** `capStatusExplanation` explains why action has not begun. `capExplanation` describes the planned actions. Include `capTargetDate` and `capConfidence`. |
+| `In Progress` | **Corrective action has begun but is not completed.** `capStatusExplanation` explains why this is still in progress and how much progress you have made. `capExplanation` explains the overall and remaining planned actions. Include `capTargetDate` and `capConfidence`.|
+| `Pending Plan` | **You have no plan, or will not make a plan.** You should have a very good explanation in your `capStatusExplanation` and be prepared for administrative action. Do not include `capExplanation` because you do not have a corrective action plan yet. |
+| `Completed` | **You did it after December 7, 2026! Good job!** This status would typically be used in an update to a previous Progress Report, and should explain what all was completed in the `capExplanation`. You must also include `capCompletedDate` and anything specific to completing the corrective action in in `capStatusExplanation`.|
+| `Not Applicable` | **This rule does not apply in your circumstances so a CAP is not necessary.** It may be that the rule applies to Rev5 and you are 20x or vice versa, or the force of the rule may not require completion so even though the rule is not fully implemented there is no need for corrective action. This should be used carefully and is mostly there because of the janky CSV schema situation. `capStatusExplanation` explains why it's not applicable. Do not include `capExplanation`.|
 /// table-caption
 Explanation of when each corrective action plan status applies.
 ///

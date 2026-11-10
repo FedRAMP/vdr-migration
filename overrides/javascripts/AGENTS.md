@@ -32,6 +32,8 @@ Require all 37 provider rule IDs, including framework-excluded rules. Reject unk
 
 Every response requires an allowed status and nonblank `explanation`. `Partially Implemented` and `Not Implemented` also require separate nonblank `customerRisk`, `providerCompensation`, and `agencyCompensation`. Optional text fields can be omitted or exactly empty, but cannot contain only whitespace or a non-string value. `additionalAssurance` and `feedback` remain optional.
 
+For this contract, whitespace is the ECMAScript WhiteSpace and LineTerminator set: U+0009–U+000D, U+0020, U+00A0, U+1680, U+2000–U+200A, U+2028–U+2029, U+202F, U+205F, U+3000, and U+FEFF. A required text answer must contain at least one character outside that set. An optional text answer may be omitted or exactly empty; any nonempty value must also contain a character outside the set. Keep the same set in the JSON Schema, CSV Schema, and browser validator.
+
 Every status except `Fully Implemented` requires a per-rule `correctiveActionPlan`. Fully implemented responses may omit it or retain only a `Completed` CAP. Never introduce a standalone CAP file.
 
 | CAP status | Required fields beyond status and explanation | Forbidden fields |
@@ -78,7 +80,7 @@ Run the dependency-free tests:
 node --test tests/validator.test.cjs
 ```
 
-All six completed examples must pass and starter templates must fail. The matrix exercises every rule across five profiles, four implementation statuses, and six CAP choices. Additional tests cover missing fields, unexpected types/properties, duplicate JSON keys/rules, malformed CSV, quoted/multiline fields, BOM/line endings, dates, confidence, size, and error truncation.
+All six completed examples must pass and starter templates must fail. The matrix exercises every rule across five profiles, four implementation statuses, and six CAP choices. Additional tests cover missing fields, unexpected types/properties, duplicate JSON keys/rules, malformed CSV, quoted/multiline fields, BOM/line endings, dates, confidence, size, error truncation, and required/optional text against every character in the ECMAScript whitespace set.
 
 Optional JSON Schema comparison uses a preinstalled AJV 2020-12 plus ajv-formats:
 
@@ -86,7 +88,7 @@ Optional JSON Schema comparison uses a preinstalled AJV 2020-12 plus ajv-formats
 AJV_MODULE_DIR=/absolute/path/to/node_modules node --test tests/validator.test.cjs
 ```
 
-The oracle test must compare 4,504 cases without mismatches. Without that environment variable it is explicitly skipped. Export equivalent cases for CSV Schema 1.1 comparison with `VALIDATOR_CASES_OUTPUT=/tmp/validator-cases.json`. Use The National Archives CSV Validator 1.4.4 on the exported CSV and `overrides/assets/implementation-status.csvs`; exclude the missing-rule-only case from oracle parity because coverage is a companion check. This external engine is not a browser/runtime dependency.
+The oracle test must compare 4,879 cases without mismatches. Without that environment variable it is explicitly skipped. Export equivalent cases for CSV Schema 1.1 comparison with `VALIDATOR_CASES_OUTPUT=/tmp/validator-cases.json`. Use The National Archives CSV Validator 1.4.4 on the exported CSV and `overrides/assets/implementation-status.csvs`; exclude the missing-rule-only case from oracle parity because coverage is a companion check. This external engine is not a browser/runtime dependency.
 
 Run `zensical build`, inspect generated script and download links under `/vdr-migration/`, then test direct loading and instant navigation in a browser. Include file/paste, JSON/CSV, keyboard operation, hostile strings, 5 MiB boundaries, read failures/cancellation, clear, history restoration, and leaving/returning repeatedly. Inspect network and storage with the site's analytics enabled using synthetic data. Static inspection of the validator alone does not prove privacy of third-party page scripts. Record actual browser and deployment limitations in `PLAN-STEP4.md`; leave acceptance checks open when unperformed.
 

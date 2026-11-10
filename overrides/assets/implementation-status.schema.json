@@ -291,11 +291,11 @@
         },
         "providerName": {
           "type": "string",
-          "pattern": "\\S"
+          "pattern": "[^\\u0009-\\u000D\\u0020\\u00A0\\u1680\\u2000-\\u200A\\u2028\\u2029\\u202F\\u205F\\u3000\\uFEFF]"
         },
         "offeringName": {
           "type": "string",
-          "pattern": "\\S"
+          "pattern": "[^\\u0009-\\u000D\\u0020\\u00A0\\u1680\\u2000-\\u200A\\u2028\\u2029\\u202F\\u205F\\u3000\\uFEFF]"
         },
         "framework": {
           "enum": [
@@ -317,7 +317,7 @@
         },
         "fedrampId": {
           "type": "string",
-          "pattern": "\\S",
+          "pattern": "[^\\u0009-\\u000D\\u0020\\u00A0\\u1680\\u2000-\\u200A\\u2028\\u2029\\u202F\\u205F\\u3000\\uFEFF]",
           "description": "Required FedRAMP offering identifier."
         }
       },
@@ -368,7 +368,7 @@
         },
         "explanation": {
           "type": "string",
-          "pattern": "\\S"
+          "pattern": "[^\\u0009-\\u000D\\u0020\\u00A0\\u1680\\u2000-\\u200A\\u2028\\u2029\\u202F\\u205F\\u3000\\uFEFF]"
         },
         "correctiveActionPlan": {
           "$ref": "#/$defs/correctiveActionPlan"
@@ -380,7 +380,7 @@
               "const": ""
             },
             {
-              "pattern": "\\S"
+              "pattern": "[^\\u0009-\\u000D\\u0020\\u00A0\\u1680\\u2000-\\u200A\\u2028\\u2029\\u202F\\u205F\\u3000\\uFEFF]"
             }
           ]
         },
@@ -391,7 +391,7 @@
               "const": ""
             },
             {
-              "pattern": "\\S"
+              "pattern": "[^\\u0009-\\u000D\\u0020\\u00A0\\u1680\\u2000-\\u200A\\u2028\\u2029\\u202F\\u205F\\u3000\\uFEFF]"
             }
           ]
         },
@@ -402,7 +402,7 @@
               "const": ""
             },
             {
-              "pattern": "\\S"
+              "pattern": "[^\\u0009-\\u000D\\u0020\\u00A0\\u1680\\u2000-\\u200A\\u2028\\u2029\\u202F\\u205F\\u3000\\uFEFF]"
             }
           ]
         },
@@ -413,7 +413,7 @@
               "const": ""
             },
             {
-              "pattern": "\\S"
+              "pattern": "[^\\u0009-\\u000D\\u0020\\u00A0\\u1680\\u2000-\\u200A\\u2028\\u2029\\u202F\\u205F\\u3000\\uFEFF]"
             }
           ]
         },
@@ -424,7 +424,7 @@
               "const": ""
             },
             {
-              "pattern": "\\S"
+              "pattern": "[^\\u0009-\\u000D\\u0020\\u00A0\\u1680\\u2000-\\u200A\\u2028\\u2029\\u202F\\u205F\\u3000\\uFEFF]"
             }
           ]
         }
@@ -485,15 +485,15 @@
             "properties": {
               "customerRisk": {
                 "type": "string",
-                "pattern": "\\S"
+                "pattern": "[^\\u0009-\\u000D\\u0020\\u00A0\\u1680\\u2000-\\u200A\\u2028\\u2029\\u202F\\u205F\\u3000\\uFEFF]"
               },
               "providerCompensation": {
                 "type": "string",
-                "pattern": "\\S"
+                "pattern": "[^\\u0009-\\u000D\\u0020\\u00A0\\u1680\\u2000-\\u200A\\u2028\\u2029\\u202F\\u205F\\u3000\\uFEFF]"
               },
               "agencyCompensation": {
                 "type": "string",
-                "pattern": "\\S"
+                "pattern": "[^\\u0009-\\u000D\\u0020\\u00A0\\u1680\\u2000-\\u200A\\u2028\\u2029\\u202F\\u205F\\u3000\\uFEFF]"
               }
             }
           }
@@ -539,7 +539,7 @@
         },
         "capStatusExplanation": {
           "type": "string",
-          "pattern": "\\S"
+          "pattern": "[^\\u0009-\\u000D\\u0020\\u00A0\\u1680\\u2000-\\u200A\\u2028\\u2029\\u202F\\u205F\\u3000\\uFEFF]"
         },
         "capTargetDate": {
           "type": "string",
@@ -548,7 +548,7 @@
         },
         "capExplanation": {
           "type": "string",
-          "pattern": "\\S"
+          "pattern": "[^\\u0009-\\u000D\\u0020\\u00A0\\u1680\\u2000-\\u200A\\u2028\\u2029\\u202F\\u205F\\u3000\\uFEFF]"
         },
         "capConfidence": {
           "type": "number",

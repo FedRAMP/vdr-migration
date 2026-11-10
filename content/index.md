@@ -13,7 +13,7 @@ The VDR/VER migration deadline is **December 7, 2026.** There is an automatic gr
 
 | Date | What it means |
 | --- | --- |
-| December 7, 2026 | Services that have not fully migrated must provide per-rule corrective actions and target timelines. |
+| December 7, 2026 | Services that have not fully migrated must provide per-rule corrective actions and target timelines in a VDR/VER Migration Progress Report; the mechanism and deadline for submitting this will be provided in a Security Inbox Emergency Test. |
 | February 3, 2027 | Services planning to complete migration after this date will be placed in “FedRAMP Certified (In Remediation)” status until they notify FedRAMP that migration is complete. |
 | March 7, 2027 | The grace period ends. An extension requires FedRAMP approval of the Corrective Action Plan and agreement to a FedRAMP-coordinated red team assessment. |
 | March 8, 2027 | Services that have neither fully migrated nor obtained an approved Corrective Action Plan will have their certification revoked and be banned from FedRAMP for one year. |
@@ -25,6 +25,8 @@ The VDR/VER migration deadline is **December 7, 2026.** There is an automatic gr
 !!! example "FedRAMP will be mostly hands-off until February 2027."
 
     FedRAMP will begin working with services needing an extended conditional grace period in February. Emergency communications will be sent to all outstanding cloud services requesting a status update and a progress review for any provider that does not anticipate completing the full migration prior to March 7, 2027.
+
+    All corrective action plans are considered pre-approved by FedRAMP until or unless FedRAMP reviews the corrective action plan and notifies the cloud service provider otherwise. These reviews will mostly begin in February 2027.
 
 ## Agency Authorization In Process
 
